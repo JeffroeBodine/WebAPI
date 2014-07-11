@@ -11,6 +11,8 @@ namespace WebAPI
         {
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute("FileRoute", "api/Document/{id}/File", new { controller = "File", action = "Get" });
+            config.Routes.MapHttpRoute("Keywordroute", "api/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
