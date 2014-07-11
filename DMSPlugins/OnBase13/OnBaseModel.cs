@@ -1,4 +1,5 @@
-﻿using System.Security;
+﻿using System.Linq;
+using System.Security;
 using ObjectLibrary;
 using ObjectLibrary.Collections;
 
@@ -48,6 +49,15 @@ namespace DMSPlugins.OnBase13
                 }
             }
             return documentTypes;
+        }
+
+        public DocumentType GetDocumentType(string id)
+        {
+            using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
+            {
+                var obDocumentType = app.Core.DocumentTypes.Find(long.Parse(id));
+                return new DocumentType(obDocumentType.ID, obDocumentType.Name);
+            }
         }
     }
 }

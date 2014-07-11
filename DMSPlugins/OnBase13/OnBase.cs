@@ -12,12 +12,17 @@ namespace DMSPlugins.OnBase13
 
         public OnBase(string userName, string password)
         {
-            _model = new OnBaseUnityModel(ServiceURL,DataSource, userName, password.Secure());
+            _model = new OnBaseUnityModel(ServiceURL, DataSource, userName, password.Secure());
         }
 
         public  DocumentTypes GetDocumentTypes()
         {
             return _model.GetDocumentTypes();
+        }
+
+        public DocumentType GetDocumentType(string id)
+        {
+            return _model.GetDocumentType(id);
         }
     }
 }

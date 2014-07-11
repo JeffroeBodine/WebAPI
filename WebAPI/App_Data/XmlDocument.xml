@@ -401,24 +401,9 @@
             Returns the collection of DocumentTypes.
             </summary>
         </member>
-        <member name="M:WebAPI.Controllers.DocumentTypeController.Get(System.Int32)">
+        <member name="M:WebAPI.Controllers.DocumentTypeController.Get(System.String)">
             <summary>
             Returns a specific DocumentType given an ID.
-            </summary>
-        </member>
-        <member name="M:WebAPI.Controllers.DocumentTypeController.Post(System.String)">
-            <summary>
-            Creates an instance of a DocumentType.
-            </summary>
-        </member>
-        <member name="M:WebAPI.Controllers.DocumentTypeController.Put(System.Int32,System.String)">
-            <summary>
-            Updates an instance of a DocumentType given an ID.
-            </summary>
-        </member>
-        <member name="M:WebAPI.Controllers.DocumentTypeController.Delete(System.Int32)">
-            <summary>
-            Deletes an instance of a DocumentType.
             </summary>
         </member>
     </members>

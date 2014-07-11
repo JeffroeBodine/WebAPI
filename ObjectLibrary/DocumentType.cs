@@ -6,7 +6,7 @@ namespace ObjectLibrary
     [DataContract]
     public sealed class DocumentType : BaseObject
     {
-        [DataMember]
+        [DataMember(Order = 10)]
         public DocumentTypes DocumentTypes { get; set; }
 
         public DocumentType(long id, string name) : base(id, name)
