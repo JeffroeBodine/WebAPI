@@ -396,6 +396,11 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:WebAPI.Controllers.DocumentController.Get(System.String)">
+            <summary>
+            Returns a specific Document given an ID.
+            </summary>
+        </member>
         <member name="M:WebAPI.Controllers.DocumentTypeController.Get">
             <summary>
             Returns the collection of DocumentTypes.
@@ -404,6 +409,21 @@
         <member name="M:WebAPI.Controllers.DocumentTypeController.Get(System.String)">
             <summary>
             Returns a specific DocumentType given an ID.
+            </summary>
+        </member>
+        <member name="M:WebAPI.Controllers.FileController.Get(System.String)">
+            <summary>
+            Returns a stream of data containing the file by the documentId.
+            </summary>
+        </member>
+        <member name="M:WebAPI.Controllers.KeywordTypeController.Get">
+            <summary>
+            Returns the collection of KeywordTypes.
+            </summary>
+        </member>
+        <member name="M:WebAPI.Controllers.KeywordTypeController.Get(System.String)">
+            <summary>
+            Returns a specific KeywordType given an ID.
             </summary>
         </member>
     </members>

@@ -1,4 +1,6 @@
-﻿using ObjectLibrary;
+﻿using System.Collections.Generic;
+using System.IO;
+using ObjectLibrary;
 using ObjectLibrary.Collections;
 
 namespace DMSPlugins.OnBase13
@@ -23,6 +25,31 @@ namespace DMSPlugins.OnBase13
         public DocumentType GetDocumentType(string id)
         {
             return _model.GetDocumentType(id);
+        }
+
+        public IEnumerable<KeywordType> GetKeywordTypes()
+        {
+            return _model.GetKeywordTypes();
+        }
+
+        public KeywordType GetKeywordType(string id)
+        {
+            return _model.GetKeywordType(id);
+        }
+
+        public Document GetDocumnet(string id)
+        {
+            return _model.GetDocument(id);
+        }
+
+        public Stream GetFileData(string documentId)
+        {
+            return _model.GetFileData(documentId);
+        }
+
+        public Keywords GetKeywords(string documentId)
+        {
+            return _model.GetKeywords(documentId);
         }
     }
 }

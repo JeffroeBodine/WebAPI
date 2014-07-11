@@ -12,7 +12,7 @@ namespace WebAPI.Controllers
         /// </summary>
         public IEnumerable<DocumentType> Get()
         {
-            var dms = new OnBase("manager", "password");
+            var dms = new OnBase("jturner", "jturner");
             return dms.GetDocumentTypes();
         }
 
@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         /// </summary>
         public DocumentType Get(string id)
         {
-            var dms = new OnBase("manager", "password");
+            var dms = new OnBase("jturner", "jturner");
             return dms.GetDocumentType(id);
         }
     }

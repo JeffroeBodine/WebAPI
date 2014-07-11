@@ -54,14 +54,6 @@ namespace ObjectLibrary
             }
         }
 
-        public static PageData PageData
-        {
-            get
-            {
-                return new PageData("1040.jpg", "jpeg", "image/jpg", new FileStream(@"c:\users\jturner\desktop\1040.jpg", FileMode.Open, FileAccess.Read));
-            }
-        }
-
         public static byte[] PageDataBytes
         {
             get

@@ -72,14 +72,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseObject.cs" />
-    <Compile Include="Collections\Pages.cs" />
     <Compile Include="Collections\SearchCriteria.cs" />
+    <Compile Include="DocumentMetaData.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="DocumentType.cs" />
     <Compile Include="Encryption.cs" />
-    <Compile Include="PageData.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

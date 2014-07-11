@@ -9,63 +9,61 @@ namespace ObjectLibrary
         [DataMember(Order = 100)]
         public bool IsBlank { get; set; }
         [DataMember(Order = 101)]
-        public int KeywordTypeId { get; set; }
-        [DataMember(Order = 102)]
-        public Type DataType { get; set; }
-
-        [DataMember(Order = 103)]
         public string StringValue { get; set; }
-        [DataMember(Order = 104)]
+        [DataMember(Order = 102)]
         public DateTime DateTimeValue { get; set; }
-        [DataMember(Order = 105)]
+        [DataMember(Order = 103)]
         public int IntValue { get; set; }
-        [DataMember(Order = 106)]
+        [DataMember(Order = 104)]
         public long LongValue { get; set; }
-        [DataMember(Order = 107)]
+        [DataMember(Order = 105)]
         public double DoubleValue { get; set; }
-        [DataMember(Order = 108)]
+        [DataMember(Order = 106)]
         public decimal DecimalValue { get; set; }
-        [DataMember(Order = 109)]
+        [DataMember(Order = 107)]
         public Object Value { get; set; }
+        [DataMember(Order = 108)]
+        public KeywordType KeywordType { get; set; }
 
-        public Keyword(string value)
+
+        public Keyword(KeywordType keywordType, string value)
         {
-            DataType = typeof(String);
+            KeywordType = keywordType;
             StringValue = value;
             Value = value;
         }
 
-        public Keyword(DateTime value)
+        public Keyword(KeywordType keywordType, DateTime value)
         {
-            DataType = typeof(DateTime);
+            KeywordType = keywordType;
             DateTimeValue = value;
             Value = value;
         }
 
-        public Keyword(int value)
+        public Keyword(KeywordType keywordType, int value)
         {
-            DataType = typeof(int);
+            KeywordType = keywordType;
             IntValue = value;
             Value = value;
         }
 
-        public Keyword(long value)
+        public Keyword(KeywordType keywordType, long value)
         {
-            DataType = typeof(long);
+            KeywordType = keywordType;
             LongValue = value;
             Value = value;
         }
 
-        public Keyword(double value)
+        public Keyword(KeywordType keywordType, double value)
         {
-            DataType = typeof(double);
+            KeywordType = keywordType;
             DoubleValue = value;
             Value = value;
         }
 
-        public Keyword(decimal value)
+        public Keyword(KeywordType keywordType, decimal value)
         {
-            DataType = typeof(decimal);
+            KeywordType = keywordType;
             DecimalValue = value;
             Value = value;
         }
