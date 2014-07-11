@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using WebAPI.Models;
+using ObjectLibrary;
 
 namespace WebAPI.Controllers
 {
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         {
         }
 
-        private List<DocumentType> FakeData {
+        private IEnumerable<DocumentType> FakeData {
             get
             {
                 var lstDocTypes = new List<DocumentType>();

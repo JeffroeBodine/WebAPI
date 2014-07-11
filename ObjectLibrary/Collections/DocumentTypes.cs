@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
-namespace WebAPI.Models.Collections
+namespace ObjectLibrary.Collections
 {
+    [CollectionDataContract]
     public class DocumentTypes : List<DocumentType>
     {
     }
