@@ -401,12 +401,12 @@
             Returns a specific Document given an ID.
             </summary>
         </member>
-        <member name="M:WebAPI.Controllers.DocumentTypeController.Get">
+        <member name="M:WebAPI.Controllers.DocumentTypeController.GetDocumentTypes">
             <summary>
             Returns the collection of DocumentTypes.
             </summary>
         </member>
-        <member name="M:WebAPI.Controllers.DocumentTypeController.Get(System.String)">
+        <member name="M:WebAPI.Controllers.DocumentTypeController.GetDocumentType(System.String)">
             <summary>
             Returns a specific DocumentType given an ID.
             </summary>
