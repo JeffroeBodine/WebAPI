@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Http;
-using WebAPI.Areas.HelpPage;
+﻿using System.Web.Http;
 
 namespace WebAPI
 {
