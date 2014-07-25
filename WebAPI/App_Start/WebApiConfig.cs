@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using ObjectLibrary;
 
 namespace WebAPI
 {
@@ -20,6 +21,7 @@ namespace WebAPI
             // For more information, refer to: http://www.asp.net/web-api
             config.EnableSystemDiagnosticsTracing();
 
+           config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new NHibernateContractResolver();
    }
     }
 }
