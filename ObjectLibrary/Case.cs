@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace ObjectLibrary
+﻿namespace ObjectLibrary
 {
     public class Case : BaseObject
     {
