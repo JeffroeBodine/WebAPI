@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
 using NHibernate.Linq;
 
 namespace DataAccess
 {
-    public class RepositoryBase : IRepository, IDisposable
+    public class RepositoryBase : IDisposable
     {
         protected ISession Session = null;
         protected ITransaction Transaction = null;
@@ -22,13 +23,34 @@ namespace DataAccess
 
         public virtual T Get<T>(long id)
         {
-            using (var session = SessionFactoryManager.CreateSessionFactory().OpenSession())
-            {
-                var o = session.Get<T>(id);
-                return o;
-            }
+            return Session.Get<T>(id);
         }
 
+        public virtual List<T> Get<T>()
+        {
+            return Session.Query<T>().ToList();
+        }
+
+        public virtual T Add<T>(T obj)
+        {
+            return (T)Session.Save(obj);
+        }
+
+        public virtual T Update<T>(T obj)
+        {
+            Session.Update(obj);
+            return obj;
+        }
+
+        public virtual T Delete<T>(T obj)
+        {
+            var existingObject = Session.Query<T>().FirstOrDefault(x => x.Equals(obj));
+
+            if (existingObject != null)
+                Session.Delete(existingObject);
+
+            return obj;
+        }
 
         #region Transaction and Session Management Methods
 
@@ -71,46 +93,18 @@ namespace DataAccess
 
         #endregion
 
-        #region IRepository Members
-
-        public virtual void Save(object obj)
-        {
-            Session.SaveOrUpdate(obj);
-        }
-
-        public virtual void Delete(object obj)
-        {
-            Session.Delete(obj);
-        }
-
-        public virtual object GetById(Type objType, object objId)
-        {
-            var s = objId.ToString();
-            return Session.Load(objType, Int64.Parse(s));
-        }
-
-        public virtual IQueryable<TEntity> ToList<TEntity>()
-        {
-            return (from entity in Session.Linq<TEntity>() select entity);
-        }
-
-        #endregion
-
         #region IDisposable Members
 
         public void Dispose()
         {
             if (Transaction != null)
             {
-                // Commit transaction by default, unless user explicitly rolls it back.
-                // To rollback transaction by default, unless user explicitly commits,
-                // comment out the line below.
                 CommitTransaction();
             }
 
             if (Session != null)
             {
-                Session.Flush(); // commit session transactions
+                Session.Flush();
                 CloseSession();
             }
         }
