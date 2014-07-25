@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using ObjectLibrary;
+using DataAccess;
 
 namespace WebAPI.Controllers
 {
@@ -7,10 +8,10 @@ namespace WebAPI.Controllers
     {
         public Case Get(string id)
         {
-            //return Case based on Id.
-            //Some connection String
-
-            return null;
+            using (var rb = new RepositoryBase())
+            {
+                return rb.Get<Case>(long.Parse(id));
+            }
         }
     }
 }

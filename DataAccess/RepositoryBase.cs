@@ -7,31 +7,41 @@ namespace DataAccess
 {
     public class RepositoryBase : IRepository, IDisposable
     {
-        protected ISession _session = null;
-        protected ITransaction _transaction = null;
+        protected ISession Session = null;
+        protected ITransaction Transaction = null;
 
         public RepositoryBase()
         {
-            _session = SessionFactoryManager.OpenSession();
+            Session = SessionFactoryManager.CreateSessionFactory().OpenSession();
         }
 
         public RepositoryBase(ISession session)
         {
-            _session = session;
+            Session = session;
         }
+
+        public virtual T Get<T>(long id)
+        {
+            using (var session = SessionFactoryManager.CreateSessionFactory().OpenSession())
+            {
+                var o = session.Get<T>(id);
+                return o;
+            }
+        }
+
 
         #region Transaction and Session Management Methods
 
         public void BeginTransaction()
         {
-            _transaction = _session.BeginTransaction();
+            Transaction = Session.BeginTransaction();
         }
 
         public void CommitTransaction()
         {
             // _transaction will be replaced with a new transaction
             // by NHibernate, but we will close to keep a consistent state.
-            _transaction.Commit();
+            Transaction.Commit();
 
             CloseTransaction();
         }
@@ -40,7 +50,7 @@ namespace DataAccess
         {
             // _session must be closed and disposed after a transaction
             // rollback to keep a consistent state.
-            _transaction.Rollback();
+            Transaction.Rollback();
 
             CloseTransaction();
             CloseSession();
@@ -48,15 +58,15 @@ namespace DataAccess
 
         private void CloseTransaction()
         {
-            _transaction.Dispose();
-            _transaction = null;
+            Transaction.Dispose();
+            Transaction = null;
         }
 
         private void CloseSession()
         {
-            _session.Close();
-            _session.Dispose();
-            _session = null;
+            Session.Close();
+            Session.Dispose();
+            Session = null;
         }
 
         #endregion
@@ -65,22 +75,23 @@ namespace DataAccess
 
         public virtual void Save(object obj)
         {
-            _session.SaveOrUpdate(obj);
+            Session.SaveOrUpdate(obj);
         }
 
         public virtual void Delete(object obj)
         {
-            _session.Delete(obj);
+            Session.Delete(obj);
         }
 
         public virtual object GetById(Type objType, object objId)
         {
-            return _session.Load(objType, objId);
+            var s = objId.ToString();
+            return Session.Load(objType, Int64.Parse(s));
         }
 
         public virtual IQueryable<TEntity> ToList<TEntity>()
         {
-            return (from entity in _session.Linq<TEntity>() select entity);
+            return (from entity in Session.Linq<TEntity>() select entity);
         }
 
         #endregion
@@ -89,7 +100,7 @@ namespace DataAccess
 
         public void Dispose()
         {
-            if (_transaction != null)
+            if (Transaction != null)
             {
                 // Commit transaction by default, unless user explicitly rolls it back.
                 // To rollback transaction by default, unless user explicitly commits,
@@ -97,9 +108,9 @@ namespace DataAccess
                 CommitTransaction();
             }
 
-            if (_session != null)
+            if (Session != null)
             {
-                _session.Flush(); // commit session transactions
+                Session.Flush(); // commit session transactions
                 CloseSession();
             }
         }

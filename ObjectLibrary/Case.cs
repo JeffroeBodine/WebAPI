@@ -1,13 +1,20 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace ObjectLibrary
 {
-    public class Case
+    [DataContract]
+    public class Case : BaseObject
     {
-        public string CaseNumber {get; set;}
-        public string LocalCaseNumber { get; set; }
-        public decimal ProgramTypeId { get; set; }
-        public decimal CaseWorkerId { get; set; }
-        public decimal CaseHeadId { get; set; }
+        [DataMember]
+        public virtual string CaseNumber { get; set; }
+        [DataMember]
+        public virtual string SecondaryCaseNumber { get; set; }
+        [DataMember]
+        public virtual decimal ProgramTypeId { get; set; }
+        [DataMember]
+        public virtual decimal CaseWorkerId { get; set; }
+        [DataMember]
+        public virtual decimal CaseHeadId { get; set; }
     }
 }

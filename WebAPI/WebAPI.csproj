@@ -141,6 +141,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{c86acd75-5674-4bcd-bddb-85a0ab2b919d}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.sqlproj">
       <Project>{4e212364-5b72-492c-b7f1-1d5414dbc800}</Project>
       <Name>Database</Name>

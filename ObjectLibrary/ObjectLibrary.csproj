@@ -76,6 +76,9 @@
     <Compile Include="Collections\SearchCriteria.cs" />
     <Compile Include="DocumentMetaData.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FakeData.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="DocumentType.cs" />
     <Compile Include="Encryption.cs" />
@@ -91,7 +94,6 @@
     <Compile Include="Collections\DocumentTypes.cs" />
     <Compile Include="SearchKeywords\KeywordSearchKeyword.cs" />
     <Compile Include="SearchKeywords\DocumentTypeSearchKeyword.cs" />
-    <Compile Include="FakeData.cs" />
     <Compile Include="Keyword.cs" />
     <Compile Include="Collections\Keywords.cs" />
     <Compile Include="KeywordType.cs" />
