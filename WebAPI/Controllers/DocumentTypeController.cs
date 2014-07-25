@@ -10,7 +10,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Returns the collection of DocumentTypes.
         /// </summary>
-        public IEnumerable<DocumentType> GetDocumentTypes()
+        public IEnumerable<DocumentType> Get()
         {
             var dms = new OnBase("jturner", "jturner");
             return dms.GetDocumentTypes();
@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Returns a specific DocumentType given an ID.
         /// </summary>
-        public DocumentType GetDocumentType(string id)
+        public DocumentType Get(string id)
         {
             var dms = new OnBase("jturner", "jturner");
             return dms.GetDocumentType(id);
