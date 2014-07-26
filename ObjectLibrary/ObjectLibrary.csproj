@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="BaseObject.cs" />
     <Compile Include="Case.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Collections\SearchCriteria.cs" />
     <Compile Include="DocumentMetaData.cs" />
     <Compile Include="Extensions.cs" />
