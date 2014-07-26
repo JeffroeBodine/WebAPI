@@ -33,12 +33,21 @@ namespace DataAccess
 
         public virtual T Add<T>(T obj)
         {
-            return (T)Session.Save(obj);
+            using (var transaction = Session.BeginTransaction())
+            {
+                Session.Save(obj);
+                transaction.Commit();
+                return obj;
+            }
         }
 
         public virtual T Update<T>(T obj)
         {
-            Session.Update(obj);
+            using (var transaction = Session.BeginTransaction())
+            {
+                Session.Update(obj);
+                transaction.Commit();
+            }
             return obj;
         }
 
@@ -47,8 +56,11 @@ namespace DataAccess
             var existingObject = Session.Query<T>().FirstOrDefault(x => x.Equals(obj));
 
             if (existingObject != null)
-                Session.Delete(existingObject);
-
+                using (var transaction = Session.BeginTransaction())
+                {
+                    Session.Delete(existingObject);
+                    transaction.Commit();
+                }
             return obj;
         }
 
