@@ -119,6 +119,7 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\KeywordController.cs" />
     <Compile Include="Controllers\KeywordTypeController.cs" />
+    <Compile Include="Controllers\ProgramTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

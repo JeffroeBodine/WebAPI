@@ -85,6 +85,7 @@
     <Compile Include="FakeData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ProgramType.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="DocumentType.cs" />
     <Compile Include="Encryption.cs" />
