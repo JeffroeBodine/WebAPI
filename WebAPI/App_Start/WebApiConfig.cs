@@ -9,7 +9,8 @@ namespace WebAPI
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute("FileRoute", "api/Document/{id}/File", new { controller = "File", action = "Get" });
-            config.Routes.MapHttpRoute("Keywordroute", "api/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });
+            config.Routes.MapHttpRoute("KeywordRoute", "api/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });
+            config.Routes.MapHttpRoute("ProgramTypeRoute", "api/Case/{id}/ProgramType", new { controller = "ProgramType", action = "Get" });
 
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
           

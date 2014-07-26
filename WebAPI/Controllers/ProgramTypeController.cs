@@ -11,7 +11,9 @@ namespace WebAPI.Controllers
         {
             using (var rb = new RepositoryBase())
             {
-                return rb.Get<ProgramType>(long.Parse(id));
+                var c =  rb.Get<Case>(long.Parse(id));
+
+                return rb.Get<ProgramType>(c.ProgramTypeId);
             }
         }
 
