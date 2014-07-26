@@ -33,45 +33,36 @@ namespace DataAccess
 
         public virtual T Add<T>(T obj)
         {
-            using (var transaction = Session.BeginTransaction())
-            {
-                Session.Save(obj);
-                transaction.Commit();
-                return obj;
-            }
+            BeginTransaction();
+            return (T)Session.Save(obj);
         }
 
         public virtual T Update<T>(T obj)
         {
-            using (var transaction = Session.BeginTransaction())
-            {
-                Session.Update(obj);
-                transaction.Commit();
-            }
+            BeginTransaction();
+            Session.Update(obj);
             return obj;
         }
 
         public virtual T Delete<T>(T obj)
         {
+            BeginTransaction();
             var existingObject = Session.Query<T>().FirstOrDefault(x => x.Equals(obj));
 
             if (existingObject != null)
-                using (var transaction = Session.BeginTransaction())
-                {
-                    Session.Delete(existingObject);
-                    transaction.Commit();
-                }
+                Session.Delete(existingObject);
+
             return obj;
         }
 
         #region Transaction and Session Management Methods
 
-        public void BeginTransaction()
+        private void BeginTransaction()
         {
             Transaction = Session.BeginTransaction();
         }
 
-        public void CommitTransaction()
+        private void CommitTransaction()
         {
             // _transaction will be replaced with a new transaction
             // by NHibernate, but we will close to keep a consistent state.
@@ -80,7 +71,7 @@ namespace DataAccess
             CloseTransaction();
         }
 
-        public void RollbackTransaction()
+        private void RollbackTransaction()
         {
             // _session must be closed and disposed after a transaction
             // rollback to keep a consistent state.
