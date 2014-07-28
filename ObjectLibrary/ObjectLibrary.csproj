@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="BaseObject.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Client.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="FakeData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PhoneType.cs" />
     <Compile Include="ProgramType.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="DocumentType.cs" />
