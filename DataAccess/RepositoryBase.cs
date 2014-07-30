@@ -57,7 +57,7 @@ namespace DataAccess
             return obj;
         }
 
-        public virtual List<T> Get<T>(string customSQL, string caseId)
+        public virtual List<T> Get<T>(string customSQL)
         {
             var query = Session.CreateSQLQuery(customSQL);
             query.AddEntity(typeof(T));

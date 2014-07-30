@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         {
             using (var rb = new RepositoryBase())
             {
-                return rb.Get<Client>(GetSQLQuery(id), id);
+                return rb.Get<Client>(GetSQLQuery(id));
             }
         }
 

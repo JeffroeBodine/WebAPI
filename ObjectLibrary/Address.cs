@@ -13,14 +13,14 @@ namespace ObjectLibrary
        public virtual string Zip { get; set; }
        public virtual string Plus4 { get; set; }
 
-       //public virtual AddressType AddressType { get; set; }
+       public virtual string AddressType { get; set; }
 
        //public virtual IList<Client> Clients { get; set; } 
     }
 
     public enum AddressType
     {
-        Home,
-        Work
+        Home = 1,
+        Work = 2
     }
 }
