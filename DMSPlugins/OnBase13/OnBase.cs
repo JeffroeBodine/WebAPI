@@ -51,5 +51,15 @@ namespace DMSPlugins.OnBase13
         {
             return _model.GetKeywords(documentId);
         }
+
+        public List<Document> GetDocuments(string compassNumber)
+        {
+            return _model.GetDocuments(compassNumber);
+        }
+
+        public DocumentMetaData GetDocumentMetaData(long documentId)
+        {
+            return _model.GetDocumentMetaData(documentId);
+        }
     }
 }

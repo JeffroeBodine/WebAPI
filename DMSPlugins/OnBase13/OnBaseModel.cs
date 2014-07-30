@@ -106,6 +106,37 @@ namespace DMSPlugins.OnBase13
             }
         }
 
+        public List<Document> GetDocuments(string compassNumber)
+        {
+            using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
+            {
+                var documentQuery = app.Core.CreateDocumentQuery();
+                documentQuery.AddKeyword("Compass Number", compassNumber);
+                documentQuery.AddSort(DocumentQuery.SortAttribute.DocumentDate, false);
+                var documentList = documentQuery.Execute(500);
+
+                var documents = new List<Document>();
+
+                foreach (var uDocument in documentList)
+                {
+                    //var documentMetaData = GetDocumentMetaData(uDocument, app.Core.Retrieval.Default);
+
+                    documents.Add(new Document(uDocument.ID, uDocument.Name, uDocument.DateStored, uDocument.DateStored, uDocument.CreatedBy.Name, uDocument.DocumentType.ID, null));
+                }
+
+                return documents;
+            }
+        }
+
+        public DocumentMetaData GetDocumentMetaData(long documentId)
+        {
+            using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
+            {
+                var uDocument = app.Core.GetDocumentByID(documentId);
+                return GetDocumentMetaData(uDocument, app.Core.Retrieval.Default);
+            }
+        }
+
         public Stream GetFileData(string documentId)
         {
             CleanUpTempDirectory();
@@ -157,13 +188,13 @@ namespace DMSPlugins.OnBase13
                                 break;
                             case KeywordDataType.FloatingPoint:
                                 keyword = new ObjectLibrary.Keyword(keywordType, uKeyword.FloatingPointValue);
-                               break;
+                                break;
                             case KeywordDataType.Numeric20:
                                 keyword = new ObjectLibrary.Keyword(keywordType, uKeyword.Numeric20Value);
-                               break;
+                                break;
                             case KeywordDataType.Numeric9:
                                 keyword = new ObjectLibrary.Keyword(keywordType, uKeyword.Numeric9Value);
-                             break;
+                                break;
                         }
                         keywords.Add(keyword);
                     }
@@ -224,5 +255,6 @@ namespace DMSPlugins.OnBase13
             }
         }
         #endregion
+
     }
 }

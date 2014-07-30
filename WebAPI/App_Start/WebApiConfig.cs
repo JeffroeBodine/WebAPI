@@ -13,6 +13,8 @@ namespace WebAPI
             config.Routes.MapHttpRoute("ProgramTypeRoute", "api/Case/{id}/ProgramType", new { controller = "ProgramType", action = "Get" });
             config.Routes.MapHttpRoute("ClientRoute", "api/Case/{id}/Client", new { controller = "Client", action = "Get" });
             config.Routes.MapHttpRoute("AddressRoute", "api/Case/{id}/Client/{clientid}/Address", new { controller = "Address", action = "Get" });
+            config.Routes.MapHttpRoute("DocumentRoute", "api/Case/{id}/Client/{clientid}/Document", new { controller = "Document", action = "Get" });
+            config.Routes.MapHttpRoute("DocumentMetaDataRoute", "api/Case/{id}/Client/{clientid}/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
 
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
           
