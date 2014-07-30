@@ -14,6 +14,7 @@ namespace DataAccess
             Map(x => x.ProgramTypeId).Column("fkCPRefClientCaseProgramType");
             Map(x => x.CaseWorkerId).Column("fkApplicationUser");
             Map(x => x.CaseHeadId).Column("fkCPClientCaseHead");
+
         }
     }
 }

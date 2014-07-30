@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
 using NHibernate.Linq;
+using ObjectLibrary;
 
 namespace DataAccess
 {
     public class RepositoryBase : IDisposable
     {
-        protected ISession Session = null;
-        protected ITransaction Transaction = null;
+        public ISession Session { get; set; }
+        protected ITransaction Transaction { get; set; }
 
         public RepositoryBase()
         {
@@ -53,6 +55,13 @@ namespace DataAccess
                 Session.Delete(existingObject);
 
             return obj;
+        }
+
+        public virtual List<T> Get<T>(string customSQL, string caseId)
+        {
+            var query = Session.CreateSQLQuery(customSQL);
+            query.AddEntity(typeof(T));
+            return query.List<T>().ToList();
         }
 
         #region Transaction and Session Management Methods

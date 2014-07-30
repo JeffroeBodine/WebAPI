@@ -1,4 +1,6 @@
-﻿namespace ObjectLibrary
+﻿using System.Collections.Generic;
+
+namespace ObjectLibrary
 {
     public class Case : BaseObject
     {
@@ -7,5 +9,7 @@
         public virtual long ProgramTypeId { get; set; }
         public virtual long CaseWorkerId { get; set; }
         public virtual long CaseHeadId { get; set; }
+
+        public virtual List<Client> Clients { get; set; }
     }
 }

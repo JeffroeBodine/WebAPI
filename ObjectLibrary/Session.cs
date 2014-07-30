@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using FluentNHibernate.Mapping;
-
 namespace ObjectLibrary
 {
     [DataContract]
@@ -22,15 +20,15 @@ namespace ObjectLibrary
             CreateDate = createDate;
         }
 
-        public class SessionMap : ClassMap<Session>
-        {
-            public SessionMap()
-            {
-                Id(x => x.ID).Column("ID").GeneratedBy.Identity();
-                Map(x => x.Name);
-                Map(x => x.FkUser);
-                Map(x => x.CreateDate);
-            }
-        }
+        //public class SessionMap : ClassMap<Session>
+        //{
+        //    public SessionMap()
+        //    {
+        //        Id(x => x.ID).Column("ID").GeneratedBy.Identity();
+        //        Map(x => x.Name);
+        //        Map(x => x.FkUser);
+        //        Map(x => x.CreateDate);
+        //    }
+        //}
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using FluentNHibernate.Mapping;
 
 namespace ObjectLibrary
 {
@@ -33,18 +32,18 @@ namespace ObjectLibrary
             Salt = salt;
         }
 
-        public class UserMap : ClassMap<User>
-        {
-            public UserMap()
-            {
-                Id(x => x.ID).Column("ID").GeneratedBy.Identity();
-                Map(x => x.Name);
-                Map(x => x.Password);
-                Map(x => x.Salt);
-                Map(x => x.EMail);
-                Map(x => x.FirstName);
-                Map(x => x.LastName);           
-            }
-        }
+        //public class UserMap : ClassMap<User>
+        //{
+        //    public UserMap()
+        //    {
+        //        Id(x => x.ID).Column("ID").GeneratedBy.Identity();
+        //        Map(x => x.Name);
+        //        Map(x => x.Password);
+        //        Map(x => x.Salt);
+        //        Map(x => x.EMail);
+        //        Map(x => x.FirstName);
+        //        Map(x => x.LastName);           
+        //    }
+        //}
     }
 }
