@@ -33,10 +33,10 @@ namespace DataAccess
             return Session.Query<T>().ToList();
         }
 
-        public virtual T Add<T>(T obj)
+        public virtual long Add<T>(T obj)
         {
             BeginTransaction();
-            return (T)Session.Save(obj);
+            return (long)Session.Save(obj);
         }
 
         public virtual T Update<T>(T obj)
