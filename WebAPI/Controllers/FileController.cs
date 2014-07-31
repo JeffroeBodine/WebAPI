@@ -11,10 +11,10 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Returns a stream of data containing the file by the documentId.
         /// </summary>
-        public HttpResponseMessage Get(string id)
+        public HttpResponseMessage Get(string documentid)
         {
             var dms = new OnBase("jturner", "jturner");
-            var stream = dms.GetFileData(id);
+            var stream = dms.GetFileData(documentid);
             var result = new HttpResponseMessage(HttpStatusCode.OK) {Content = new StreamContent(stream)};
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
