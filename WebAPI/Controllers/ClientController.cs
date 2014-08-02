@@ -1,27 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web.Http;
-using DataAccess;
 using ObjectLibrary;
 
 namespace WebAPI.Controllers
 {
-    public class ClientController : ApiController
+    public class ClientController : ControllerBase
     {
-        //public Client Get(string id)
-        //{
-        //    using (var rb = new RepositoryBase())
-        //    {
-        //        return rb.Get<Client>(long.Parse(id));
-        //    }
-        //}
-
         public List<Client> Get(string id)
         {
-            using (var rb = new RepositoryBase())
-            {
-                return rb.Get<Client>(GetSQLQuery(id));
-            }
+            return Repository.Get<Client>(GetSQLQuery(id));
+        }
+
+        public IHttpActionResult Add([FromBody]Client client)
+        {
+            var id = Repository.Add(client);
+         
+            var compassNumber = Repository.GetCompassNumber(client.ID);
+
+            client.CompassNumber = compassNumber;
+
+            Repository.Update(client);
+
+            var uri = new Uri(Request.RequestUri, id);
+            return Created(uri, client);
         }
 
         private static string GetSQLQuery(string caseId)
@@ -51,6 +54,5 @@ namespace WebAPI.Controllers
 
             return sb.ToString();
         }
-
     }
 }

@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ControllerBase.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CaseController.cs" />
     <Compile Include="Controllers\ClientController.cs" />

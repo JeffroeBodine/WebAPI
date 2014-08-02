@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
+using NHibernate.AdoNet;
 using NHibernate.Linq;
 using ObjectLibrary;
 
@@ -16,6 +17,7 @@ namespace DataAccess
         public RepositoryBase()
         {
             Session = SessionFactoryManager.CreateSessionFactory().OpenSession();
+            Transaction = Session.BeginTransaction();
         }
 
         public RepositoryBase(ISession session)
@@ -35,20 +37,20 @@ namespace DataAccess
 
         public virtual string Add<T>(T obj)
         {
-            BeginTransaction();
+            //BeginTransaction();
             return Session.Save(obj).ToString();
         }
 
         public virtual T Update<T>(T obj)
         {
-            BeginTransaction();
+            //BeginTransaction();
             Session.Update(obj);
             return obj;
         }
 
         public virtual T Delete<T>(T obj)
         {
-            BeginTransaction();
+            //BeginTransaction();
             var existingObject = Session.Query<T>().FirstOrDefault(x => x.Equals(obj));
 
             if (existingObject != null)
@@ -64,12 +66,18 @@ namespace DataAccess
             return query.List<T>().ToList();
         }
 
+        public virtual string GetCompassNumber(decimal memberId)
+        {
+            var query = Session.CreateSQLQuery(String.Format("select dbo.GetNorthwoodsNumber({0})", memberId));
+            return query.UniqueResult().ToString();
+        }
+
         #region Transaction and Session Management Methods
 
-        private void BeginTransaction()
-        {
-            Transaction = Session.BeginTransaction();
-        }
+        //private void BeginTransaction()
+        //{
+        //    Transaction = Session.BeginTransaction();
+        //}
 
         private void CommitTransaction()
         {
@@ -111,7 +119,20 @@ namespace DataAccess
         {
             if (Transaction != null)
             {
-                CommitTransaction();
+                try
+                {
+                    CommitTransaction();
+                }
+                catch (TooManyRowsAffectedException)
+                {
+                    //Eat this exception because of stupid triggers
+                    CommitTransaction();
+                }
+                catch (Exception)
+                {
+                    RollbackTransaction();
+                }
+
             }
 
             if (Session != null)
