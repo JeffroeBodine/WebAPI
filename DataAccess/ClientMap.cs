@@ -29,7 +29,9 @@ namespace DataAccess
             Map(x => x.HomePhone).Column("HomePhone");
             Map(x => x.CellPhone).Column("CellPhone");
             Map(x => x.WorkPhone).Column("WorkPhone");
-        
+
+            References(x => x.Case).Nullable().ForeignKey("fkClientCase");
+            
             //HasManyToMany(x => x.Addresses)
             //    .ParentKeyColumn("fkCPClient")
             //    .ChildKeyColumn("fkCPClientAddress")

@@ -1,6 +1,5 @@
 ﻿using System.Net.Http.Headers;
 using System.Web.Http;
-using Newtonsoft.Json.Serialization;
 
 namespace WebAPI
 {
@@ -11,7 +10,8 @@ namespace WebAPI
             config.Routes.MapHttpRoute("FileRoute", "api/Document/{documentid}/File", new { controller = "File", action = "Get" });
             config.Routes.MapHttpRoute("KeywordRoute", "api/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });
             config.Routes.MapHttpRoute("ProgramTypeRoute", "api/Case/{id}/ProgramType", new { controller = "ProgramType", action = "Get" });
-            config.Routes.MapHttpRoute("ClientRoute", "api/Case/{id}/Client", new { controller = "Client", action = "Get" });
+            config.Routes.MapHttpRoute("ClientRoute", "api/Case/{id}/Client", new { controller = "Client" });
+            //config.Routes.MapHttpRoute("ClientRoute2", "api/Case/{id}/Client", new { controller = "Client", action = "Add", });
             config.Routes.MapHttpRoute("AddressRoute", "api/Case/{id}/Client/{clientid}/Address", new { controller = "Address", action = "Get" });
             config.Routes.MapHttpRoute("DocumentRoute", "api/Case/{id}/Client/{clientid}/Document", new { controller = "Document", action = "Get" });
             config.Routes.MapHttpRoute("DocumentMetaDataRoute", "api/Case/{id}/Client/{clientid}/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });

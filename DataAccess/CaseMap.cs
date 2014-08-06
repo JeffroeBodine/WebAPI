@@ -15,6 +15,8 @@ namespace DataAccess
             Map(x => x.CaseWorkerId).Column("fkApplicationUser");
             Map(x => x.CaseHeadId).Column("fkCPClientCaseHead");
 
+            HasMany(x => x.Clients).Inverse().KeyColumn("fkClient");
+
         }
     }
 }

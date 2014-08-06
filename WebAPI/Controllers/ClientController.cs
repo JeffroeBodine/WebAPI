@@ -27,6 +27,23 @@ namespace WebAPI.Controllers
             return Created(uri, client);
         }
 
+        public IHttpActionResult AddClientWithCase(string id, [FromBody]Client client)
+        {
+            var clientId = Repository.Add(client);
+
+            var clientCase = Repository.Get<Case>(long.Parse(id));
+            client.Case = clientCase;
+
+            var compassNumber = Repository.GetCompassNumber(client.ID);
+
+            client.CompassNumber = compassNumber;
+
+            Repository.Update(client);
+
+            var uri = new Uri(Request.RequestUri, clientId);
+            return Created(uri, client);
+        }
+
         private static string GetSQLQuery(string caseId)
         {
             var sb = new StringBuilder();

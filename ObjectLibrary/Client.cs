@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ObjectLibrary
 {
@@ -23,12 +22,6 @@ namespace ObjectLibrary
         public virtual string CellPhone { get; set; }
         public virtual string WorkPhone { get; set; }
 
-        //public virtual IList<Address> Addresses { get; set; }
-
-        //public virtual string Education { get; set; }
-       
-        //public virtual string Marraige { get; set; }
-        //public virtual string Military { get; set; }
-        
+        public virtual Case Case { get; set; }
     }
 }
