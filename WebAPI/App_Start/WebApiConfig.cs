@@ -7,20 +7,21 @@ namespace WebAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Routes.MapHttpRoute("FileRoute", "api/Document/{documentid}/File", new { controller = "File", action = "Get" });
-            config.Routes.MapHttpRoute("KeywordRoute", "api/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });
-            config.Routes.MapHttpRoute("ProgramTypeRoute", "api/Case/{id}/ProgramType", new { controller = "ProgramType", action = "Get" });
-            config.Routes.MapHttpRoute("ClientRoute", "api/Case/{id}/Client", new { controller = "Client" });
-            //config.Routes.MapHttpRoute("ClientRoute2", "api/Cases/{id}/Client", new { controller = "Client", action = "Add", });
-            config.Routes.MapHttpRoute("AddressRoute", "api/Case/{id}/Client/{clientid}/Address", new { controller = "Address", action = "Get" });
-            config.Routes.MapHttpRoute("DocumentRoute", "api/Case/{id}/Client/{clientid}/Document", new { controller = "Document", action = "Get" });
-            config.Routes.MapHttpRoute("DocumentMetaDataRoute", "api/Case/{id}/Client/{clientid}/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
-            config.Routes.MapHttpRoute("FileRoute2", "api/Cases/{id}/Client/{clientid}/Document/{documentid}/File", new { controller = "File", action = "Get" });
+         //config.Routes.MapHttpRoute("FileRoute", "api/Document/{documentid}/File", new { controller = "File", action = "Get" });
+         //   config.Routes.MapHttpRoute("KeywordRoute", "api/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });
+         //   config.Routes.MapHttpRoute("ProgramTypeRoute", "api/Case/{id}/ProgramType", new { controller = "ProgramType", action = "Get" });
+      
+           // config.Routes.MapHttpRoute("ClientRoute", "api/Case/{caseid}/Client", new { controller = "Case", action = "Get" });
 
+         //   config.Routes.MapHttpRoute("AddressRoute", "api/Case/{id}/Client/{clientid}/Address", new { controller = "Address", action = "Get" });
+         //   config.Routes.MapHttpRoute("DocumentRoute", "api/Case/{id}/Client/{clientid}/Document", new { controller = "Document", action = "Get" });
+         //   config.Routes.MapHttpRoute("DocumentMetaDataRoute", "api/Case/{id}/Client/{clientid}/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
+         //   config.Routes.MapHttpRoute("FileRoute2", "api/Cases/{id}/Client/{clientid}/Document/{documentid}/File", new { controller = "File", action = "Get" });
+   
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
+            config.Routes.MapHttpRoute("DefaultApiWithAction", "api/{controller}/{id}/{action}", new { id = RouteParameter.Optional });
 
 
-            //config.Routes.MapHttpRoute("ClientRoute2", "api/Client", new { controller = "Client", action = "Post" });
           
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
