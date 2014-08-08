@@ -26,6 +26,18 @@ namespace WebAPI.Controllers
             return Created(uri, id);
         }
 
+        public IHttpActionResult Add(string id, [FromBody]Client value)
+        {
+            var clientId = Repository.Add(value);
+
+            Repository.InsertJoinClientCase(long.Parse(id), long.Parse(clientId));
+
+            var baseUri = new Uri("http://" + Request.Headers.Host + "/compassdatabroker/api/client/");
+            var uri = new Uri(baseUri, clientId);
+
+            return Created(uri, clientId);
+        }
+
         private static string GetSQLQueryForClientsInCase(string caseId)
         {
             var sb = new StringBuilder();

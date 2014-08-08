@@ -73,6 +73,15 @@ namespace DataAccess
             return query.UniqueResult().ToString();
         }
 
+        public virtual void InsertJoinClientCase(decimal caseId, decimal clientId)
+        {
+            var sql = String.Format("insert into CPJoinClientClientCase (fkCPClientCase, fkCPClient) values ({0}, {1}); ",caseId, clientId);
+            sql += "select SCOPE_IDENTITY()";
+            var query = Session.CreateSQLQuery(sql);
+
+            var result = query.UniqueResult();
+        }
+
         #region Transaction and Session Management Methods
 
         //private void BeginTransaction()
