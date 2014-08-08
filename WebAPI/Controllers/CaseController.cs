@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web.Http;
+using DataAccess;
 using ObjectLibrary;
 
 namespace WebAPI.Controllers
 {
     public class CaseController : ControllerBase
     {
+        public CaseController()
+        {
+            Repository = new ClientRepository();
+        }
+
         public Case Get(string id)
         {
             return Repository.Get<Case>(long.Parse(id));
@@ -26,9 +32,9 @@ namespace WebAPI.Controllers
             return Created(uri, id);
         }
 
-        public IHttpActionResult Add(string id, [FromBody]Client value)
+        public IHttpActionResult Add(string id, [FromBody]Client client)
         {
-            var clientId = Repository.Add(value);
+            var clientId = Repository.Add(client);
 
             Repository.InsertJoinClientCase(long.Parse(id), long.Parse(clientId));
 

@@ -5,12 +5,17 @@ namespace WebAPI
 {
     public class ControllerBase : ApiController
     {
-         public readonly RepositoryBase Repository;
+        public RepositoryBase Repository;
 
          public ControllerBase()
         {
             Repository = new RepositoryBase();
         }
+
+         public ControllerBase(RepositoryBase repository)
+         {
+             Repository = repository;
+         }
 
          protected override void Dispose(bool disposing)
          {

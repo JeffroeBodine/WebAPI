@@ -54,6 +54,7 @@
     <Compile Include="AddressMap.cs" />
     <Compile Include="CaseMap.cs" />
     <Compile Include="ClientMap.cs" />
+    <Compile Include="ClientRepository.cs" />
     <Compile Include="ProgramTypeMap.cs" />
     <Compile Include="SessionFactoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

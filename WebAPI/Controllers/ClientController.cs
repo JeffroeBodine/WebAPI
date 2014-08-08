@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Web.Http;
+using DataAccess;
 using ObjectLibrary;
 
 namespace WebAPI.Controllers
 {
     public class ClientController : ControllerBase
     {
+        public ClientController()
+        {
+            Repository = new ClientRepository();
+        }
 
-         public Client Get(string id)
+        public Client Get(string id)
         {
              return Repository.Get<Client>(long.Parse(id));
         }
@@ -17,12 +20,6 @@ namespace WebAPI.Controllers
         public IHttpActionResult Add([FromBody] Client client)
         {
             var id = Repository.Add(client);
-
-            var compassNumber = Repository.GetCompassNumber(client.Id);
-
-            client.CompassNumber = compassNumber;
-
-            Repository.Update(client);
 
             var uri = new Uri(Request.RequestUri, id);
             return Created(uri, id);
