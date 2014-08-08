@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace ObjectLibrary
 {
@@ -21,7 +23,6 @@ namespace ObjectLibrary
         public virtual string HomePhone { get; set; }
         public virtual string CellPhone { get; set; }
         public virtual string WorkPhone { get; set; }
-
-        public virtual Case Case { get; set; }
+       
     }
 }

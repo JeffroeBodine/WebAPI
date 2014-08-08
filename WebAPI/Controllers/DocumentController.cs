@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
     public class DocumentController : ApiController
     {
         /// <summary>
-        /// Returns a specific Document given an ID.
+        /// Returns a specific Document given an Id.
         /// </summary>
         //public Document Get(string id)
         //{

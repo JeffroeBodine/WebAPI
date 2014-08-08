@@ -1,5 +1,5 @@
-﻿    using FluentNHibernate.Mapping;
-    using ObjectLibrary;
+﻿using FluentNHibernate.Mapping;
+using ObjectLibrary;
 
 namespace DataAccess
 {
@@ -8,14 +8,24 @@ namespace DataAccess
         public CaseMap()
         {
             Table("CPClientCase");
-            Id(x => x.ID).Column("pkCPClientCase");
+            Id(x => x.Id).Column("pkCPClientCase");
             Map(x => x.CaseNumber).Column("StateCaseNumber");
             Map(x => x.SecondaryCaseNumber).Column("LocalCaseNumber");
             Map(x => x.ProgramTypeId).Column("fkCPRefClientCaseProgramType");
             Map(x => x.CaseWorkerId).Column("fkApplicationUser");
             Map(x => x.CaseHeadId).Column("fkCPClientCaseHead");
 
-            HasMany(x => x.Clients).Inverse().KeyColumn("fkClient");
+            //HasManyToMany(x => x.Clients)
+            //.Table("CPJoinClientClientCase").ParentKeyColumn("fkCPClientCase")
+            //.ChildKeyColumn("fkCPClient")
+            //.LazyLoad();
+
+           // HasManyToMany(x => x.Clients)
+           //  .Cascade.All()
+           //  .Not.LazyLoad()
+           //   .ParentKeyColumn("fkCPClientCase")
+           //.ChildKeyColumn("fkCPClient")
+           //  .Table("cpjoinclientclientcase");
 
         }
     }

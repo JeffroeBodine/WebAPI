@@ -6,7 +6,7 @@
     <members>
         <member name="M:WebAPI.Controllers.DocumentController.Get(System.String)">
             <summary>
-            Returns a specific Document given an ID.
+            Returns a specific Document given an Id.
             </summary>
         </member>
         <member name="M:WebAPI.Controllers.DocumentTypeController.Get">
@@ -16,7 +16,7 @@
         </member>
         <member name="M:WebAPI.Controllers.DocumentTypeController.Get(System.String)">
             <summary>
-            Returns a specific DocumentType given an ID.
+            Returns a specific DocumentType given an Id.
             </summary>
         </member>
         <member name="M:WebAPI.Controllers.FileController.Get(System.String)">
@@ -31,7 +31,7 @@
         </member>
         <member name="M:WebAPI.Controllers.KeywordTypeController.Get(System.String)">
             <summary>
-            Returns a specific KeywordType given an ID.
+            Returns a specific KeywordType given an Id.
             </summary>
         </member>
     </members>

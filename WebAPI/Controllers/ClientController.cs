@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         {
             var id = Repository.Add(client);
          
-            var compassNumber = Repository.GetCompassNumber(client.ID);
+            var compassNumber = Repository.GetCompassNumber(client.Id);
 
             client.CompassNumber = compassNumber;
 
@@ -31,10 +31,10 @@ namespace WebAPI.Controllers
         {
             var clientId = Repository.Add(client);
 
-            var clientCase = Repository.Get<Case>(long.Parse(id));
-            client.Case = clientCase;
-
-            var compassNumber = Repository.GetCompassNumber(client.ID);
+            //var clientCase = Repository.Get<Case>(long.Parse(id));
+            //client.Cases = new List<Case>(){clientCase};
+                
+            var compassNumber = Repository.GetCompassNumber(client.Id);
 
             client.CompassNumber = compassNumber;
 

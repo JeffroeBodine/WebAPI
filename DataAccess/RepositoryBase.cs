@@ -27,7 +27,8 @@ namespace DataAccess
 
         public virtual T Get<T>(long id)
         {
-            return Session.Get<T>(id);
+            var ret =Session.Get<T>(id);
+            return ret;
         }
 
         public virtual List<T> Get<T>()

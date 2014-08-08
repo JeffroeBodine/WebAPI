@@ -9,7 +9,7 @@ namespace DataAccess
         public ProgramTypeMap()
         {
             Table("ProgramType");
-            Id(x => x.ID).Column("pkProgramType");
+            Id(x => x.Id).Column("pkProgramType");
             Map(x => x.Name).Column("ProgramType");
         }
     }

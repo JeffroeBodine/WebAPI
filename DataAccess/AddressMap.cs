@@ -8,7 +8,7 @@ namespace DataAccess
         public AddressMap()
         {
             Table("CPClientAddress");
-            Id(x => x.ID).Column("pkCPClientAddress");
+            Id(x => x.Id).Column("pkCPClientAddress");
 
             Map(x => x.AddressType).Column("AddressType");
 

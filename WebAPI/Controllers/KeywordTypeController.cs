@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Returns a specific KeywordType given an ID.
+        /// Returns a specific KeywordType given an Id.
         /// </summary>
         public KeywordType Get(string id)
         {

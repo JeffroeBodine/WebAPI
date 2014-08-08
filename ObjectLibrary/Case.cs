@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace ObjectLibrary
 {
@@ -10,6 +11,6 @@ namespace ObjectLibrary
         public virtual long CaseWorkerId { get; set; }
         public virtual long CaseHeadId { get; set; }
 
-        public virtual List<Client> Clients { get; set; }
+        public virtual IList<Client> Clients { get; set; }
     }
 }

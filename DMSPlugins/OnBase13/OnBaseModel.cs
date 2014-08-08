@@ -90,7 +90,7 @@ namespace DMSPlugins.OnBase13
 
         public KeywordType GetKeywordType(string id)
         {
-            return GetKeywordTypes().FirstOrDefault(x => x.ID == long.Parse(id));
+            return GetKeywordTypes().FirstOrDefault(x => x.Id == long.Parse(id));
         }
 
         public Document GetDocument(string id)

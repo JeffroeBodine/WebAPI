@@ -6,7 +6,7 @@ namespace ObjectLibrary
     public class BaseObject
     {
         [DataMember]
-        public virtual long ID { get; set; }
+        public virtual long Id { get; set; }
         [DataMember]
         public virtual string Name { get; set; }
 
@@ -16,7 +16,7 @@ namespace ObjectLibrary
 
         public BaseObject(long id, string name)
         {
-            ID = id;
+            Id = id;
             Name = name;
         }
     }

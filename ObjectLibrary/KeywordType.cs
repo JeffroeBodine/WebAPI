@@ -19,7 +19,7 @@ namespace ObjectLibrary
 
         public KeywordType(long id, string name, Type dataType, string defaultValue)
         {
-            ID = id;
+            Id = id;
             Name = name;
             DataType = dataType;
             DefaultValue = defaultValue;

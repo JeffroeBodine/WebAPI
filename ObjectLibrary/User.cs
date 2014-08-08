@@ -36,7 +36,7 @@ namespace ObjectLibrary
         //{
         //    public UserMap()
         //    {
-        //        Id(x => x.ID).Column("ID").GeneratedBy.Identity();
+        //        Id(x => x.Id).Column("Id").GeneratedBy.Identity();
         //        Map(x => x.Name);
         //        Map(x => x.Password);
         //        Map(x => x.Salt);

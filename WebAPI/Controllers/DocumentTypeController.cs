@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Returns a specific DocumentType given an ID.
+        /// Returns a specific DocumentType given an Id.
         /// </summary>
         public DocumentType Get(string id)
         {

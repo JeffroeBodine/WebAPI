@@ -7,7 +7,7 @@
 
         public SearchKeyword(long id, string name)
         {
-            ID = id;
+            Id = id;
             Name = name;
         }
     }

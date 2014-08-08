@@ -4,7 +4,7 @@
     {
         public CreateDateTimeRangeSearchKeyword(long id, string name)
         {
-            ID = id;
+            Id = id;
             Name = name;
         }
     }

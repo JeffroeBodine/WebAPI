@@ -17,5 +17,17 @@ namespace WebAPI.Controllers
             var uri = new Uri(Request.RequestUri, id);
             return Created(uri, value);
         }
+
+        //public IHttpActionResult Update([FromBody]Case value)
+        //{
+        //    Repository.Update(value);
+        //    return Ok();
+        //}
+
+        //public IHttpActionResult Delete([FromBody]Case value)
+        //{
+        //    Repository.Update(value);
+        //    return Ok();
+        //}
     }
 }

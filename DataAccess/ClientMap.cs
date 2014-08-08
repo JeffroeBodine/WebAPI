@@ -9,7 +9,7 @@ namespace DataAccess
         public CientMap()
         {
             Table("cpClient");
-            Id(x => x.ID).Column("pkCPClient");
+            Id(x => x.Id).Column("pkCPClient");
 
             Map(x => x.CompassNumber).Column("NorthwoodsNumber");
             Map(x => x.StateIssuedNumber).Column("StateIssuedNumber");
@@ -30,14 +30,18 @@ namespace DataAccess
             Map(x => x.CellPhone).Column("CellPhone");
             Map(x => x.WorkPhone).Column("WorkPhone");
 
-            References(x => x.Case).Nullable().ForeignKey("fkClientCase");
+            //HasManyToMany(x => x.Cases)
+            //   .Table("CPJoinClientClientCase").ParentKeyColumn("fkCPClient")
+            //   .ChildKeyColumn("fkCPClientCase")
+            //   .Fetch.Join();
+
+           // HasManyToMany(x => x.Case)
+           //.Cascade.All()
+           //.Inverse()
+           //.Not.LazyLoad()
+           //.Table("cpjoinclientclientcase");
+
             
-            //HasManyToMany(x => x.Addresses)
-            //    .ParentKeyColumn("fkCPClient")
-            //    .ChildKeyColumn("fkCPClientAddress")
-            //    .Cascade.All()
-            //    .Table("CPJoinClientClientAddress")
-            //    .Not.LazyLoad();
 
         }
     }
