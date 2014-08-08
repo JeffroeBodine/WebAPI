@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
         {
             var id = Repository.Add(value);
             var uri = new Uri(Request.RequestUri, id);
-            return Created(uri, value);
+            return Created(uri, id);
         }
 
         //public IHttpActionResult Update([FromBody]Case value)
