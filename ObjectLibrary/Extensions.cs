@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -32,6 +33,14 @@ namespace ObjectLibrary
             {
                 Marshal.ZeroFreeGlobalAllocUnicode(valuePtr);
             } 
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> collection, Action<T> doWhat)
+        {
+            foreach (var item in collection)
+            {
+                doWhat(item);
+            }
         }
     }
 }
