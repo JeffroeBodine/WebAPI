@@ -10,7 +10,7 @@ namespace ObjectLibrary
         public bool IsBlank { get; set; }
         [DataMember(Order = 101)]
         public string StringValue { get; set; }
-        [DataMember(Order = 102)]
+        //[DataMember(Order = 102)]
         public DateTime DateTimeValue { get; set; }
         [DataMember(Order = 103)]
         public int IntValue { get; set; }

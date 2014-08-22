@@ -3,6 +3,14 @@ using System.Runtime.Serialization;
 
 namespace ObjectLibrary
 {
+    public enum KeywordTypes
+    {
+        FirstName = 104,
+        LastName = 105,
+        SSN = 103,
+        CompassNumber = 136,
+    }
+
     [DataContract]
     public sealed class KeywordType : BaseObject
     {

@@ -3,6 +3,11 @@ using ObjectLibrary.Collections;
 
 namespace ObjectLibrary
 {
+    public enum DocumentTypes
+    {
+        JeffroesDocType = 520,
+    }
+
     [DataContract]
     public sealed class DocumentType : BaseObject
     {
