@@ -15,6 +15,7 @@ namespace DMSPlugins.OnBase13
 {
     public class OnBaseUnityModel
     {
+        private const int ImageFileFormatId = 2;
         private string ServiceUrl { get; set; }
         private string DataSource { get; set; }
         private string UserName { get; set; }
@@ -44,9 +45,9 @@ namespace DMSPlugins.OnBase13
             return Hyland.Unity.Application.Connect(onBaseAuthProperties);
         }
 
-        public DocumentTypes GetDocumentTypes()
+        public List<DocumentType> GetDocumentTypes()
         {
-            var documentTypes = new DocumentTypes();
+            var documentTypes = new List<DocumentType>();
             using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
             {
                 foreach (var udtg in app.Core.DocumentTypeGroups)
@@ -59,7 +60,7 @@ namespace DMSPlugins.OnBase13
                         foreach (var udt in udtg.DocumentTypes)
                         {
                             if (dtg.DocumentTypes == null)
-                                dtg.DocumentTypes = new DocumentTypes();
+                                dtg.DocumentTypes = new List<DocumentType>();
 
                             dtg.DocumentTypes.Add(new DocumentType(udt.ID, udt.Name));
                         }
@@ -80,7 +81,7 @@ namespace DMSPlugins.OnBase13
 
         public IEnumerable<KeywordType> GetKeywordTypes()
         {
-            var keywordTypes = new KeywordTypes();
+            var keywordTypes = new List<KeywordType>();
             using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
             {
                 keywordTypes.AddRange(app.Core.KeywordTypes.Select(ukwt => new KeywordType(ukwt.ID, ukwt.Name, GetSystemTypeFromUnityType(ukwt.DataType), ukwt.DefaultValue)));
@@ -201,6 +202,45 @@ namespace DMSPlugins.OnBase13
                 }
             }
             return keywords;
+        }
+
+        public string CreateDocument(CreateDocumentParms parms)
+        {
+            using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
+            {
+                var storeDocProperties = app.Core.Storage.CreateStoreNewDocumentProperties(
+                    app.Core.DocumentTypes.Find(parms.DocumentTypeId), app.Core.FileTypes.Find(ImageFileFormatId));
+
+                parms.Keywords.ForEach(x =>
+                    {
+                        var hylandKeywordType = app.Core.KeywordTypes.Find(x.KeywordType.Id);
+                        storeDocProperties.AddKeyword(HylandKeywordFrom(x, hylandKeywordType));
+                    });
+
+                return app.Core.Storage.StoreNewDocument(new List<string>(), storeDocProperties).ID.ToString();
+            }
+        }
+
+        private Keyword HylandKeywordFrom(ObjectLibrary.Keyword keyword, Hyland.Unity.KeywordType keywordType)
+        {
+            switch (keywordType.DataType)
+            {
+                case KeywordDataType.AlphaNumeric:
+                    return keywordType.CreateKeyword(keyword.StringValue);
+                case KeywordDataType.Currency:
+                case KeywordDataType.SpecificCurrency:
+                    return keywordType.CreateKeyword(keyword.DecimalValue);
+                case KeywordDataType.Date:
+                case KeywordDataType.DateTime:
+                    return keywordType.CreateKeyword(keyword.DateTimeValue);
+                case KeywordDataType.FloatingPoint:
+                    return keywordType.CreateKeyword(keyword.DoubleValue);
+                case KeywordDataType.Numeric20:
+                case KeywordDataType.Numeric9:
+                    return keywordType.CreateKeyword(keyword.IntValue);
+                default:
+                    return null;
+            }
         }
 
         #region Privates
