@@ -7,16 +7,16 @@ namespace ObjectLibrary
     public sealed class DocumentType : BaseObject
     {
         [DataMember(Order = 10)]
-        public DocumentTypes DocumentTypes { get; set; }
+        public DocumentTypeList DocumentTypeList { get; set; }
 
         public DocumentType(long id, string name) : base(id, name)
         {
-            DocumentTypes = new DocumentTypes();
+            DocumentTypeList = new DocumentTypeList();
         }
 
-        public DocumentType(long id, string name, DocumentTypes documentTypes) : base(id, name)
+        public DocumentType(long id, string name, DocumentTypeList documentTypeList) : base(id, name)
         {
-            DocumentTypes = documentTypes;
+            DocumentTypeList = documentTypeList;
         }
     }
 }

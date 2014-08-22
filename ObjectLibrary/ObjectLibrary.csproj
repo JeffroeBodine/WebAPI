@@ -46,8 +46,8 @@
     <Compile Include="BaseObject.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Collections\DocumentTypes.cs" />
-    <Compile Include="Collections\KeywordTypes.cs" />
+    <Compile Include="Collections\DocumentTypeList.cs" />
+    <Compile Include="Collections\KeywordTypeList.cs" />
     <Compile Include="Collections\SearchCriteria.cs" />
     <Compile Include="CreateDocumentParms.cs" />
     <Compile Include="DocumentMetaData.cs" />

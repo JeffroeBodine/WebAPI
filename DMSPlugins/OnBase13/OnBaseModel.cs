@@ -8,6 +8,7 @@ using ObjectLibrary;
 using ObjectLibrary.Collections;
 using Document = ObjectLibrary.Document;
 using DocumentType = ObjectLibrary.DocumentType;
+using DocumentTypeList = ObjectLibrary.Collections.DocumentTypeList;
 using Keyword = Hyland.Unity.Keyword;
 using KeywordType = ObjectLibrary.KeywordType;
 
@@ -45,9 +46,9 @@ namespace DMSPlugins.OnBase13
             return Hyland.Unity.Application.Connect(onBaseAuthProperties);
         }
 
-        public List<DocumentType> GetDocumentTypes()
+        public DocumentTypeList GetDocumentTypes()
         {
-            var documentTypes = new List<DocumentType>();
+            var documentTypes = new DocumentTypeList();
             using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
             {
                 foreach (var udtg in app.Core.DocumentTypeGroups)
@@ -59,10 +60,10 @@ namespace DMSPlugins.OnBase13
                     {
                         foreach (var udt in udtg.DocumentTypes)
                         {
-                            if (dtg.DocumentTypes == null)
-                                dtg.DocumentTypes = new List<DocumentType>();
+                            if (dtg.DocumentTypeList == null)
+                                dtg.DocumentTypeList = new DocumentTypeList();
 
-                            dtg.DocumentTypes.Add(new DocumentType(udt.ID, udt.Name));
+                            dtg.DocumentTypeList.Add(new DocumentType(udt.ID, udt.Name));
                         }
                     }
                 }

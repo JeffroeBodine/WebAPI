@@ -2,7 +2,7 @@
 
 namespace ObjectLibrary.Collections
 {
-    public class KeywordTypes : List<KeywordType>
+    public class KeywordTypeList : List<KeywordType>
     {
     }
 }

@@ -9,14 +9,14 @@ namespace ObjectLibrary
 {
     public class FakeData
     {
-        public static DocumentTypes DocumentTypes
+        public static DocumentTypeList DocumentTypeList
         {
             get
             {
 
-                var documentTypechilderen = new DocumentTypes {new DocumentType(11, "Child", null)};
+                var documentTypechilderen = new DocumentTypeList {new DocumentType(11, "Child", null)};
 
-                var documentTypes = new DocumentTypes
+                var documentTypes = new DocumentTypeList
                     {
                         new DocumentType(1, "First", documentTypechilderen),
                         new DocumentType(2, "Second", null),
@@ -26,11 +26,11 @@ namespace ObjectLibrary
             }
         }
 
-        public static KeywordTypes KeywordTypes
+        public static KeywordTypeList KeywordTypeList
         {
             get
             {
-                var keywordTypes = new KeywordTypes
+                var keywordTypes = new KeywordTypeList
                     {
                         new KeywordType(1, "First", typeof (String), ""),
                         new KeywordType(2, "Second", typeof (String), ""),
