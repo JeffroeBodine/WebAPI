@@ -1,6 +1,6 @@
 ﻿
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Web.Http;
 using DMSPlugins.OnBase13;
 using DataAccess;
@@ -29,13 +29,17 @@ namespace WebAPI.Controllers
                 compassNumber = rb.Get<Client>(long.Parse(clientId)).CompassNumber;
             }
             //Do a document search based on CompassNumber
-                var dms = new OnBase("jturner", "jturner");
-                return dms.GetDocuments(compassNumber);
-
-          
-           
+            var dms = new OnBase("jturner", "jturner");
+            return dms.GetDocuments(compassNumber);
         }
 
-       
+        public IHttpActionResult Add([FromBody] CreateDocumentParms parms)
+        {
+            var dms = new OnBase("jturner", "jturner");
+            var id = dms.CreateDocument(parms);
+
+            var uri = new Uri(Request.RequestUri, id);
+            return Created(uri, id);
+        }
     }
 }
