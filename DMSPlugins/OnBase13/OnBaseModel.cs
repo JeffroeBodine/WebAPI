@@ -218,7 +218,11 @@ namespace DMSPlugins.OnBase13
                         storeDocProperties.AddKeyword(HylandKeywordFrom(x, hylandKeywordType));
                     });
 
-                return app.Core.Storage.StoreNewDocument(new List<string>(), storeDocProperties).ID.ToString();
+                //return app.Core.Storage.StoreNewDocument(new List<string>(), storeDocProperties).ID.ToString();
+
+                PageData pgData = app.Core.Storage.CreatePageData(new MemoryStream(), "???");
+           
+                return app.Core.Storage.StoreNewDocument(pgData, storeDocProperties).ID.ToString();
             }
         }
 

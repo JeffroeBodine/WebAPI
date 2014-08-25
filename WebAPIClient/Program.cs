@@ -17,7 +17,7 @@ namespace WebAPIClient
 
         static async void DoShit()
         {
-            var baseAddress = new Uri(@"http://msullivan-vm/CompassDataBroker/api/");
+            var baseAddress = new Uri(@"http://localhost/CompassDataBroker/api/");
 
             using (var client = new HttpClient())
             {
