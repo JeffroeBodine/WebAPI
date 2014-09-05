@@ -8,9 +8,6 @@ namespace WebAPI.Controllers
 {
     public class FileController : ApiController
     {
-        /// <summary>
-        /// Returns a stream of data containing the file by the documentId.
-        /// </summary>
         public HttpResponseMessage Get(string documentid)
         {
             var dms = new OnBase("jturner", "jturner");

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
 using DMSPlugins.OnBase13;
@@ -10,7 +9,7 @@ namespace WebAPI.Controllers
 {
     public class DocumentController : ApiController
     {
-      public List<Document> Get(string id)
+        public List<Document> Get(string id)
         {
             //Get CompassNumber from Client
 
@@ -32,7 +31,5 @@ namespace WebAPI.Controllers
             var uri = new Uri(Request.RequestUri, id);
             return Created(uri, id);
         }
-
-
     }
 }
