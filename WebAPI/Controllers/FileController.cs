@@ -18,5 +18,10 @@ namespace WebAPI.Controllers
             var len = stream.Length;
             return result;
         }
+
+        public IHttpActionResult Add()
+        {
+            return null;
+        }
     }
 }
