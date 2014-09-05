@@ -4,11 +4,6 @@
         <name>WebAPI</name>
     </assembly>
     <members>
-        <member name="M:WebAPI.Controllers.DocumentController.Get(System.String)">
-            <summary>
-            Returns a specific Document given an Id.
-            </summary>
-        </member>
         <member name="M:WebAPI.Controllers.DocumentTypeController.Get">
             <summary>
             Returns the collection of DocumentTypes.
