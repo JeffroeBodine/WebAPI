@@ -17,13 +17,12 @@ namespace WebAPI
          //   config.Routes.MapHttpRoute("DocumentRoute", "api/Case/{id}/Client/{clientid}/Document", new { controller = "Document", action = "Get" });
          //   config.Routes.MapHttpRoute("DocumentMetaDataRoute", "api/Case/{id}/Client/{clientid}/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
          //   config.Routes.MapHttpRoute("FileRoute2", "api/Cases/{id}/Client/{clientid}/Document/{documentid}/File", new { controller = "File", action = "Get" });
-            config.Routes.MapHttpRoute("AddClientWithCaseroute", "api/{controller}/{id}/Client", new { controller = "Case" });
+           // config.Routes.MapHttpRoute("AddClientWithCaseroute", "api/{controller}/{id}/Client", new { controller = "Case" });
 
-
-            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
+            config.Routes.MapHttpRoute("CaseRoute", "api/Case/{id}", new {controller = "Case", action = "Get", id = RouteParameter.Optional });
+           
+            //config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
             config.Routes.MapHttpRoute("DefaultApiWithAction", "api/{controller}/{id}/{action}", new { id = RouteParameter.Optional });
-
-          
           
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.

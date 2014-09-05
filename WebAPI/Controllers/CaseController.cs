@@ -14,12 +14,14 @@ namespace WebAPI.Controllers
             Repository = new ClientRepository();
         }
 
+        [ActionName("Get")]
         public Case Get(string id)
         {
             return Repository.Get<Case>(long.Parse(id));
         }
 
         [HttpGet]
+        [ActionName("Client")]
         public List<Client> Client(string id)
         {
             return Repository.Get<Client>(GetSQLQueryForClientsInCase(id));
