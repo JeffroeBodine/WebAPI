@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -35,15 +29,6 @@ namespace WebAPI.Controllers
             var dms = new OnBase("jturner", "jturner");
             return dms.GetDocuments(compassNumber);
         }
-
-        //public IHttpActionResult Add([FromBody] CreateDocumentParms parms)
-        //{
-        //    var dms = new OnBase("jturner", "jturner");
-        //    var id = dms.CreateDocument(parms);
-
-        //    var uri = new Uri(Request.RequestUri, id);
-        //    return Created(uri, id);
-        //}
 
         [Route("UploadFile")]
         [HttpPost]
@@ -84,7 +69,7 @@ namespace WebAPI.Controllers
 
         private static List<string> MoveFilesToTransactionFolder(MultipartFormDataStreamProvider provider, string transactionId)
         {
-            List<string> filePaths = new List<string>();
+           var filePaths = new List<string>();
             foreach (var file in provider.FileData)
             {
                 var correctFileName = file.Headers.ContentDisposition.FileName;
