@@ -19,50 +19,40 @@ namespace WebAPIClient
         {
             InitializeComponent();
 
-            var imageSet = new ImageSet()
-            {
-                Name = "Model",
-                Images = Directory
-                    .EnumerateFiles("../../../../../SampleImages")
-                    .Where(file => new[] { ".jpg", ".png" }.Contains(Path.GetExtension(file)))
-                    .Select(file => new Image
-                    {
-                        FileName = Path.GetFileName(file),
-                        MimeType = MimeMapping.GetMimeMapping(file),
-                        ImageData = File.ReadAllBytes(file)
-                    })
-                    .ToList()
-            };
 
-            SendImageSet(imageSet);
+            SendImageSet();
 
         }
 
-        private static void SendImageSet(ImageSet imageSet)
+        private static void SendImageSet()
         {
+            var putDocumentMetaData = new PutDocumentMetaData("tif", "image/tiff", 2, "2pgColor");
+
+            var fs = new FileStream("images/2pgColor.tif", FileMode.Open, FileAccess.Read);
+            var fs2 = new FileStream("images/2pgColor2.tif", FileMode.Open, FileAccess.Read);
+
             var multipartContent = new MultipartFormDataContent();
 
-            var imageSetJson = JsonConvert.SerializeObject(imageSet,
-                new JsonSerializerSettings
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                });
 
-            multipartContent.Add(
-                new StringContent(imageSetJson, Encoding.UTF8, "application/json"),
-                "imageset"
-                );
 
-            int counter = 0;
-            foreach (var image in imageSet.Images)
-            {
-                var imageContent = new ByteArrayContent(image.ImageData);
-                imageContent.Headers.ContentType = new MediaTypeHeaderValue(image.MimeType);
-                multipartContent.Add(imageContent, "image" + counter++, image.FileName);
-            }
+
+            var searlizedPutDocumentMetadata = JsonConvert.SerializeObject(putDocumentMetaData, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+
+            multipartContent.Add(new StringContent(searlizedPutDocumentMetadata, Encoding.UTF8, "application/json"), "PutDocumentMetaData");
+            multipartContent.Add(new StreamContent(fs), "File1","2pgColor.tif");
+            multipartContent.Add(new StreamContent(fs2), "File2", "2pgColor2.tif");
+
+            //int counter = 0;
+            //foreach (var image in imageSet.Images)
+            //{
+             
+            //    var imageContent = new ByteArrayContent(image.ImageData);
+            //    imageContent.Headers.ContentType = new MediaTypeHeaderValue(image.MimeType);
+            //    multipartContent.Add(imageContent, "image" + counter++, image.FileName);
+            //}
 
             var response = new HttpClient()
-                .PostAsync("http://localhost:53908/api/send", multipartContent)
+                .PostAsync("http://localhost/CompassDataBroker/api/Document/UploadFile", multipartContent)
                 .Result;
 
             var responseContent = response.Content.ReadAsStringAsync().Result;
@@ -92,21 +82,6 @@ namespace WebAPIClient
         //}
     }
 
-    public class ImageSet
-    {
-        public string Name { get; set; }
 
-        [JsonIgnore]
-        public List<Image> Images { get; set; }
-    }
-
-    public class Image
-    {
-        public string FileName { get; set; }
-
-        public string MimeType { get; set; }
-
-        public byte[] ImageData { get; set; }
-    }
 
 }
