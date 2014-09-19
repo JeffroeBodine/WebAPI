@@ -49,8 +49,7 @@
     <Compile Include="Collections\DocumentTypeList.cs" />
     <Compile Include="Collections\KeywordTypeList.cs" />
     <Compile Include="Collections\SearchCriteria.cs" />
-    <Compile Include="PutDocumentMetaData.cs" />
-    <Compile Include="CreateDocumentParms.cs" />
+    <Compile Include="PutDocumentParams.cs" />
     <Compile Include="DocumentMetaData.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FakeData.cs">

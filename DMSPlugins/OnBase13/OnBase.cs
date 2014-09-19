@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ObjectLibrary;
 using ObjectLibrary.Collections;
@@ -62,9 +63,9 @@ namespace DMSPlugins.OnBase13
             return _model.GetDocumentMetaData(documentId);
         }
 
-        public string CreateDocument(CreateDocumentParms parms)
+        public string CreateDocument(PutDocumentParams @params, List<String> filePaths )
         {
-            return _model.CreateDocument(parms);
+            return _model.CreateDocument(@params, filePaths);
         }
     }
 }

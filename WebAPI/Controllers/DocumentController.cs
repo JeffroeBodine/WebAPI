@@ -43,27 +43,43 @@ namespace WebAPI.Controllers
 
             var filePaths = MoveFilesToTransactionFolder(provider, transactionId);
 
-            var putDocumentMetaData = GetPutDocumentMetaDataFromProvider(provider);
+            var putDocumentParams = GetPutDocumentMetaDataFromProvider(provider);
 
-            var uri = new Uri(Request.RequestUri, "someId");
-            return Created(uri, "someId");
+            var dms = new OnBase("jturner", "jturner");
+            var documentId = dms.CreateDocument(putDocumentParams, filePaths);
+
+            var uri = new Uri(Request.RequestUri, documentId);
+            return Created(uri, documentId);
         }
 
-        private static PutDocumentMetaData GetPutDocumentMetaDataFromProvider(MultipartFormDataStreamProvider provider)
+        private static PutDocumentParams GetPutDocumentMetaDataFromProvider(MultipartFormDataStreamProvider provider)
         {
-            var putDocumentMetaDataKey = provider.FormData.AllKeys.Single(x => x == "PutDocumentMetaData");
+            var putDocumentMetaDataKey = provider.FormData.AllKeys.Single(x => x == "PutDocumentParams");
             var putDocumentMetaDataString = provider.FormData.GetValues(putDocumentMetaDataKey).Single();
 
             return GetPutDocumentMetaDataFromString(putDocumentMetaDataString);
         }
 
-        private static PutDocumentMetaData GetPutDocumentMetaDataFromString(string input)
+        private static PutDocumentParams GetPutDocumentMetaDataFromString(string input)
         {
-            return JsonConvert.DeserializeObject<PutDocumentMetaData>
+            PutDocumentParams parms;
+
+            try
+            {
+                parms = JsonConvert.DeserializeObject<PutDocumentParams>
                 (
-                input, 
-                new JsonSerializerSettings{ContractResolver = new CamelCasePropertyNamesContractResolver()}
+                input,
+                new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }
                 );
+            }
+            catch (Exception ex)
+            {
+                int i = 0;
+                throw;
+            }
+
+            return parms;
+
 
         }
 

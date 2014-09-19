@@ -26,16 +26,28 @@ namespace WebAPIClient
 
         private static void SendImageSet()
         {
-            var putDocumentMetaData = new PutDocumentMetaData("tif", "image/tiff", 2, "2pgColor");
+            //var putDocumentMetaData = new PutDocumentMetaData("tif", "image/tiff", 2, "2pgColor");
+
+            var putDocumentParams = new PutDocumentParams(337);
+
+            var compassNumberKWT = new KeywordType(136, "", typeof (string), "");
+            var SSNKWT = new KeywordType(103, "", typeof(string), "");
+            var FirstNameKWT = new KeywordType(104, "", typeof(string), "");
+            var LastNameKWT = new KeywordType(105, "", typeof(string), "");
+
+            putDocumentParams.Keywords.Add(new Keyword(compassNumberKWT,"OH123000000001"));
+            putDocumentParams.Keywords.Add(new Keyword(SSNKWT, "111-11-1111"));
+            putDocumentParams.Keywords.Add(new Keyword(FirstNameKWT, "Jeffroe"));
+            putDocumentParams.Keywords.Add(new Keyword(LastNameKWT, "Bodine"));
 
             //var fs = new FileStream("images/2pgColor.tif", FileMode.Open, FileAccess.Read);
             //var fs2 = new FileStream("images/2pgColor2.tif", FileMode.Open, FileAccess.Read);
 
             var multipartContent = new MultipartFormDataContent();
 
-            var searlizedPutDocumentMetadata = JsonConvert.SerializeObject(putDocumentMetaData, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            var searlizedPutDocumentMetadata = JsonConvert.SerializeObject(putDocumentParams, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
 
-            multipartContent.Add(new StringContent(searlizedPutDocumentMetadata, Encoding.UTF8, "application/json"), "PutDocumentMetaData");
+            multipartContent.Add(new StringContent(searlizedPutDocumentMetadata, Encoding.UTF8, "application/json"), "PutDocumentParams");
 
             int counter = 1;
             foreach (var fileName in Directory.GetFiles("images"))

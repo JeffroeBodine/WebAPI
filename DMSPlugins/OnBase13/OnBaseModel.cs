@@ -205,24 +205,35 @@ namespace DMSPlugins.OnBase13
             return keywords;
         }
 
-        public string CreateDocument(CreateDocumentParms parms)
+        public string CreateDocument(PutDocumentParams @params, List<string> filePaths )
         {
             using (var app = OBConnection(ServiceUrl, DataSource, UserName, Password))
             {
                 var storeDocProperties = app.Core.Storage.CreateStoreNewDocumentProperties(
-                    app.Core.DocumentTypes.Find(parms.DocumentTypeId), app.Core.FileTypes.Find(ImageFileFormatId));
+                    app.Core.DocumentTypes.Find(@params.DocumentTypeId), app.Core.FileTypes.Find(ImageFileFormatId));
 
-                parms.Keywords.ForEach(x =>
+                @params.Keywords.OrEmptyIfNull().ForEach(x =>
                     {
                         var hylandKeywordType = app.Core.KeywordTypes.Find(x.KeywordType.Id);
                         storeDocProperties.AddKeyword(HylandKeywordFrom(x, hylandKeywordType));
                     });
 
+                storeDocProperties.DocumentDate = DateTime.Now;
+                storeDocProperties.Comment = "This is a comment";
+                storeDocProperties.Options = StoreDocumentOptions.SkipWorkflow;
+
+                //foreach (var filePath in filePaths)
+                //{
+
+                //    PageData pgData = app.Core.Storage.CreatePageData(filePath);
+                //}
+
                 //return app.Core.Storage.StoreNewDocument(new List<string>(), storeDocProperties).ID.ToString();
 
-                PageData pgData = app.Core.Storage.CreatePageData(new MemoryStream(), "???");
-           
-                return app.Core.Storage.StoreNewDocument(pgData, storeDocProperties).ID.ToString();
+                //PageData pgData = app.Core.Storage.CreatePageData(new MemoryStream(), "???");
+
+                //return app.Core.Storage.StoreNewDocument(pgData, storeDocProperties).ID.ToString();
+                return app.Core.Storage.StoreNewDocument(filePaths, storeDocProperties).ID.ToString();
             }
         }
 

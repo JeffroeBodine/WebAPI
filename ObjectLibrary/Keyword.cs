@@ -23,6 +23,9 @@ namespace ObjectLibrary
         [DataMember(Order = 108)]
         public KeywordType KeywordType { get; set; }
 
+        public Keyword()
+        {
+        }
 
         public Keyword(KeywordType keywordType, string value)
         {
