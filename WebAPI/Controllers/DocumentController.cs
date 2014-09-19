@@ -73,6 +73,8 @@ namespace WebAPI.Controllers
             foreach (var file in provider.FileData)
             {
                 var correctFileName = file.Headers.ContentDisposition.FileName;
+                correctFileName = correctFileName.StripIllegalFilePathCharacters();
+
                 var tmpFolderPath = Path.GetDirectoryName(file.LocalFileName);
                 var fileInfo = new FileInfo(file.LocalFileName);
 
