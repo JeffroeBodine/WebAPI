@@ -22,13 +22,9 @@ namespace DMSPlugins.OnBase13
         private string UserName { get; set; }
         private SecureString Password { get; set; }
         private readonly string _tempFolder;
-        private static List<CachedApplication> _cachedApplications;
 
         public OnBaseUnityModel(string serviceURL, string dataSource, string userName, SecureString password)
         {
-            if (_cachedApplications == null)
-                _cachedApplications = new List<CachedApplication>();
-
             ServiceUrl = serviceURL;
             DataSource = dataSource;
             UserName = userName;
@@ -46,7 +42,7 @@ namespace DMSPlugins.OnBase13
 
         private static Application OBConnection(string serviceURL, string dataSource, string userName, SecureString password)
         {
-            var hylandApplication = _cachedApplications.Where(cachedApplication => cachedApplication.UserName == userName).Select(ca => ca.Application).SingleOrDefault();
+            var hylandApplication = Cache.Applications.Where(cachedApplication => cachedApplication.UserName == userName).Select(ca => ca.Application).SingleOrDefault();
 
             if (hylandApplication == null)
             {
@@ -56,7 +52,7 @@ namespace DMSPlugins.OnBase13
                 hylandApplication = Application.Connect(onBaseAuthProperties);
 
 
-                _cachedApplications.Add(new CachedApplication(userName, hylandApplication));
+                Cache.Applications.Add(new WApplication(userName, hylandApplication));
             }
             return hylandApplication;
         }
@@ -239,7 +235,7 @@ namespace DMSPlugins.OnBase13
 
         public static void CloseAllOpenConnections()
         {
-            foreach (var app in _cachedApplications)
+            foreach (var app in Cache.Applications)
             {
                 try
                 {

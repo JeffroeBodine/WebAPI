@@ -39,7 +39,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CachedApplication.cs" />
+    <Compile Include="Cache.cs" />
+    <Compile Include="WApplication.cs" />
     <Compile Include="OnBase13\OnBase.cs" />
     <Compile Include="OnBase13\OnBaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
