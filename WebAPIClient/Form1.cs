@@ -1,10 +1,6 @@
-﻿using System.Web;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -19,15 +15,11 @@ namespace WebAPIClient
         {
             InitializeComponent();
 
-
             SendImageSet();
-
         }
 
         private static void SendImageSet()
         {
-            //var putDocumentMetaData = new PutDocumentMetaData("tif", "image/tiff", 2, "2pgColor");
-
             var putDocumentParams = new PutDocumentParams(337);
 
             var compassNumberKWT = new KeywordType(136, "", typeof (string), "");
@@ -40,16 +32,13 @@ namespace WebAPIClient
             putDocumentParams.Keywords.Add(new Keyword(FirstNameKWT, "Jeffroe"));
             putDocumentParams.Keywords.Add(new Keyword(LastNameKWT, "Bodine"));
 
-            //var fs = new FileStream("images/2pgColor.tif", FileMode.Open, FileAccess.Read);
-            //var fs2 = new FileStream("images/2pgColor2.tif", FileMode.Open, FileAccess.Read);
-
             var multipartContent = new MultipartFormDataContent();
 
             var searlizedPutDocumentMetadata = JsonConvert.SerializeObject(putDocumentParams, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
 
             multipartContent.Add(new StringContent(searlizedPutDocumentMetadata, Encoding.UTF8, "application/json"), "PutDocumentParams");
 
-            int counter = 1;
+            var counter = 1;
             foreach (var fileName in Directory.GetFiles("images"))
             {
                 var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
@@ -64,15 +53,5 @@ namespace WebAPIClient
             var responseContent = response.Content.ReadAsStringAsync().Result;
             Trace.Write(responseContent);
         }
-
-     
-
-        //private static Keyword CreateKeyword(KeywordTypes keywordType, string keywordValue)
-        //{
-        //    return new Keyword(new KeywordType((long)keywordType, keywordType.ToString(), typeof(string), ""), keywordValue) { DateTimeValue = DateTime.Now };
-        //}
     }
-
-
-
 }
