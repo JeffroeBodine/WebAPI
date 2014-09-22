@@ -17,27 +17,17 @@ namespace DMSPlugins.OnBase13
     public class OnBaseUnityModel
     {
         private const int ImageFileFormatId = 2;
-        private string ServiceUrl { get; set; }
-        private string DataSource { get; set; }
-        private string UserName { get; set; }
-        private SecureString Password { get; set; }
+        private string _userName = string.Empty;
+        private Application App { get; set; }
         private readonly string _tempFolder;
 
         public OnBaseUnityModel(string serviceURL, string dataSource, string userName, SecureString password)
         {
-            ServiceUrl = serviceURL;
-            DataSource = dataSource;
-            UserName = userName;
-            Password = password;
+            _userName = userName;
+            App = OBConnection(serviceURL, dataSource, userName, password);
 
             _tempFolder = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(), "CompassTemporaryFileStore");
             CreateFolderIfItDoesntAlreadyExist();
-        }
-
-        private void CreateFolderIfItDoesntAlreadyExist()
-        {
-            if (!Directory.Exists(_tempFolder))
-                Directory.CreateDirectory(_tempFolder);
         }
 
         private static Application OBConnection(string serviceURL, string dataSource, string userName, SecureString password)
@@ -47,10 +37,8 @@ namespace DMSPlugins.OnBase13
             if (hylandApplication == null)
             {
                 var onBaseAuthProperties = Application.CreateOnBaseAuthenticationProperties(serviceURL, userName, password.Insecure(), dataSource);
-                onBaseAuthProperties.DisconnectedMode = true;
 
                 hylandApplication = Application.Connect(onBaseAuthProperties);
-
 
                 Cache.Applications.Add(new WApplication(userName, hylandApplication));
             }
@@ -60,41 +48,45 @@ namespace DMSPlugins.OnBase13
         public DocumentTypeList GetDocumentTypes()
         {
             var documentTypes = new DocumentTypeList();
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
-
-            foreach (var udtg in app.Core.DocumentTypeGroups)
+            try
             {
-                var dtg = new DocumentType(udtg.ID, udtg.Name);
-                documentTypes.Add(dtg);
-
-                if (udtg.DocumentTypes != null)
+                foreach (var udtg in App.Core.DocumentTypeGroups)
                 {
-                    foreach (var udt in udtg.DocumentTypes)
-                    {
-                        if (dtg.DocumentTypeList == null)
-                            dtg.DocumentTypeList = new DocumentTypeList();
+                    var dtg = new DocumentType(udtg.ID, udtg.Name);
+                    documentTypes.Add(dtg);
 
-                        dtg.DocumentTypeList.Add(new DocumentType(udt.ID, udt.Name));
+                    if (udtg.DocumentTypes != null)
+                    {
+                        foreach (var udt in udtg.DocumentTypes)
+                        {
+                            if (dtg.DocumentTypeList == null)
+                                dtg.DocumentTypeList = new DocumentTypeList();
+
+                            dtg.DocumentTypeList.Add(new DocumentType(udt.ID, udt.Name));
+                        }
                     }
                 }
             }
+            catch (SessionNotFoundException snfex)
+            {
+                Cache.Clear(_userName);
+                throw;
+            }
+
             return documentTypes;
         }
 
         public DocumentType GetDocumentType(string id)
         {
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
-
-            var obDocumentType = app.Core.DocumentTypes.Find(long.Parse(id));
+            var obDocumentType = App.Core.DocumentTypes.Find(long.Parse(id));
             return new DocumentType(obDocumentType.ID, obDocumentType.Name);
         }
 
         public IEnumerable<KeywordType> GetKeywordTypes()
         {
             var keywordTypes = new List<KeywordType>();
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
 
-            keywordTypes.AddRange(app.Core.KeywordTypes.Select(ukwt => new KeywordType(ukwt.ID, ukwt.Name, GetSystemTypeFromUnityType(ukwt.DataType), ukwt.DefaultValue)));
+            keywordTypes.AddRange(App.Core.KeywordTypes.Select(ukwt => new KeywordType(ukwt.ID, ukwt.Name, GetSystemTypeFromUnityType(ukwt.DataType), ukwt.DefaultValue)));
 
             return keywordTypes;
         }
@@ -106,11 +98,9 @@ namespace DMSPlugins.OnBase13
 
         public Document GetDocument(string id)
         {
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
+            var uDocument = App.Core.GetDocumentByID(long.Parse(id));
 
-            var uDocument = app.Core.GetDocumentByID(long.Parse(id));
-
-            var documentMetaData = GetDocumentMetaData(uDocument, app.Core.Retrieval.Default);
+            var documentMetaData = GetDocumentMetaData(uDocument, App.Core.Retrieval.Default);
 
             return new Document(uDocument.ID, uDocument.Name, uDocument.DateStored, uDocument.DateStored,
                                 uDocument.CreatedBy.Name, uDocument.DocumentType.ID, documentMetaData);
@@ -119,13 +109,21 @@ namespace DMSPlugins.OnBase13
 
         public List<Document> GetDocuments(string compassNumber)
         {
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
-
-            var documentQuery = app.Core.CreateDocumentQuery();
+            var documentQuery = App.Core.CreateDocumentQuery();
             documentQuery.AddKeyword("Compass Number", compassNumber);
             documentQuery.AddSort(DocumentQuery.SortAttribute.DocumentDate, false);
-            var documentList = documentQuery.Execute(500);
 
+            DocumentList documentList = null;
+            try
+            {
+                documentList = documentQuery.Execute(500);
+            }
+            catch (SessionNotFoundException snfex)
+            {
+                Cache.Clear(_userName);
+                throw;
+            }
+          
             var documents = new List<Document>();
 
             foreach (var uDocument in documentList)
@@ -139,25 +137,20 @@ namespace DMSPlugins.OnBase13
 
         public DocumentMetaData GetDocumentMetaData(long documentId)
         {
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
-
-            var uDocument = app.Core.GetDocumentByID(documentId);
-            return GetDocumentMetaData(uDocument, app.Core.Retrieval.Default);
-
+            var uDocument = App.Core.GetDocumentByID(documentId);
+            return GetDocumentMetaData(uDocument, App.Core.Retrieval.Default);
         }
 
         public Stream GetFileData(string documentId)
         {
             CleanUpTempDirectory();
 
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
-
-            var uDocument = app.Core.GetDocumentByID(long.Parse(documentId));
+            var uDocument = App.Core.GetDocumentByID(long.Parse(documentId));
 
             var rend = uDocument.DefaultRenditionOfLatestRevision;
 
             string filePath;
-            using (PageData unityPageData = app.Core.Retrieval.Default.GetDocument(rend))
+            using (PageData unityPageData = App.Core.Retrieval.Default.GetDocument(rend))
             {
                 filePath = _tempFolder + @"\" + uDocument.ID.ToString() + "." + unityPageData.Extension;
                 Utility.WriteStreamToFile(unityPageData.Stream, filePath);
@@ -170,9 +163,7 @@ namespace DMSPlugins.OnBase13
         {
             var keywords = new Keywords();
 
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
-
-            var uDocument = app.Core.GetDocumentByID(long.Parse(documentId));
+            var uDocument = App.Core.GetDocumentByID(long.Parse(documentId));
             foreach (KeywordRecord uKeywordRecord in uDocument.KeywordRecords.Where(x => x.KeywordRecordType.RecordType != RecordType.MultiInstance))
             {
                 foreach (Keyword uKeyword in uKeywordRecord.Keywords)
@@ -214,14 +205,12 @@ namespace DMSPlugins.OnBase13
 
         public string CreateDocument(PutDocumentParams @params, List<string> filePaths)
         {
-            var app = OBConnection(ServiceUrl, DataSource, UserName, Password);
-
-            var storeDocProperties = app.Core.Storage.CreateStoreNewDocumentProperties(
-                app.Core.DocumentTypes.Find(@params.DocumentTypeId), app.Core.FileTypes.Find(ImageFileFormatId));
+            var storeDocProperties = App.Core.Storage.CreateStoreNewDocumentProperties(
+                  App.Core.DocumentTypes.Find(@params.DocumentTypeId), App.Core.FileTypes.Find(ImageFileFormatId));
 
             @params.Keywords.OrEmptyIfNull().ForEach(x =>
                 {
-                    var hylandKeywordType = app.Core.KeywordTypes.Find(x.KeywordType.Id);
+                    var hylandKeywordType = App.Core.KeywordTypes.Find(x.KeywordType.Id);
                     storeDocProperties.AddKeyword(HylandKeywordFrom(x, hylandKeywordType));
                 });
 
@@ -229,49 +218,23 @@ namespace DMSPlugins.OnBase13
             storeDocProperties.Comment = "This is a comment";
             storeDocProperties.Options = StoreDocumentOptions.SkipWorkflow;
 
-            return app.Core.Storage.StoreNewDocument(filePaths, storeDocProperties).ID.ToString();
+            return App.Core.Storage.StoreNewDocument(filePaths, storeDocProperties).ID.ToString();
 
         }
 
         public static void CloseAllOpenConnections()
         {
-            foreach (var app in Cache.Applications)
-            {
-                try
-                {
-                    app.Application.Disconnect();
-                }
-                catch (Exception ex)
-                {
-                    int i = 0;
-                }
-
-            }
-        }
-
-        private Keyword HylandKeywordFrom(ObjectLibrary.Keyword keyword, Hyland.Unity.KeywordType keywordType)
-        {
-            switch (keywordType.DataType)
-            {
-                case KeywordDataType.AlphaNumeric:
-                    return keywordType.CreateKeyword(keyword.StringValue);
-                case KeywordDataType.Currency:
-                case KeywordDataType.SpecificCurrency:
-                    return keywordType.CreateKeyword(keyword.DecimalValue);
-                case KeywordDataType.Date:
-                case KeywordDataType.DateTime:
-                    return keywordType.CreateKeyword(keyword.DateTimeValue);
-                case KeywordDataType.FloatingPoint:
-                    return keywordType.CreateKeyword(keyword.DoubleValue);
-                case KeywordDataType.Numeric20:
-                case KeywordDataType.Numeric9:
-                    return keywordType.CreateKeyword(keyword.IntValue);
-                default:
-                    return null;
-            }
+            Cache.Clear();
         }
 
         #region Privates
+
+        private void CreateFolderIfItDoesntAlreadyExist()
+        {
+            if (!Directory.Exists(_tempFolder))
+                Directory.CreateDirectory(_tempFolder);
+        }
+
         private DocumentMetaData GetDocumentMetaData(Hyland.Unity.Document document, DefaultDataProvider provider)
         {
             var rend = document.DefaultRenditionOfLatestRevision;
@@ -322,6 +285,29 @@ namespace DMSPlugins.OnBase13
                 }
             }
         }
+
+        private Keyword HylandKeywordFrom(ObjectLibrary.Keyword keyword, Hyland.Unity.KeywordType keywordType)
+        {
+            switch (keywordType.DataType)
+            {
+                case KeywordDataType.AlphaNumeric:
+                    return keywordType.CreateKeyword(keyword.StringValue);
+                case KeywordDataType.Currency:
+                case KeywordDataType.SpecificCurrency:
+                    return keywordType.CreateKeyword(keyword.DecimalValue);
+                case KeywordDataType.Date:
+                case KeywordDataType.DateTime:
+                    return keywordType.CreateKeyword(keyword.DateTimeValue);
+                case KeywordDataType.FloatingPoint:
+                    return keywordType.CreateKeyword(keyword.DoubleValue);
+                case KeywordDataType.Numeric20:
+                case KeywordDataType.Numeric9:
+                    return keywordType.CreateKeyword(keyword.IntValue);
+                default:
+                    return null;
+            }
+        }
+
         #endregion
 
     }
