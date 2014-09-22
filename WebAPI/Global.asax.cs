@@ -2,6 +2,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
+using DMSPlugins;
 
 namespace WebAPI
 {
@@ -18,7 +19,7 @@ namespace WebAPI
 
         protected void Application_End()
         {
-            DMSPlugins.OnBase13.OnBaseUnityModel.CloseAllOpenConnections();
+            Cache.Clear();
         }
     }
 }

@@ -222,11 +222,6 @@ namespace DMSPlugins.OnBase13
 
         }
 
-        public static void CloseAllOpenConnections()
-        {
-            Cache.Clear();
-        }
-
         #region Privates
 
         private void CreateFolderIfItDoesntAlreadyExist()
