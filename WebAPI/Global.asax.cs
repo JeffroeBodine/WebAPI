@@ -13,6 +13,12 @@ namespace WebAPI
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);}
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_End()
+        {
+            DMSPlugins.OnBase13.OnBaseUnityModel.CloseAllOpenConnections();
+        }
     }
 }
