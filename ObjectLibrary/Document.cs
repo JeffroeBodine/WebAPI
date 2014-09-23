@@ -21,6 +21,10 @@ namespace ObjectLibrary
         [DataMember(Order = 104)]
         public DocumentMetaData MetaData { get; set; }
 
+        public Document()
+        {
+        }
+
         public Document(long id, string name, DateTime createDate, DateTime lupDate, string author, long documentTypeID)
             : base(id, name)
         {

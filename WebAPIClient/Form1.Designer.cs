@@ -41,15 +41,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBaseURL = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnProgramTypes = new System.Windows.Forms.Button();
+            this.btnGetProgramType = new System.Windows.Forms.Button();
             this.btnGetClients = new System.Windows.Forms.Button();
             this.txtCaseId = new System.Windows.Forms.TextBox();
             this.btnGetCase = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnGetAddresses = new System.Windows.Forms.Button();
             this.txtClientId = new System.Windows.Forms.TextBox();
             this.btnClient = new System.Windows.Forms.Button();
-            this.btnGetAddresses = new System.Windows.Forms.Button();
-            this.btnGetProgramType = new System.Windows.Forms.Button();
-            this.btnProgramTypes = new System.Windows.Forms.Button();
+            this.btnGetDocuments = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -201,6 +202,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cases";
             // 
+            // btnProgramTypes
+            // 
+            this.btnProgramTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProgramTypes.Location = new System.Drawing.Point(6, 106);
+            this.btnProgramTypes.Name = "btnProgramTypes";
+            this.btnProgramTypes.Size = new System.Drawing.Size(118, 23);
+            this.btnProgramTypes.TabIndex = 12;
+            this.btnProgramTypes.Text = "Get Program Types";
+            this.btnProgramTypes.UseVisualStyleBackColor = true;
+            this.btnProgramTypes.Click += new System.EventHandler(this.btnProgramTypes_Click);
+            // 
+            // btnGetProgramType
+            // 
+            this.btnGetProgramType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetProgramType.Location = new System.Drawing.Point(6, 77);
+            this.btnGetProgramType.Name = "btnGetProgramType";
+            this.btnGetProgramType.Size = new System.Drawing.Size(118, 23);
+            this.btnGetProgramType.TabIndex = 10;
+            this.btnGetProgramType.Text = "Get Program Type";
+            this.btnGetProgramType.UseVisualStyleBackColor = true;
+            this.btnGetProgramType.Click += new System.EventHandler(this.btnGetProgramType_Click);
+            // 
             // btnGetClients
             // 
             this.btnGetClients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -234,6 +259,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnGetDocuments);
             this.groupBox3.Controls.Add(this.btnGetAddresses);
             this.groupBox3.Controls.Add(this.txtClientId);
             this.groupBox3.Controls.Add(this.btnClient);
@@ -243,6 +269,18 @@
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Clients";
+            // 
+            // btnGetAddresses
+            // 
+            this.btnGetAddresses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetAddresses.Location = new System.Drawing.Point(6, 48);
+            this.btnGetAddresses.Name = "btnGetAddresses";
+            this.btnGetAddresses.Size = new System.Drawing.Size(118, 23);
+            this.btnGetAddresses.TabIndex = 9;
+            this.btnGetAddresses.Text = "Get Addresses";
+            this.btnGetAddresses.UseVisualStyleBackColor = true;
+            this.btnGetAddresses.Click += new System.EventHandler(this.btnGetAddresses_Click);
             // 
             // txtClientId
             // 
@@ -263,41 +301,17 @@
             this.btnClient.UseVisualStyleBackColor = true;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
             // 
-            // btnGetAddresses
+            // btnGetDocuments
             // 
-            this.btnGetAddresses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnGetDocuments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetAddresses.Location = new System.Drawing.Point(6, 48);
-            this.btnGetAddresses.Name = "btnGetAddresses";
-            this.btnGetAddresses.Size = new System.Drawing.Size(118, 23);
-            this.btnGetAddresses.TabIndex = 9;
-            this.btnGetAddresses.Text = "Get Addresses";
-            this.btnGetAddresses.UseVisualStyleBackColor = true;
-            this.btnGetAddresses.Click += new System.EventHandler(this.btnGetAddresses_Click);
-            // 
-            // btnGetProgramType
-            // 
-            this.btnGetProgramType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetProgramType.Location = new System.Drawing.Point(6, 77);
-            this.btnGetProgramType.Name = "btnGetProgramType";
-            this.btnGetProgramType.Size = new System.Drawing.Size(118, 23);
-            this.btnGetProgramType.TabIndex = 10;
-            this.btnGetProgramType.Text = "Get Program Type";
-            this.btnGetProgramType.UseVisualStyleBackColor = true;
-            this.btnGetProgramType.Click += new System.EventHandler(this.btnGetProgramType_Click);
-            // 
-            // btnProgramTypes
-            // 
-            this.btnProgramTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProgramTypes.Location = new System.Drawing.Point(6, 106);
-            this.btnProgramTypes.Name = "btnProgramTypes";
-            this.btnProgramTypes.Size = new System.Drawing.Size(118, 23);
-            this.btnProgramTypes.TabIndex = 12;
-            this.btnProgramTypes.Text = "Get Program Types";
-            this.btnProgramTypes.UseVisualStyleBackColor = true;
-            this.btnProgramTypes.Click += new System.EventHandler(this.btnProgramTypes_Click);
+            this.btnGetDocuments.Location = new System.Drawing.Point(6, 77);
+            this.btnGetDocuments.Name = "btnGetDocuments";
+            this.btnGetDocuments.Size = new System.Drawing.Size(118, 23);
+            this.btnGetDocuments.TabIndex = 10;
+            this.btnGetDocuments.Text = "Get Documents";
+            this.btnGetDocuments.UseVisualStyleBackColor = true;
+            this.btnGetDocuments.Click += new System.EventHandler(this.btnGetDocuments_Click);
             // 
             // Form1
             // 
@@ -349,6 +363,7 @@
         private System.Windows.Forms.Button btnGetAddresses;
         private System.Windows.Forms.Button btnGetProgramType;
         private System.Windows.Forms.Button btnProgramTypes;
+        private System.Windows.Forms.Button btnGetDocuments;
     }
 }
 

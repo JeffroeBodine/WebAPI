@@ -62,6 +62,11 @@ namespace WebApi
             return MakeRestCall<ProgramType>(String.Format("ProgramType/{0}", id));
         }
 
+        public IEnumerable<Document> GetDocuments(string clientId)
+        {
+            return MakeRestCall<IEnumerable<Document>>(String.Format("Client/{0}/Document", clientId));
+        }
+
         private T MakeRestCall<T>(string methodName)
         {
             using (var client = new HttpClient(){BaseAddress = new Uri(BaseUrl)})
@@ -69,7 +74,16 @@ namespace WebApi
                 var response = client.GetAsync(methodName).Result;
 
                 if (response.IsSuccessStatusCode)
-                    return response.Content.ReadAsAsync<T>().Result;
+                    try
+                    {
+                        return response.Content.ReadAsAsync<T>().Result;
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                        throw;
+                    }
+                    
             }
             return default(T);
         }
