@@ -41,13 +41,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBaseURL = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtCaseIdForClients = new System.Windows.Forms.TextBox();
+            this.btnGetClients = new System.Windows.Forms.Button();
             this.txtCaseId = new System.Windows.Forms.TextBox();
             this.btnGetCase = new System.Windows.Forms.Button();
-            this.btnGetClients = new System.Windows.Forms.Button();
-            this.txtCaseIdForClients = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtClientId = new System.Windows.Forms.TextBox();
+            this.btnClient = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbImaging
@@ -194,6 +198,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cases";
             // 
+            // txtCaseIdForClients
+            // 
+            this.txtCaseIdForClients.Location = new System.Drawing.Point(130, 49);
+            this.txtCaseIdForClients.Name = "txtCaseIdForClients";
+            this.txtCaseIdForClients.Size = new System.Drawing.Size(58, 20);
+            this.txtCaseIdForClients.TabIndex = 10;
+            // 
+            // btnGetClients
+            // 
+            this.btnGetClients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetClients.Location = new System.Drawing.Point(6, 48);
+            this.btnGetClients.Name = "btnGetClients";
+            this.btnGetClients.Size = new System.Drawing.Size(118, 23);
+            this.btnGetClients.TabIndex = 9;
+            this.btnGetClients.Text = "Get Clients";
+            this.btnGetClients.UseVisualStyleBackColor = true;
+            this.btnGetClients.Click += new System.EventHandler(this.btnGetClients_Click);
+            // 
             // txtCaseId
             // 
             this.txtCaseId.Location = new System.Drawing.Point(130, 20);
@@ -213,30 +236,42 @@
             this.btnGetCase.UseVisualStyleBackColor = true;
             this.btnGetCase.Click += new System.EventHandler(this.btnGetCase_Click);
             // 
-            // btnGetClients
+            // groupBox3
             // 
-            this.btnGetClients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox3.Controls.Add(this.txtClientId);
+            this.groupBox3.Controls.Add(this.btnClient);
+            this.groupBox3.Location = new System.Drawing.Point(412, 38);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(194, 362);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Clients";
+            // 
+            // txtClientId
+            // 
+            this.txtClientId.Location = new System.Drawing.Point(130, 20);
+            this.txtClientId.Name = "txtClientId";
+            this.txtClientId.Size = new System.Drawing.Size(58, 20);
+            this.txtClientId.TabIndex = 8;
+            // 
+            // btnClient
+            // 
+            this.btnClient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetClients.Location = new System.Drawing.Point(6, 48);
-            this.btnGetClients.Name = "btnGetClients";
-            this.btnGetClients.Size = new System.Drawing.Size(118, 23);
-            this.btnGetClients.TabIndex = 9;
-            this.btnGetClients.Text = "Get Clients";
-            this.btnGetClients.UseVisualStyleBackColor = true;
-            this.btnGetClients.Click += new System.EventHandler(this.btnGetClients_Click);
-            // 
-            // txtCaseIdForClients
-            // 
-            this.txtCaseIdForClients.Location = new System.Drawing.Point(130, 49);
-            this.txtCaseIdForClients.Name = "txtCaseIdForClients";
-            this.txtCaseIdForClients.Size = new System.Drawing.Size(58, 20);
-            this.txtCaseIdForClients.TabIndex = 10;
+            this.btnClient.Location = new System.Drawing.Point(6, 19);
+            this.btnClient.Name = "btnClient";
+            this.btnClient.Size = new System.Drawing.Size(118, 23);
+            this.btnClient.TabIndex = 7;
+            this.btnClient.Text = "Get Client";
+            this.btnClient.UseVisualStyleBackColor = true;
+            this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 730);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txtBaseURL);
             this.Controls.Add(this.label1);
@@ -250,6 +285,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,6 +311,9 @@
         private System.Windows.Forms.Button btnGetCase;
         private System.Windows.Forms.TextBox txtCaseIdForClients;
         private System.Windows.Forms.Button btnGetClients;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtClientId;
+        private System.Windows.Forms.Button btnClient;
     }
 }
 

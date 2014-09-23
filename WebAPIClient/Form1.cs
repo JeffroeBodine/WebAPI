@@ -91,6 +91,11 @@ namespace WebAPIClient
             DisplayClients(SDK.GetClients(txtCaseIdForClients.Text));
         }
 
+        private void btnClient_Click(object sender, EventArgs e)
+        {
+            DisplayClient(SDK.GetClient(txtClientId.Text));
+        }
+    
         private void DisplayCase(Case myCase)
         {
             txtResult.Clear();
@@ -105,6 +110,12 @@ namespace WebAPIClient
             {
                 txtResult.Text += String.Format("Id: {0}, SSN: {1} First Name: {2}, Last Name: {3}{4}", c.Id, c.SSN, c.FirstName, c.LastName, Environment.NewLine);
             }
+        }
+        private void DisplayClient(Client client)
+        {
+           txtResult.Clear();
+           txtResult.Text += String.Format("Id: {0}, SSN: {1} First Name: {2}, Last Name: {3}{4}", client.Id, client.SSN, client.FirstName, client.LastName, Environment.NewLine);
+            
         }
         private void DisplayKeywordTypes(IEnumerable<KeywordType> keywordTypes)
         {
@@ -149,6 +160,8 @@ namespace WebAPIClient
                 e.Handled = true;
             }
         }
+
+      
 
       
     }

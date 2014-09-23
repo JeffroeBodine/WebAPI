@@ -37,10 +37,14 @@ namespace WebApi
         {
             return MakeRestCall<Case>(String.Format("Case/{0}", id));
         }
-
         public IEnumerable<Client> GetClients(string caseId)
         {
             return MakeRestCall<IEnumerable<Client>>(String.Format("Case/{0}/Client", caseId));
+        }
+
+        public Client GetClient(string id)
+        {
+            return MakeRestCall<Client>(String.Format("Client/{0}", id));
         }
 
         private T MakeRestCall<T>(string methodName)
