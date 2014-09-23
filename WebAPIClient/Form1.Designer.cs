@@ -48,6 +48,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtClientId = new System.Windows.Forms.TextBox();
             this.btnClient = new System.Windows.Forms.Button();
+            this.btnGetAddresses = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -238,6 +239,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnGetAddresses);
             this.groupBox3.Controls.Add(this.txtClientId);
             this.groupBox3.Controls.Add(this.btnClient);
             this.groupBox3.Location = new System.Drawing.Point(412, 38);
@@ -265,6 +267,18 @@
             this.btnClient.Text = "Get Client";
             this.btnClient.UseVisualStyleBackColor = true;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
+            // 
+            // btnGetAddresses
+            // 
+            this.btnGetAddresses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetAddresses.Location = new System.Drawing.Point(6, 48);
+            this.btnGetAddresses.Name = "btnGetAddresses";
+            this.btnGetAddresses.Size = new System.Drawing.Size(118, 23);
+            this.btnGetAddresses.TabIndex = 9;
+            this.btnGetAddresses.Text = "Get Addresses";
+            this.btnGetAddresses.UseVisualStyleBackColor = true;
+            this.btnGetAddresses.Click += new System.EventHandler(this.btnGetAddresses_Click);
             // 
             // Form1
             // 
@@ -314,6 +328,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtClientId;
         private System.Windows.Forms.Button btnClient;
+        private System.Windows.Forms.Button btnGetAddresses;
     }
 }
 

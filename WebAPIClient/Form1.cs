@@ -95,7 +95,25 @@ namespace WebAPIClient
         {
             DisplayClient(SDK.GetClient(txtClientId.Text));
         }
-    
+
+        private void btnGetAddresses_Click(object sender, EventArgs e)
+        {
+            DisplayAddresses(SDK.GetAddresses(txtClientId.Text));
+        }
+
+        private void DisplayAddresses(IEnumerable<Address> addresses)
+        {
+            foreach (var a in addresses)
+            {
+                txtResult.Text += String.Format("Id: {0}, Type: {1}{2}", a.Id, a.AddressType, Environment.NewLine);
+                txtResult.Text += String.Format("  {0}{1}", a.Street1, Environment.NewLine);
+                txtResult.Text += String.Format("  {0}{1}", a.Street2, Environment.NewLine);
+                txtResult.Text += String.Format("  {0}{1}", a.Street3, Environment.NewLine);
+                txtResult.Text += String.Format("  {0}, {1} {2} - {3}{4}", a.City, a.State, a.Zip, a.Plus4, Environment.NewLine);
+                txtResult.Text += Environment.NewLine;
+            }
+        }
+
         private void DisplayCase(Case myCase)
         {
             txtResult.Clear();
@@ -160,6 +178,8 @@ namespace WebAPIClient
                 e.Handled = true;
             }
         }
+
+       
 
       
 
