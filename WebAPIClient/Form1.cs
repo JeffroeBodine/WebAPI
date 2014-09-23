@@ -69,20 +69,7 @@ namespace WebAPIClient
 
         private void btnDocumentTypes_Click(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BaseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync("DocumentType").Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var documentTypes = response.Content.ReadAsAsync<IEnumerable<DocumentType>>().Result;
-                    DisplayDocumentTypes(documentTypes);
-                }
-            }
+            DisplayDocumentTypes(GetDocumentTypes());
         }
         private void btnDocumentType_Click(object sender, EventArgs e)
         {
@@ -231,10 +218,25 @@ namespace WebAPIClient
             }
         }
 
+        private IEnumerable<DocumentType> GetDocumentTypes()
+        {
+            return  MakeRestCall<IEnumerable<DocumentType>>("DocumentType");
+        }
 
+        private T MakeRestCall<T>(string methodName)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
 
+                var response = client.GetAsync(methodName).Result;
 
-
-
+                if (response.IsSuccessStatusCode)
+                {
+                    return response.Content.ReadAsAsync<T>().Result;
+               }
+            }
+            return default(T);
+        }
     }
 }
