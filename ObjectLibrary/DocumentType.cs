@@ -14,6 +14,11 @@ namespace ObjectLibrary
         [DataMember(Order = 10)]
         public DocumentTypeList DocumentTypeList { get; set; }
 
+        public DocumentType()
+        {
+            DocumentTypeList = new DocumentTypeList();
+        }
+
         public DocumentType(long id, string name) : base(id, name)
         {
             DocumentTypeList = new DocumentTypeList();

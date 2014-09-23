@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ObjectLibrary;
 
 namespace DMSPlugins
 {
@@ -16,24 +16,14 @@ namespace DMSPlugins
 
         public static void Clear()
         {
-            foreach (var app in Cache.Applications)
-            {
-                try
-                {
-                    app.Application.Disconnect();
-                }
-                catch (Exception ex)
-                {
-                    int i = 0;
-                }
-
-            }
+            Applications.ForEach(x=> x.Application.Disconnect());
+            Applications = new List<WApplication>();
         }
 
         public static void Clear(string userName)
         {
+            Applications.Where(x => x.UserName == userName).ForEach(x => x.Application.Disconnect());
             Applications.RemoveAll(x => x.UserName == userName);
-          
         }
     }
 }
