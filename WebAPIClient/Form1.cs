@@ -88,21 +88,46 @@ namespace WebAPIClient
         }
         private void btnGetClients_Click(object sender, EventArgs e)
         {
-            DisplayClients(SDK.GetClients(txtCaseIdForClients.Text));
+            DisplayClients(SDK.GetClients(txtCaseId.Text));
+        }
+
+        private void btnProgramTypes_Click(object sender, EventArgs e)
+        {
+            DisplayProgramTypes(SDK.GetProgramTypes());
+        }
+
+
+        private void btnGetProgramType_Click(object sender, EventArgs e)
+        {
+            DisplayProgramType(SDK.GetProgramType(txtCaseId.Text));
         }
 
         private void btnClient_Click(object sender, EventArgs e)
         {
             DisplayClient(SDK.GetClient(txtClientId.Text));
         }
-
         private void btnGetAddresses_Click(object sender, EventArgs e)
         {
             DisplayAddresses(SDK.GetAddresses(txtClientId.Text));
         }
 
+
+        private void DisplayProgramTypes(IEnumerable<ProgramType> programTypes)
+        {
+            txtResult.Clear();
+            foreach (var programType in programTypes)
+            {
+                txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", programType.Id, programType.Name, Environment.NewLine);
+            }
+        }
+        private void DisplayProgramType(ProgramType programType)
+        {
+            txtResult.Clear();
+            txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", programType.Id, programType.Name, Environment.NewLine);
+        }
         private void DisplayAddresses(IEnumerable<Address> addresses)
         {
+            txtResult.Clear();
             foreach (var a in addresses)
             {
                 txtResult.Text += String.Format("Id: {0}, Type: {1}{2}", a.Id, a.AddressType, Environment.NewLine);
@@ -113,7 +138,6 @@ namespace WebAPIClient
                 txtResult.Text += Environment.NewLine;
             }
         }
-
         private void DisplayCase(Case myCase)
         {
             txtResult.Clear();
@@ -131,9 +155,9 @@ namespace WebAPIClient
         }
         private void DisplayClient(Client client)
         {
-           txtResult.Clear();
-           txtResult.Text += String.Format("Id: {0}, SSN: {1} First Name: {2}, Last Name: {3}{4}", client.Id, client.SSN, client.FirstName, client.LastName, Environment.NewLine);
-            
+            txtResult.Clear();
+            txtResult.Text += String.Format("Id: {0}, SSN: {1} First Name: {2}, Last Name: {3}{4}", client.Id, client.SSN, client.FirstName, client.LastName, Environment.NewLine);
+
         }
         private void DisplayKeywordTypes(IEnumerable<KeywordType> keywordTypes)
         {
@@ -179,10 +203,6 @@ namespace WebAPIClient
             }
         }
 
-       
 
-      
-
-      
     }
 }

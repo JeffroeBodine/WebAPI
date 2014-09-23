@@ -41,7 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBaseURL = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtCaseIdForClients = new System.Windows.Forms.TextBox();
             this.btnGetClients = new System.Windows.Forms.Button();
             this.txtCaseId = new System.Windows.Forms.TextBox();
             this.btnGetCase = new System.Windows.Forms.Button();
@@ -49,6 +48,8 @@
             this.txtClientId = new System.Windows.Forms.TextBox();
             this.btnClient = new System.Windows.Forms.Button();
             this.btnGetAddresses = new System.Windows.Forms.Button();
+            this.btnGetProgramType = new System.Windows.Forms.Button();
+            this.btnProgramTypes = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -188,7 +189,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtCaseIdForClients);
+            this.groupBox2.Controls.Add(this.btnProgramTypes);
+            this.groupBox2.Controls.Add(this.btnGetProgramType);
             this.groupBox2.Controls.Add(this.btnGetClients);
             this.groupBox2.Controls.Add(this.txtCaseId);
             this.groupBox2.Controls.Add(this.btnGetCase);
@@ -198,13 +200,6 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cases";
-            // 
-            // txtCaseIdForClients
-            // 
-            this.txtCaseIdForClients.Location = new System.Drawing.Point(130, 49);
-            this.txtCaseIdForClients.Name = "txtCaseIdForClients";
-            this.txtCaseIdForClients.Size = new System.Drawing.Size(58, 20);
-            this.txtCaseIdForClients.TabIndex = 10;
             // 
             // btnGetClients
             // 
@@ -280,6 +275,30 @@
             this.btnGetAddresses.UseVisualStyleBackColor = true;
             this.btnGetAddresses.Click += new System.EventHandler(this.btnGetAddresses_Click);
             // 
+            // btnGetProgramType
+            // 
+            this.btnGetProgramType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetProgramType.Location = new System.Drawing.Point(6, 77);
+            this.btnGetProgramType.Name = "btnGetProgramType";
+            this.btnGetProgramType.Size = new System.Drawing.Size(118, 23);
+            this.btnGetProgramType.TabIndex = 10;
+            this.btnGetProgramType.Text = "Get Program Type";
+            this.btnGetProgramType.UseVisualStyleBackColor = true;
+            this.btnGetProgramType.Click += new System.EventHandler(this.btnGetProgramType_Click);
+            // 
+            // btnProgramTypes
+            // 
+            this.btnProgramTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProgramTypes.Location = new System.Drawing.Point(6, 106);
+            this.btnProgramTypes.Name = "btnProgramTypes";
+            this.btnProgramTypes.Size = new System.Drawing.Size(118, 23);
+            this.btnProgramTypes.TabIndex = 12;
+            this.btnProgramTypes.Text = "Get Program Types";
+            this.btnProgramTypes.UseVisualStyleBackColor = true;
+            this.btnProgramTypes.Click += new System.EventHandler(this.btnProgramTypes_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,12 +342,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtCaseId;
         private System.Windows.Forms.Button btnGetCase;
-        private System.Windows.Forms.TextBox txtCaseIdForClients;
         private System.Windows.Forms.Button btnGetClients;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtClientId;
         private System.Windows.Forms.Button btnClient;
         private System.Windows.Forms.Button btnGetAddresses;
+        private System.Windows.Forms.Button btnGetProgramType;
+        private System.Windows.Forms.Button btnProgramTypes;
     }
 }
 

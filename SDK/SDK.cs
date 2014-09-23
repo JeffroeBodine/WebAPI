@@ -52,6 +52,16 @@ namespace WebApi
             return MakeRestCall<IEnumerable<Address>>(String.Format("Client/{0}/Address", clientId));
         }
 
+        public IEnumerable<ProgramType> GetProgramTypes()
+        {
+            return MakeRestCall<IEnumerable<ProgramType>>("ProgramType");
+        }
+
+        public ProgramType GetProgramType(string id)
+        {
+            return MakeRestCall<ProgramType>(String.Format("ProgramType/{0}", id));
+        }
+
         private T MakeRestCall<T>(string methodName)
         {
             using (var client = new HttpClient(){BaseAddress = new Uri(BaseUrl)})
