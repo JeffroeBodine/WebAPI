@@ -35,16 +35,22 @@
             this.btnClearResult = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBaseURL = new System.Windows.Forms.TextBox();
-            this.btnGetDocumentType = new System.Windows.Forms.Button();
+            this.btnDocumentType = new System.Windows.Forms.Button();
             this.txtDocumentTypeId = new System.Windows.Forms.TextBox();
+            this.btnKeywordTypes = new System.Windows.Forms.Button();
+            this.btnKeywordType = new System.Windows.Forms.Button();
+            this.txtKeywordTypeId = new System.Windows.Forms.TextBox();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbImaging
             // 
+            this.gbImaging.Controls.Add(this.txtKeywordTypeId);
+            this.gbImaging.Controls.Add(this.btnKeywordType);
+            this.gbImaging.Controls.Add(this.btnKeywordTypes);
             this.gbImaging.Controls.Add(this.txtDocumentTypeId);
-            this.gbImaging.Controls.Add(this.btnGetDocumentType);
+            this.gbImaging.Controls.Add(this.btnDocumentType);
             this.gbImaging.Controls.Add(this.btnDocumentTypes);
             this.gbImaging.Location = new System.Drawing.Point(12, 38);
             this.gbImaging.Name = "gbImaging";
@@ -119,17 +125,17 @@
             this.txtBaseURL.TabIndex = 3;
             this.txtBaseURL.Text = "http://localhost/CompassDataBroker/api/";
             // 
-            // btnGetDocumentType
+            // btnDocumentType
             // 
-            this.btnGetDocumentType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnDocumentType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetDocumentType.Location = new System.Drawing.Point(6, 48);
-            this.btnGetDocumentType.Name = "btnGetDocumentType";
-            this.btnGetDocumentType.Size = new System.Drawing.Size(118, 23);
-            this.btnGetDocumentType.TabIndex = 2;
-            this.btnGetDocumentType.Text = "Get Document Type";
-            this.btnGetDocumentType.UseVisualStyleBackColor = true;
-            this.btnGetDocumentType.Click += new System.EventHandler(this.btnGetDocumentType_Click);
+            this.btnDocumentType.Location = new System.Drawing.Point(6, 48);
+            this.btnDocumentType.Name = "btnDocumentType";
+            this.btnDocumentType.Size = new System.Drawing.Size(118, 23);
+            this.btnDocumentType.TabIndex = 2;
+            this.btnDocumentType.Text = "Get Document Type";
+            this.btnDocumentType.UseVisualStyleBackColor = true;
+            this.btnDocumentType.Click += new System.EventHandler(this.btnDocumentType_Click);
             // 
             // txtDocumentTypeId
             // 
@@ -137,6 +143,37 @@
             this.txtDocumentTypeId.Name = "txtDocumentTypeId";
             this.txtDocumentTypeId.Size = new System.Drawing.Size(58, 20);
             this.txtDocumentTypeId.TabIndex = 3;
+            // 
+            // btnKeywordTypes
+            // 
+            this.btnKeywordTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnKeywordTypes.Location = new System.Drawing.Point(6, 77);
+            this.btnKeywordTypes.Name = "btnKeywordTypes";
+            this.btnKeywordTypes.Size = new System.Drawing.Size(182, 23);
+            this.btnKeywordTypes.TabIndex = 4;
+            this.btnKeywordTypes.Text = "Get Keyword Types";
+            this.btnKeywordTypes.UseVisualStyleBackColor = true;
+            this.btnKeywordTypes.Click += new System.EventHandler(this.btnKeywordTypes_Click);
+            // 
+            // btnKeywordType
+            // 
+            this.btnKeywordType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnKeywordType.Location = new System.Drawing.Point(6, 106);
+            this.btnKeywordType.Name = "btnKeywordType";
+            this.btnKeywordType.Size = new System.Drawing.Size(118, 23);
+            this.btnKeywordType.TabIndex = 5;
+            this.btnKeywordType.Text = "Get Keyword Types";
+            this.btnKeywordType.UseVisualStyleBackColor = true;
+            this.btnKeywordType.Click += new System.EventHandler(this.btnKeywordType_Click);
+            // 
+            // txtKeywordTypeId
+            // 
+            this.txtKeywordTypeId.Location = new System.Drawing.Point(130, 108);
+            this.txtKeywordTypeId.Name = "txtKeywordTypeId";
+            this.txtKeywordTypeId.Size = new System.Drawing.Size(58, 20);
+            this.txtKeywordTypeId.TabIndex = 6;
             // 
             // Form1
             // 
@@ -168,7 +205,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBaseURL;
         private System.Windows.Forms.TextBox txtDocumentTypeId;
-        private System.Windows.Forms.Button btnGetDocumentType;
+        private System.Windows.Forms.Button btnDocumentType;
+        private System.Windows.Forms.Button btnKeywordTypes;
+        private System.Windows.Forms.TextBox txtKeywordTypeId;
+        private System.Windows.Forms.Button btnKeywordType;
     }
 }
 

@@ -31,14 +31,14 @@ namespace WebAPIClient
             var putDocumentParams = new PutDocumentParams(337);
 
             var compassNumberKWT = new KeywordType(136, "", typeof(string), "");
-            var SSNKWT = new KeywordType(103, "", typeof(string), "");
-            var FirstNameKWT = new KeywordType(104, "", typeof(string), "");
-            var LastNameKWT = new KeywordType(105, "", typeof(string), "");
+            var ssnKWT = new KeywordType(103, "", typeof(string), "");
+            var firstNameKWT = new KeywordType(104, "", typeof(string), "");
+            var lastNameKWT = new KeywordType(105, "", typeof(string), "");
 
             putDocumentParams.Keywords.Add(new Keyword(compassNumberKWT, "OH123000000001"));
-            putDocumentParams.Keywords.Add(new Keyword(SSNKWT, "111-11-1111"));
-            putDocumentParams.Keywords.Add(new Keyword(FirstNameKWT, "Jeffroe"));
-            putDocumentParams.Keywords.Add(new Keyword(LastNameKWT, "Bodine"));
+            putDocumentParams.Keywords.Add(new Keyword(ssnKWT, "111-11-1111"));
+            putDocumentParams.Keywords.Add(new Keyword(firstNameKWT, "Jeffroe"));
+            putDocumentParams.Keywords.Add(new Keyword(lastNameKWT, "Bodine"));
 
             var multipartContent = new MultipartFormDataContent();
 
@@ -62,12 +62,12 @@ namespace WebAPIClient
             Trace.Write(responseContent);
         }
 
-        private void btnClearResult_Click(object sender, System.EventArgs e)
+        private void btnClearResult_Click(object sender, EventArgs e)
         {
             txtResult.Clear();
         }
 
-        private void btnDocumentTypes_Click(object sender, System.EventArgs e)
+        private void btnDocumentTypes_Click(object sender, EventArgs e)
         {
             using (var client = new HttpClient())
             {
@@ -84,8 +84,7 @@ namespace WebAPIClient
                 }
             }
         }
-
-        private void btnGetDocumentType_Click(object sender, EventArgs e)
+        private void btnDocumentType_Click(object sender, EventArgs e)
         {
             using (var client = new HttpClient())
             {
@@ -102,6 +101,56 @@ namespace WebAPIClient
                 }
             }
         }
+
+        private void btnKeywordTypes_Click(object sender, EventArgs e)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = client.GetAsync("KeywordType").Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var keywordTypes = response.Content.ReadAsAsync<IEnumerable<KeywordType>>().Result;
+                    DisplayKeywordTypes(keywordTypes);
+                }
+            }
+        }
+        private void btnKeywordType_Click(object sender, EventArgs e)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = client.GetAsync(String.Format("KeywordType/{0}", txtKeywordTypeId.Text)).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var keywordType = response.Content.ReadAsAsync<KeywordType>().Result;
+                    DisplayKeywordType(keywordType);
+                }
+            }
+        }
+
+        private void DisplayKeywordTypes(IEnumerable<KeywordType> keywordTypes)
+        {
+            txtResult.Clear();
+            foreach (var kwt in keywordTypes)
+            {
+                txtResult.Text += String.Format("Id: {0}, Name: {1}, Data Type:{2}, Default Value: {3}{4}", kwt.Id, kwt.Name, kwt.DataTypeString, kwt.DefaultValue, Environment.NewLine);
+            }
+        }
+        private void DisplayKeywordType(KeywordType kwt)
+        {
+            txtResult.Clear();
+
+            txtResult.Text += String.Format("Id: {0}, Name: {1}, Data Type:{2}, Default Value: {3}{4}", kwt.Id, kwt.Name, kwt.DataTypeString, kwt.DefaultValue, Environment.NewLine);
+        }
         private void DisplayDocumentTypes(IEnumerable<DocumentType> documentTypes)
         {
             txtResult.Clear();
@@ -115,16 +164,12 @@ namespace WebAPIClient
                 }
             }
         }
-
-
-
         private void DisplayDocumentType(DocumentType documentType)
         {
             txtResult.Clear();
 
             txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", documentType.Id, documentType.Name, Environment.NewLine);
         }
-
 
         private void txtResult_KeyDown(object sender, KeyEventArgs e)
         {
