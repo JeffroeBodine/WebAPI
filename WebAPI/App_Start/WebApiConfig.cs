@@ -9,6 +9,8 @@ namespace WebAPI
         {
             config.Routes.MapHttpRoute("ProgramTypeRoute", "api/Case/{id}/ProgramType", new { controller = "ProgramType", action = "Get" });
 
+            config.Routes.MapHttpRoute("CaseClientsRoute", "api/Case/{id}/Client", new { controller = "Case", action = "Client" });
+
             config.Routes.MapHttpRoute("CaseClientAddressRoute", "api/Case/{id}/Client/{clientid}/Address", new { controller = "Address", action = "Get" });
             config.Routes.MapHttpRoute("ClientAddressRoute", "api/Client/{clientid}/Address", new { controller = "Address", action = "Get" });
 

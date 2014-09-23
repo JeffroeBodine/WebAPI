@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [ActionName("Client")]
+        //[ActionName("Client")]
         public List<Client> Client(string id)
         {
             return Repository.Get<Client>(GetSQLQueryForClientsInCase(id));

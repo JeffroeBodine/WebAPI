@@ -137,6 +137,56 @@ namespace WebAPIClient
             }
         }
 
+        private void btnGetCase_Click(object sender, EventArgs e)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = client.GetAsync(String.Format("Case/{0}", txtCaseId.Text)).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var myCase = response.Content.ReadAsAsync<Case>().Result;
+                    DisplayCase(myCase);
+                }
+            }
+        }
+        private void btnGetClients_Click(object sender, EventArgs e)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = client.GetAsync(String.Format("Case/{0}/Client", txtCaseIdForClients.Text)).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var clients = response.Content.ReadAsAsync<IEnumerable<Client>>().Result;
+                    DisplayClients(clients);
+                }
+            }
+        }
+
+        private void DisplayCase(Case myCase)
+        {
+            txtResult.Clear();
+
+            txtResult.Text += String.Format("Id: {0}, Case Number: {1}, Secondary Case Number: {2}, Program Type Id: {3}, Case Worker Id: {4}, Case Head Id: {5}{6}"
+                                            , myCase.Id, myCase.CaseNumber, myCase.SecondaryCaseNumber, myCase.ProgramTypeId, myCase.CaseWorkerId, myCase.CaseHeadId, Environment.NewLine);
+        }
+        private void DisplayClients(IEnumerable<Client> clients)
+        {
+            txtResult.Clear();
+            foreach (var c in clients)
+            {
+                txtResult.Text += String.Format("Id: {0}, SSN: {1} First Name: {2}, Last Name: {3}{4}", c.Id, c.SSN, c.FirstName, c.LastName, Environment.NewLine);
+            }
+        }
         private void DisplayKeywordTypes(IEnumerable<KeywordType> keywordTypes)
         {
             txtResult.Clear();
@@ -180,6 +230,10 @@ namespace WebAPIClient
                 e.Handled = true;
             }
         }
+
+
+
+
 
 
     }
