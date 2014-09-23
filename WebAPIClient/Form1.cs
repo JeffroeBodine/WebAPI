@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using ObjectLibrary;
+using WebApi;
 
 namespace WebAPIClient
 {
@@ -19,48 +13,51 @@ namespace WebAPIClient
             get { return txtBaseURL.Text; }
         }
 
+        private SDK SDK { get; set; }
+
         public Form1()
         {
             InitializeComponent();
+            SDK = new SDK(BaseUrl);
 
             //SendImageSet();
         }
 
-        private static void SendImageSet()
-        {
-            var putDocumentParams = new PutDocumentParams(337);
+        //private static void SendImageSet()
+        //{
+        //    var putDocumentParams = new PutDocumentParams(337);
 
-            var compassNumberKWT = new KeywordType(136, "", typeof(string), "");
-            var ssnKWT = new KeywordType(103, "", typeof(string), "");
-            var firstNameKWT = new KeywordType(104, "", typeof(string), "");
-            var lastNameKWT = new KeywordType(105, "", typeof(string), "");
+        //    var compassNumberKWT = new KeywordType(136, "", typeof(string), "");
+        //    var ssnKWT = new KeywordType(103, "", typeof(string), "");
+        //    var firstNameKWT = new KeywordType(104, "", typeof(string), "");
+        //    var lastNameKWT = new KeywordType(105, "", typeof(string), "");
 
-            putDocumentParams.Keywords.Add(new Keyword(compassNumberKWT, "OH123000000001"));
-            putDocumentParams.Keywords.Add(new Keyword(ssnKWT, "111-11-1111"));
-            putDocumentParams.Keywords.Add(new Keyword(firstNameKWT, "Jeffroe"));
-            putDocumentParams.Keywords.Add(new Keyword(lastNameKWT, "Bodine"));
+        //    putDocumentParams.Keywords.Add(new Keyword(compassNumberKWT, "OH123000000001"));
+        //    putDocumentParams.Keywords.Add(new Keyword(ssnKWT, "111-11-1111"));
+        //    putDocumentParams.Keywords.Add(new Keyword(firstNameKWT, "Jeffroe"));
+        //    putDocumentParams.Keywords.Add(new Keyword(lastNameKWT, "Bodine"));
 
-            var multipartContent = new MultipartFormDataContent();
+        //    var multipartContent = new MultipartFormDataContent();
 
-            var searlizedPutDocumentMetadata = JsonConvert.SerializeObject(putDocumentParams, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+        //    var searlizedPutDocumentMetadata = JsonConvert.SerializeObject(putDocumentParams, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
 
-            multipartContent.Add(new StringContent(searlizedPutDocumentMetadata, Encoding.UTF8, "application/json"), "PutDocumentParams");
+        //    multipartContent.Add(new StringContent(searlizedPutDocumentMetadata, Encoding.UTF8, "application/json"), "PutDocumentParams");
 
-            var counter = 1;
-            foreach (var fileName in Directory.GetFiles("images"))
-            {
-                var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                multipartContent.Add(new StreamContent(fs), "File" + counter, Path.GetFileName(fileName));
-                counter++;
-            }
+        //    var counter = 1;
+        //    foreach (var fileName in Directory.GetFiles("images"))
+        //    {
+        //        var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+        //        multipartContent.Add(new StreamContent(fs), "File" + counter, Path.GetFileName(fileName));
+        //        counter++;
+        //    }
 
-            var response = new HttpClient()
-                .PostAsync("http://localhost/CompassDataBroker/api/Document/UploadFile", multipartContent)
-                .Result;
+        //    var response = new HttpClient()
+        //        .PostAsync("http://localhost/CompassDataBroker/api/Document/UploadFile", multipartContent)
+        //        .Result;
 
-            var responseContent = response.Content.ReadAsStringAsync().Result;
-            Trace.Write(responseContent);
-        }
+        //    var responseContent = response.Content.ReadAsStringAsync().Result;
+        //    Trace.Write(responseContent);
+        //}
 
         private void btnClearResult_Click(object sender, EventArgs e)
         {
@@ -69,94 +66,29 @@ namespace WebAPIClient
 
         private void btnDocumentTypes_Click(object sender, EventArgs e)
         {
-            DisplayDocumentTypes(GetDocumentTypes());
+            DisplayDocumentTypes(SDK.GetDocumentTypes());
         }
         private void btnDocumentType_Click(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BaseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync(String.Format("DocumentType/{0}", txtDocumentTypeId.Text)).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var documentType = response.Content.ReadAsAsync<DocumentType>().Result;
-                    DisplayDocumentType(documentType);
-                }
-            }
+            DisplayDocumentType(SDK.GetDocumentType(txtDocumentTypeId.Text));
         }
 
         private void btnKeywordTypes_Click(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BaseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync("KeywordType").Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var keywordTypes = response.Content.ReadAsAsync<IEnumerable<KeywordType>>().Result;
-                    DisplayKeywordTypes(keywordTypes);
-                }
-            }
+            DisplayKeywordTypes(SDK.GetKeywordTypes());
         }
         private void btnKeywordType_Click(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BaseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync(String.Format("KeywordType/{0}", txtKeywordTypeId.Text)).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var keywordType = response.Content.ReadAsAsync<KeywordType>().Result;
-                    DisplayKeywordType(keywordType);
-                }
-            }
+            DisplayKeywordType(SDK.GetKeywordType(txtKeywordTypeId.Text));
         }
 
         private void btnGetCase_Click(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BaseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync(String.Format("Case/{0}", txtCaseId.Text)).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var myCase = response.Content.ReadAsAsync<Case>().Result;
-                    DisplayCase(myCase);
-                }
-            }
+            DisplayCase(SDK.GetCase(txtCaseId.Text));
         }
         private void btnGetClients_Click(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BaseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync(String.Format("Case/{0}/Client", txtCaseIdForClients.Text)).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var clients = response.Content.ReadAsAsync<IEnumerable<Client>>().Result;
-                    DisplayClients(clients);
-                }
-            }
+            DisplayClients(SDK.GetClients(txtCaseIdForClients.Text));
         }
 
         private void DisplayCase(Case myCase)
@@ -218,25 +150,6 @@ namespace WebAPIClient
             }
         }
 
-        private IEnumerable<DocumentType> GetDocumentTypes()
-        {
-            return  MakeRestCall<IEnumerable<DocumentType>>("DocumentType");
-        }
-
-        private T MakeRestCall<T>(string methodName)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BaseUrl);
-
-                var response = client.GetAsync(methodName).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return response.Content.ReadAsAsync<T>().Result;
-               }
-            }
-            return default(T);
-        }
+      
     }
 }
