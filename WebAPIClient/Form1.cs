@@ -115,7 +115,28 @@ namespace WebAPIClient
         {
             DisplayDocuments(SDK.GetDocuments(txtClientId.Text));
         }
+        private void btnGetDocumentMetaData_Click(object sender, EventArgs e)
+        {
+            DisplayDocumentMetaData(SDK.GetDocumentMetaData(txtDocumentId.Text));
+        }
+        private void btnGetKeywords_Click(object sender, EventArgs e)
+        {
+            DisplayKeywords(SDK.GetKeywords(txtDocumentId.Text));
+        }
 
+        private void DisplayKeywords(IEnumerable<Keyword> keywords)
+        {
+            txtResult.Clear();
+            foreach (var kw in keywords)
+            {
+                txtResult.Text += String.Format("Id: {0}, Name: {1}, Value: {2}{3}", kw.KeywordType.Id, kw.KeywordType.Name, kw.StringValue, Environment.NewLine);
+            }
+        }
+        private void DisplayDocumentMetaData(DocumentMetaData m)
+        {
+            txtResult.Clear();
+            txtResult.Text += String.Format("Page Count: {0}, Mime Type: {1}, Extension: {2}{3}", m.PageCount, m.MimeType, m.Extension, Environment.NewLine);
+        }
         private void DisplayDocuments(IEnumerable<Document> documents)
         {
             txtResult.Clear();
@@ -127,7 +148,6 @@ namespace WebAPIClient
                                                 , document.Author, document.CreateDate, document.LUPDate, document.DocumentTypeID, Environment.NewLine);
             }
         }
-
         private void DisplayProgramTypes(IEnumerable<ProgramType> programTypes)
         {
             txtResult.Clear();
@@ -218,6 +238,10 @@ namespace WebAPIClient
                 e.Handled = true;
             }
         }
+
+ 
+
+     
 
        
 

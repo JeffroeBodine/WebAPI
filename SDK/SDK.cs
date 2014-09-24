@@ -67,6 +67,16 @@ namespace WebApi
             return MakeRestCall<IEnumerable<Document>>(String.Format("Client/{0}/Document", clientId));
         }
 
+        public DocumentMetaData GetDocumentMetaData(string documentId)
+        {
+            return MakeRestCall<DocumentMetaData>(String.Format("Document/{0}/MetaData", documentId));
+        }
+
+        public IEnumerable<Keyword> GetKeywords(string documentId)
+        {
+            return MakeRestCall<IEnumerable<Keyword>>(String.Format("Document/{0}/Keyword", documentId));
+        }
+
         private T MakeRestCall<T>(string methodName)
         {
             using (var client = new HttpClient(){BaseAddress = new Uri(BaseUrl)})

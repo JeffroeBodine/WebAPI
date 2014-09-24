@@ -22,7 +22,7 @@ namespace WebAPI
 
             config.Routes.MapHttpRoute("CaseDocumentMetaDataRoute", "api/Case/{id}/Client/{clientid}/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
             config.Routes.MapHttpRoute("ClientDocumentMetaDataRoute", "api/Client/{clientid}/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
-            config.Routes.MapHttpRoute("DocumentMetaDataRoute", "api/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
+            config.Routes.MapHttpRoute("DocumentDocumentMetaDataRoute", "api/Document/{documentid}/MetaData", new { controller = "DocumentMetaData", action = "Get" });
         
             config.Routes.MapHttpRoute("CaseKeywordRoute", "api/Case/{caseId}/Client/{clientId}/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });
             config.Routes.MapHttpRoute("ClientKeywordRoute", "api/Client/{clientId}/Document/{id}/Keyword", new { controller = "Keyword", action = "Get" });

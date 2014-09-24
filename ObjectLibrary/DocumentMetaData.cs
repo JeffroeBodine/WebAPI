@@ -12,6 +12,10 @@ namespace ObjectLibrary
         [DataMember(Order = 102)]
         public int PageCount { get; set; }
 
+        public DocumentMetaData()
+        {
+        }
+
         public DocumentMetaData(string extension, string mimeType, int pageCount)
         {
             Extension = extension;
