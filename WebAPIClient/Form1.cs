@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using ObjectLibrary;
 using WebApi;
@@ -123,6 +124,16 @@ namespace WebAPIClient
         {
             DisplayKeywords(SDK.GetKeywords(txtDocumentId.Text));
         }
+        private void btnGetFile_Click(object sender, EventArgs e)
+        {
+            using (var fs = new FileStream(@"c:\something.tif", FileMode.Create, FileAccess.Write))
+            {
+                using (var ms = SDK.GetFile(txtDocumentId.Text).Result)
+                {
+                    ms.CopyTo(fs);
+                }
+            }
+        }
 
         private void DisplayKeywords(IEnumerable<Keyword> keywords)
         {
@@ -239,11 +250,13 @@ namespace WebAPIClient
             }
         }
 
- 
 
-     
 
-       
+
+
+
+
+
 
 
     }

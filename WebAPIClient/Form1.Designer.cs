@@ -55,6 +55,7 @@
             this.txtDocumentId = new System.Windows.Forms.TextBox();
             this.btnGetDocumentMetaData = new System.Windows.Forms.Button();
             this.btnGetKeywords = new System.Windows.Forms.Button();
+            this.btnGetFile = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -320,12 +321,13 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnGetFile);
             this.groupBox4.Controls.Add(this.btnGetKeywords);
             this.groupBox4.Controls.Add(this.txtDocumentId);
             this.groupBox4.Controls.Add(this.btnGetDocumentMetaData);
             this.groupBox4.Location = new System.Drawing.Point(412, 38);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(235, 100);
+            this.groupBox4.Size = new System.Drawing.Size(235, 114);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Documents";
@@ -360,6 +362,18 @@
             this.btnGetKeywords.Text = "Get Keywords";
             this.btnGetKeywords.UseVisualStyleBackColor = true;
             this.btnGetKeywords.Click += new System.EventHandler(this.btnGetKeywords_Click);
+            // 
+            // btnGetFile
+            // 
+            this.btnGetFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetFile.Location = new System.Drawing.Point(6, 77);
+            this.btnGetFile.Name = "btnGetFile";
+            this.btnGetFile.Size = new System.Drawing.Size(153, 23);
+            this.btnGetFile.TabIndex = 13;
+            this.btnGetFile.Text = "Get File";
+            this.btnGetFile.UseVisualStyleBackColor = true;
+            this.btnGetFile.Click += new System.EventHandler(this.btnGetFile_Click);
             // 
             // Form1
             // 
@@ -419,6 +433,7 @@
         private System.Windows.Forms.Button btnGetDocumentMetaData;
         private System.Windows.Forms.TextBox txtDocumentId;
         private System.Windows.Forms.Button btnGetKeywords;
+        private System.Windows.Forms.Button btnGetFile;
     }
 }
 

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using ObjectLibrary;
 
 namespace WebApi
@@ -17,16 +20,16 @@ namespace WebApi
 
         public IEnumerable<DocumentType> GetDocumentTypes()
         {
-            return  MakeRestCall<IEnumerable<DocumentType>>("DocumentType");
+            return MakeRestCall<IEnumerable<DocumentType>>("DocumentType");
         }
         public DocumentType GetDocumentType(string id)
         {
-            return MakeRestCall<DocumentType>(String.Format("DocumentType/{0}" , id));
+            return MakeRestCall<DocumentType>(String.Format("DocumentType/{0}", id));
         }
 
         public IEnumerable<KeywordType> GetKeywordTypes()
         {
-               return  MakeRestCall<IEnumerable<KeywordType>>("KeywordType");
+            return MakeRestCall<IEnumerable<KeywordType>>("KeywordType");
         }
         public KeywordType GetKeywordType(string id)
         {
@@ -77,9 +80,30 @@ namespace WebApi
             return MakeRestCall<IEnumerable<Keyword>>(String.Format("Document/{0}/Keyword", documentId));
         }
 
+        public async Task<Stream> GetFile(string documentId)
+        {
+            var methodName = String.Format("Document/{0}/File", documentId);
+            var ms = new MemoryStream();
+
+            using (var client = new HttpClient() {BaseAddress = new Uri(BaseUrl)})
+            {
+                var responseMessage = client.GetAsync(methodName).Result;
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    using (var result = responseMessage.Content.ReadAsStreamAsync().Result)
+                    {
+                        result.CopyTo(ms);
+                        ms.Position = 0;
+                    }
+                }
+            }
+            return ms;
+        }
+        
         private T MakeRestCall<T>(string methodName)
         {
-            using (var client = new HttpClient(){BaseAddress = new Uri(BaseUrl)})
+            using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
             {
                 var response = client.GetAsync(methodName).Result;
 
@@ -90,10 +114,10 @@ namespace WebApi
                     }
                     catch (Exception ex)
                     {
-                        
+
                         throw;
                     }
-                    
+
             }
             return default(T);
         }
