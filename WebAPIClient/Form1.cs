@@ -97,7 +97,6 @@ namespace WebAPIClient
             DisplayProgramTypes(SDK.GetProgramTypes());
         }
 
-
         private void btnGetProgramType_Click(object sender, EventArgs e)
         {
             DisplayProgramType(SDK.GetProgramType(txtCaseId.Text));
@@ -126,11 +125,22 @@ namespace WebAPIClient
         }
         private void btnGetFile_Click(object sender, EventArgs e)
         {
-            using (var fs = new FileStream(@"c:\something.tif", FileMode.Create, FileAccess.Write))
+            var dlg = new SaveFileDialog();
+            dlg.FileName = "something";
+            dlg.AddExtension = true;
+            dlg.DefaultExt = "tiff";
+            dlg.Filter = "Tiff files (*.tif, *.tiff)|*.tif| All files (*.*)|*.*";
+            dlg.FilterIndex = 0;
+            dlg.RestoreDirectory = true;
+
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                using (var ms = SDK.GetFile(txtDocumentId.Text).Result)
+                using (var fs = new FileStream(dlg.FileName, FileMode.Create, FileAccess.Write))
                 {
-                    ms.CopyTo(fs);
+                    using (var ms = SDK.GetFile(txtDocumentId.Text).Result)
+                    {
+                        ms.CopyTo(fs);
+                    }
                 }
             }
         }
@@ -249,15 +259,5 @@ namespace WebAPIClient
                 e.Handled = true;
             }
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

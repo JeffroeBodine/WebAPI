@@ -52,10 +52,10 @@
             this.txtClientId = new System.Windows.Forms.TextBox();
             this.btnClient = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnGetFile = new System.Windows.Forms.Button();
+            this.btnGetKeywords = new System.Windows.Forms.Button();
             this.txtDocumentId = new System.Windows.Forms.TextBox();
             this.btnGetDocumentMetaData = new System.Windows.Forms.Button();
-            this.btnGetKeywords = new System.Windows.Forms.Button();
-            this.btnGetFile = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -332,6 +332,30 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Documents";
             // 
+            // btnGetFile
+            // 
+            this.btnGetFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetFile.Location = new System.Drawing.Point(6, 77);
+            this.btnGetFile.Name = "btnGetFile";
+            this.btnGetFile.Size = new System.Drawing.Size(153, 23);
+            this.btnGetFile.TabIndex = 13;
+            this.btnGetFile.Text = "Get File";
+            this.btnGetFile.UseVisualStyleBackColor = true;
+            this.btnGetFile.Click += new System.EventHandler(this.btnGetFile_Click);
+            // 
+            // btnGetKeywords
+            // 
+            this.btnGetKeywords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetKeywords.Location = new System.Drawing.Point(6, 48);
+            this.btnGetKeywords.Name = "btnGetKeywords";
+            this.btnGetKeywords.Size = new System.Drawing.Size(153, 23);
+            this.btnGetKeywords.TabIndex = 12;
+            this.btnGetKeywords.Text = "Get Keywords";
+            this.btnGetKeywords.UseVisualStyleBackColor = true;
+            this.btnGetKeywords.Click += new System.EventHandler(this.btnGetKeywords_Click);
+            // 
             // txtDocumentId
             // 
             this.txtDocumentId.Location = new System.Drawing.Point(165, 21);
@@ -350,30 +374,6 @@
             this.btnGetDocumentMetaData.Text = "Get Document MetaData";
             this.btnGetDocumentMetaData.UseVisualStyleBackColor = true;
             this.btnGetDocumentMetaData.Click += new System.EventHandler(this.btnGetDocumentMetaData_Click);
-            // 
-            // btnGetKeywords
-            // 
-            this.btnGetKeywords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetKeywords.Location = new System.Drawing.Point(6, 48);
-            this.btnGetKeywords.Name = "btnGetKeywords";
-            this.btnGetKeywords.Size = new System.Drawing.Size(153, 23);
-            this.btnGetKeywords.TabIndex = 12;
-            this.btnGetKeywords.Text = "Get Keywords";
-            this.btnGetKeywords.UseVisualStyleBackColor = true;
-            this.btnGetKeywords.Click += new System.EventHandler(this.btnGetKeywords_Click);
-            // 
-            // btnGetFile
-            // 
-            this.btnGetFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetFile.Location = new System.Drawing.Point(6, 77);
-            this.btnGetFile.Name = "btnGetFile";
-            this.btnGetFile.Size = new System.Drawing.Size(153, 23);
-            this.btnGetFile.TabIndex = 13;
-            this.btnGetFile.Text = "Get File";
-            this.btnGetFile.UseVisualStyleBackColor = true;
-            this.btnGetFile.Click += new System.EventHandler(this.btnGetFile_Click);
             // 
             // Form1
             // 
