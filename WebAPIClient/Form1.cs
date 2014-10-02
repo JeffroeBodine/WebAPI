@@ -24,42 +24,6 @@ namespace WebAPIClient
             //SendImageSet();
         }
 
-        //private static void SendImageSet()
-        //{
-        //    var putDocumentParams = new PutDocumentParams(337);
-
-        //    var compassNumberKWT = new KeywordType(136, "", typeof(string), "");
-        //    var ssnKWT = new KeywordType(103, "", typeof(string), "");
-        //    var firstNameKWT = new KeywordType(104, "", typeof(string), "");
-        //    var lastNameKWT = new KeywordType(105, "", typeof(string), "");
-
-        //    putDocumentParams.Keywords.Add(new Keyword(compassNumberKWT, "OH123000000001"));
-        //    putDocumentParams.Keywords.Add(new Keyword(ssnKWT, "111-11-1111"));
-        //    putDocumentParams.Keywords.Add(new Keyword(firstNameKWT, "Jeffroe"));
-        //    putDocumentParams.Keywords.Add(new Keyword(lastNameKWT, "Bodine"));
-
-        //    var multipartContent = new MultipartFormDataContent();
-
-        //    var searlizedPutDocumentMetadata = JsonConvert.SerializeObject(putDocumentParams, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
-
-        //    multipartContent.Add(new StringContent(searlizedPutDocumentMetadata, Encoding.UTF8, "application/json"), "PutDocumentParams");
-
-        //    var counter = 1;
-        //    foreach (var fileName in Directory.GetFiles("images"))
-        //    {
-        //        var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-        //        multipartContent.Add(new StreamContent(fs), "File" + counter, Path.GetFileName(fileName));
-        //        counter++;
-        //    }
-
-        //    var response = new HttpClient()
-        //        .PostAsync("http://localhost/CompassDataBroker/api/Document/UploadFile", multipartContent)
-        //        .Result;
-
-        //    var responseContent = response.Content.ReadAsStringAsync().Result;
-        //    Trace.Write(responseContent);
-        //}
-
         private void btnClearResult_Click(object sender, EventArgs e)
         {
             txtResult.Clear();
@@ -258,6 +222,11 @@ namespace WebAPIClient
                     ((TextBox)sender).SelectAll();
                 e.Handled = true;
             }
+        }
+
+        private void btnUploadDocument_Click(object sender, EventArgs e)
+        {
+            var dlgUploadDocument = new frmUploadDocument().ShowDialog();
         }
     }
 }
