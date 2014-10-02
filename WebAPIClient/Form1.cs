@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using ObjectLibrary;
@@ -107,6 +108,8 @@ namespace WebAPIClient
                     }
                 }
             }
+
+            Process.Start(dlg.FileName);
         }
 
         private void DisplayKeywords(IEnumerable<Keyword> keywords)
