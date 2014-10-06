@@ -67,7 +67,7 @@ namespace DMSPlugins.OnBase13
                     }
                 }
             }
-            catch (SessionNotFoundException snfex)
+            catch (SessionNotFoundException)
             {
                 Cache.Clear(_userName);
                 throw;
@@ -118,7 +118,7 @@ namespace DMSPlugins.OnBase13
             {
                 documentList = documentQuery.Execute(500);
             }
-            catch (SessionNotFoundException snfex)
+            catch (SessionNotFoundException)
             {
                 Cache.Clear(_userName);
                 throw;

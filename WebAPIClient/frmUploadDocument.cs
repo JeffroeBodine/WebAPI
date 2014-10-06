@@ -57,16 +57,28 @@ namespace WebAPIClient
                 counter++;
             }
 
-            var response = new HttpClient()
-                .PostAsync("http://localhost/CompassDataBroker/api/Document/UploadFile", multipartContent)
-                .Result;
+            try
+            {
+                using (var response = new HttpClient().PostAsync("http://localhost/CompassDataBroker/api/Document/UploadFile", multipartContent).Result)
+                {
+                    var responseContent = response.Content.ReadAsStringAsync().Result;
 
-            var responseContent = response.Content.ReadAsStringAsync().Result;
-            sw.Stop();
+                    sw.Stop();
 
-            MessageBox.Show(String.Format("Document Id: {0} \nCompleted in {1} seconds", responseContent, sw.Elapsed.TotalSeconds));
+                    MessageBox.Show(String.Format("Document Id: {0} \nCompleted in {1} seconds", responseContent, sw.Elapsed.TotalSeconds));
 
-            Trace.Write(responseContent);
+                    Trace.Write(responseContent);
+                }
+            }
+            catch (Exception ex)
+            {
+                sw.Stop();
+                throw;
+            }
+          
+         
+           
+
         }
 
         private void btnUploadDocument_Click(object sender, EventArgs e)

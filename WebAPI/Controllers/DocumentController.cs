@@ -64,19 +64,11 @@ namespace WebAPI.Controllers
         {
             PutDocumentParams parms;
 
-            try
-            {
-                parms = JsonConvert.DeserializeObject<PutDocumentParams>
+            parms = JsonConvert.DeserializeObject<PutDocumentParams>
                 (
-                input,
-                new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }
+                    input,
+                    new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }
                 );
-            }
-            catch (Exception ex)
-            {
-                int i = 0;
-                throw;
-            }
 
             return parms;
 

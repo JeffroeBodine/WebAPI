@@ -80,7 +80,7 @@ namespace WebApi
             return MakeRestCall<IEnumerable<Keyword>>(String.Format("Document/{0}/Keyword", documentId));
         }
 
-        public async Task<Stream> GetFile(string documentId)
+        public Stream GetFile(string documentId)
         {
             var methodName = String.Format("Document/{0}/File", documentId);
             var ms = new MemoryStream();
@@ -108,16 +108,9 @@ namespace WebApi
                 var response = client.GetAsync(methodName).Result;
 
                 if (response.IsSuccessStatusCode)
-                    try
-                    {
-                        return response.Content.ReadAsAsync<T>().Result;
-                    }
-                    catch (Exception ex)
-                    {
-
-                        throw;
-                    }
-
+                {
+                    return response.Content.ReadAsAsync<T>().Result;
+                }
             }
             return default(T);
         }

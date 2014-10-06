@@ -59,7 +59,7 @@ namespace ObjectLibrary
             get
             {
                 var ms = new MemoryStream();
-                Properties.Resources._1040.Save(ms, ImageFormat.Jpeg);
+                //Properties.Resources._1040.Save(ms, ImageFormat.Jpeg);
                 return ms.ToArray();
             }
         }

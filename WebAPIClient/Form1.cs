@@ -102,7 +102,7 @@ namespace WebAPIClient
             {
                 using (var fs = new FileStream(dlg.FileName, FileMode.Create, FileAccess.Write))
                 {
-                    using (var ms = SDK.GetFile(txtDocumentId.Text).Result)
+                    using (var ms = SDK.GetFile(txtDocumentId.Text))
                     {
                         ms.CopyTo(fs);
                     }
@@ -166,8 +166,14 @@ namespace WebAPIClient
         {
             txtResult.Clear();
 
-            txtResult.Text += String.Format("Id: {0}, Case Number: {1}, Secondary Case Number: {2}, Program Type Id: {3}, Case Worker Id: {4}, Case Head Id: {5}{6}"
+            if (null == myCase)
+                txtResult.Text += "No Cases Found";
+            else
+            {
+                txtResult.Text += String.Format("Id: {0}, Case Number: {1}, Secondary Case Number: {2}, Program Type Id: {3}, Case Worker Id: {4}, Case Head Id: {5}{6}"
                                             , myCase.Id, myCase.CaseNumber, myCase.SecondaryCaseNumber, myCase.ProgramTypeId, myCase.CaseWorkerId, myCase.CaseHeadId, Environment.NewLine);
+
+            }
         }
         private void DisplayClients(IEnumerable<Client> clients)
         {
