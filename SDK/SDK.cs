@@ -103,14 +103,24 @@ namespace WebApi
         
         private T MakeRestCall<T>(string methodName)
         {
-            using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
+            try
             {
-                var response = client.GetAsync(methodName).Result;
-
-                if (response.IsSuccessStatusCode)
+                using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
                 {
-                    return response.Content.ReadAsAsync<T>().Result;
+                    var response = client.GetAsync(methodName).Result;
+                    response.EnsureSuccessStatusCode();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return response.Content.ReadAsAsync<T>().Result;
+                    }
                 }
+                return default(T);
+            }
+            catch (Exception ex)
+            {
+                int i = 0;
+                //throw;
             }
             return default(T);
         }

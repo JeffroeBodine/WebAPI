@@ -18,9 +18,12 @@ namespace DMSPlugins.OnBase13
             _model = new OnBaseUnityModel(ServiceURL, DataSource, userName, password.Secure());
         }
 
-        public  List<DocumentType> GetDocumentTypes()
+        public List<DocumentType> GetDocumentTypes()
         {
-            return _model.GetDocumentTypes();
+            using (_model)
+            {
+                return _model.GetDocumentTypes();
+            }
         }
 
         public DocumentType GetDocumentType(string id)
@@ -63,7 +66,7 @@ namespace DMSPlugins.OnBase13
             return _model.GetDocumentMetaData(documentId);
         }
 
-        public string CreateDocument(PutDocumentParams @params, List<String> filePaths )
+        public string CreateDocument(PutDocumentParams @params, List<String> filePaths)
         {
             return _model.CreateDocument(@params, filePaths);
         }

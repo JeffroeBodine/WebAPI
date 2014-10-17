@@ -32,7 +32,13 @@ namespace WebAPIClient
 
         private void btnDocumentTypes_Click(object sender, EventArgs e)
         {
-            DisplayDocumentTypes(SDK.GetDocumentTypes());
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var documentTypes = SDK.GetDocumentTypes();
+            stopwatch.Stop();
+
+            DisplayStopwatchTime(stopwatch);
+            DisplayDocumentTypes(documentTypes);
         }
         private void btnDocumentType_Click(object sender, EventArgs e)
         {
@@ -205,7 +211,9 @@ namespace WebAPIClient
         }
         private void DisplayDocumentTypes(IEnumerable<DocumentType> documentTypes)
         {
-            txtResult.Clear();
+            if (documentTypes == null)
+                return;
+            
             foreach (var dtg in documentTypes)
             {
                 txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", dtg.Id, dtg.Name, Environment.NewLine);
@@ -221,6 +229,13 @@ namespace WebAPIClient
             txtResult.Clear();
 
             txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", documentType.Id, documentType.Name, Environment.NewLine);
+        }
+
+        private void DisplayStopwatchTime(Stopwatch stopwatch)
+        {
+            txtResult.Clear();
+            txtResult.Text += String.Format("Total Elapsed Time: {0} seconds.{1}", stopwatch.Elapsed.TotalMilliseconds/1000, Environment.NewLine);
+            ;
         }
 
         private void txtResult_KeyDown(object sender, KeyEventArgs e)
