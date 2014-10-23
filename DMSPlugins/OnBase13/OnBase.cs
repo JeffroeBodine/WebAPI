@@ -20,10 +20,7 @@ namespace DMSPlugins.OnBase13
 
         public List<DocumentType> GetDocumentTypes()
         {
-            using (_model)
-            {
-                return _model.GetDocumentTypes();
-            }
+            return _model.GetDocumentTypes();
         }
 
         public DocumentType GetDocumentType(string id)

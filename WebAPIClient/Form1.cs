@@ -113,9 +113,8 @@ namespace WebAPIClient
                         ms.CopyTo(fs);
                     }
                 }
+                Process.Start(dlg.FileName);
             }
-
-            Process.Start(dlg.FileName);
         }
 
         private void DisplayKeywords(IEnumerable<Keyword> keywords)
@@ -135,11 +134,13 @@ namespace WebAPIClient
         {
             txtResult.Clear();
 
+            if (documents == null) return;
+
             foreach (var document in documents)
             {
                 txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", document.Id, document.Name, Environment.NewLine);
                 txtResult.Text += String.Format("    Author: {0}, Created: {1}, LUP Date: {2}, Document Type Id: {3}{4}"
-                                                , document.Author, document.CreateDate, document.LUPDate, document.DocumentTypeID, Environment.NewLine);
+                    , document.Author, document.CreateDate, document.LUPDate, document.DocumentTypeID, Environment.NewLine);
             }
         }
         private void DisplayProgramTypes(IEnumerable<ProgramType> programTypes)
@@ -213,7 +214,7 @@ namespace WebAPIClient
         {
             if (documentTypes == null)
                 return;
-            
+
             foreach (var dtg in documentTypes)
             {
                 txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", dtg.Id, dtg.Name, Environment.NewLine);
@@ -234,7 +235,7 @@ namespace WebAPIClient
         private void DisplayStopwatchTime(Stopwatch stopwatch)
         {
             txtResult.Clear();
-            txtResult.Text += String.Format("Total Elapsed Time: {0} seconds.{1}", stopwatch.Elapsed.TotalMilliseconds/1000, Environment.NewLine);
+            txtResult.Text += String.Format("Total Elapsed Time: {0} seconds.{1}", stopwatch.Elapsed.TotalMilliseconds / 1000, Environment.NewLine);
             ;
         }
 

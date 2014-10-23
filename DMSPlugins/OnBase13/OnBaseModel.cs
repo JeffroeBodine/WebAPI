@@ -14,10 +14,10 @@ using KeywordType = ObjectLibrary.KeywordType;
 
 namespace DMSPlugins.OnBase13
 {
-    public class OnBaseUnityModel : IDisposable
+    public class OnBaseUnityModel 
     {
         private const int ImageFileFormatId = 2;
-        private string _userName = string.Empty;
+        private readonly string _userName = string.Empty;
         private Application App { get; set; }
         private readonly string _tempFolder;
 
@@ -40,7 +40,7 @@ namespace DMSPlugins.OnBase13
 
                 hylandApplication = Application.Connect(onBaseAuthProperties);
 
-                //Cache.Applications.Add(new WApplication(userName, hylandApplication));
+                Cache.Applications.Add(new WApplication(userName, hylandApplication));
             }
             return hylandApplication;
         }
@@ -305,13 +305,13 @@ namespace DMSPlugins.OnBase13
 
         #endregion
 
-        public void Dispose()
-        {
-            if (App != null)
-            {
-                App.Disconnect();
-                App.Dispose();
-            }
-        }
+        //public void Dispose()
+        //{
+        //    if (App != null)
+        //    {
+        //        App.Disconnect();
+        //        App.Dispose();
+        //    }
+        //}
     }
 }
