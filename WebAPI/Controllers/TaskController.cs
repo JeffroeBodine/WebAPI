@@ -16,7 +16,9 @@ namespace WebApi.Controllers
 
         public IEnumerable<Task> Get()
         {
-            return Repository.Get<Task>(GetSQLQuery(""));
+            var tasks = Repository.Get<Task>(GetSQLQuery());
+
+            return tasks;
         }
 
         public Task Get(string id)
@@ -25,7 +27,7 @@ namespace WebApi.Controllers
         }
 
 
-        private static string GetSQLQuery(string taskId)
+        private static string GetSQLQuery()
         {
             var sb = new StringBuilder();
 
@@ -39,10 +41,6 @@ namespace WebApi.Controllers
             sb.AppendLine("GroupTask");
             sb.AppendLine("from Task");
 
-            if (!string.IsNullOrEmpty(taskId))
-            {
-                sb.Append(String.Format("where pkTask = {0}", taskId));
-            }
             return sb.ToString();
         }
     }
