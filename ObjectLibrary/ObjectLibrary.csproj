@@ -76,6 +76,12 @@
     <Compile Include="KeywordType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchKeywords\SearchKeyword.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TaskDueDateCalculation.cs" />
+    <Compile Include="TaskOrigin.cs" />
+    <Compile Include="TaskPriority.cs" />
+    <Compile Include="TaskStatus.cs" />
+    <Compile Include="TaskType.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
