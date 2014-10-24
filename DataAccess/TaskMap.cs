@@ -16,6 +16,7 @@ namespace DataAccess
             Map(x => x.EndDate).Column("CompleteDate");
             Map(x => x.GroupTask).Column("GroupTask");
 
+            
             References(x => x.TaskType, "fkRefTaskType").Not.LazyLoad();
 
         }

@@ -13,7 +13,7 @@ namespace DataAccess
 
             Map(x => x.DefaultDueMinutes).Column("DefaultDueMinutes");
             Map(x => x.DefaultGroupTask).Column("DefaultGroupTask");
-            //Map(x => x.DefaultPriority).Column("DefaultPriority");
+            Map(x => x.DefaultPriority).Column("DefaultPriority").CustomType<TaskPriority>();
             //Map(x => x.DueDateCalculation).Column("DueDateCalculation");
         }
     }

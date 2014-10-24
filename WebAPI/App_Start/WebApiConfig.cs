@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System.Web.Http;
+using Newtonsoft.Json.Converters;
 
 namespace WebAPI
 {
@@ -53,6 +54,7 @@ namespace WebAPI
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.UseDataContractJsonSerializer = true;
             json.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            json.SerializerSettings.Converters.Add(new StringEnumConverter());
         }
     }
 }
