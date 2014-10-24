@@ -32,8 +32,6 @@ namespace WebAPI
             config.Routes.MapHttpRoute("ClientFileRoute", "api/Client/{clientId}/Document/{documentid}/File", new { controller = "File", action = "Get" });
             config.Routes.MapHttpRoute("FileRoute", "api/Document/{documentid}/File", new { controller = "File", action = "Get" });
             
-
-
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
             config.Routes.MapHttpRoute("DefaultApiWithAction", "api/{controller}/{id}/{action}", new { id = RouteParameter.Optional });
 
@@ -52,16 +50,9 @@ namespace WebAPI
             // For more information, refer to: http://www.asp.net/web-api
             config.EnableSystemDiagnosticsTracing();
 
-            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.UseDataContractJsonSerializer = true;
-            json.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
-            json.SerializerSettings.DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat;
-            json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-            //json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             json.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-
-            GlobalConfiguration.Configuration.Formatters.Add(json);
         }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="SessionFactoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
+    <Compile Include="TaskType.cs" />
     <Compile Include="TaskMap.cs" />
   </ItemGroup>
   <ItemGroup>
