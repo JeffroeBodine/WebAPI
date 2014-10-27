@@ -100,7 +100,17 @@ namespace WebApi
             }
             return ms;
         }
-        
+
+        public IEnumerable<ObjectLibrary.Task> GetTasks()
+        {
+            return MakeRestCall<IEnumerable<ObjectLibrary.Task>>("Task");
+        }
+
+        public ObjectLibrary.Task GetTask(string id)
+        {
+            return MakeRestCall<ObjectLibrary.Task>(String.Format("Task/{0}", id));
+        }
+
         private T MakeRestCall<T>(string methodName)
         {
             try

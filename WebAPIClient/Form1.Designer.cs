@@ -52,16 +52,21 @@
             this.txtClientId = new System.Windows.Forms.TextBox();
             this.btnClient = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnUploadDocument = new System.Windows.Forms.Button();
             this.btnGetFile = new System.Windows.Forms.Button();
             this.btnGetKeywords = new System.Windows.Forms.Button();
             this.txtDocumentId = new System.Windows.Forms.TextBox();
             this.btnGetDocumentMetaData = new System.Windows.Forms.Button();
-            this.btnUploadDocument = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnGetTask = new System.Windows.Forms.Button();
+            this.btnGetTasks = new System.Windows.Forms.Button();
+            this.txtTaskId = new System.Windows.Forms.TextBox();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbImaging
@@ -334,6 +339,18 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Documents";
             // 
+            // btnUploadDocument
+            // 
+            this.btnUploadDocument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUploadDocument.Location = new System.Drawing.Point(6, 105);
+            this.btnUploadDocument.Name = "btnUploadDocument";
+            this.btnUploadDocument.Size = new System.Drawing.Size(153, 23);
+            this.btnUploadDocument.TabIndex = 14;
+            this.btnUploadDocument.Text = "Upload Document";
+            this.btnUploadDocument.UseVisualStyleBackColor = true;
+            this.btnUploadDocument.Click += new System.EventHandler(this.btnUploadDocument_Click);
+            // 
             // btnGetFile
             // 
             this.btnGetFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -377,23 +394,55 @@
             this.btnGetDocumentMetaData.UseVisualStyleBackColor = true;
             this.btnGetDocumentMetaData.Click += new System.EventHandler(this.btnGetDocumentMetaData_Click);
             // 
-            // btnUploadDocument
+            // groupBox5
             // 
-            this.btnUploadDocument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox5.Controls.Add(this.txtTaskId);
+            this.groupBox5.Controls.Add(this.btnGetTask);
+            this.groupBox5.Controls.Add(this.btnGetTasks);
+            this.groupBox5.Location = new System.Drawing.Point(653, 38);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 139);
+            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Tasks";
+            // 
+            // btnGetTask
+            // 
+            this.btnGetTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUploadDocument.Location = new System.Drawing.Point(6, 105);
-            this.btnUploadDocument.Name = "btnUploadDocument";
-            this.btnUploadDocument.Size = new System.Drawing.Size(153, 23);
-            this.btnUploadDocument.TabIndex = 14;
-            this.btnUploadDocument.Text = "Upload Document";
-            this.btnUploadDocument.UseVisualStyleBackColor = true;
-            this.btnUploadDocument.Click += new System.EventHandler(this.btnUploadDocument_Click);
+            this.btnGetTask.Location = new System.Drawing.Point(6, 46);
+            this.btnGetTask.Name = "btnGetTask";
+            this.btnGetTask.Size = new System.Drawing.Size(124, 23);
+            this.btnGetTask.TabIndex = 16;
+            this.btnGetTask.Text = "Get Task";
+            this.btnGetTask.UseVisualStyleBackColor = true;
+            this.btnGetTask.Click += new System.EventHandler(this.btnGetTask_Click);
+            // 
+            // btnGetTasks
+            // 
+            this.btnGetTasks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetTasks.Location = new System.Drawing.Point(6, 17);
+            this.btnGetTasks.Name = "btnGetTasks";
+            this.btnGetTasks.Size = new System.Drawing.Size(188, 23);
+            this.btnGetTasks.TabIndex = 15;
+            this.btnGetTasks.Text = "Get Tasks";
+            this.btnGetTasks.UseVisualStyleBackColor = true;
+            this.btnGetTasks.Click += new System.EventHandler(this.btnGetTasks_Click);
+            // 
+            // txtTaskId
+            // 
+            this.txtTaskId.Location = new System.Drawing.Point(136, 49);
+            this.txtTaskId.Name = "txtTaskId";
+            this.txtTaskId.Size = new System.Drawing.Size(58, 20);
+            this.txtTaskId.TabIndex = 15;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 730);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -413,6 +462,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +500,10 @@
         private System.Windows.Forms.Button btnGetKeywords;
         private System.Windows.Forms.Button btnGetFile;
         private System.Windows.Forms.Button btnUploadDocument;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtTaskId;
+        private System.Windows.Forms.Button btnGetTask;
+        private System.Windows.Forms.Button btnGetTasks;
     }
 }
 

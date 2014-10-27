@@ -117,6 +117,17 @@ namespace WebAPIClient
             }
         }
 
+        private void btnGetTasks_Click(object sender, EventArgs e)
+        {
+            var tasks = SDK.GetTasks();
+            DisplayTasks(tasks);
+        }
+        private void btnGetTask_Click(object sender, EventArgs e)
+        {
+            var task = SDK.GetTask(txtTaskId.Text);
+            DisplayTask(task);
+        }
+
         private void DisplayKeywords(IEnumerable<Keyword> keywords)
         {
             txtResult.Clear();
@@ -231,6 +242,22 @@ namespace WebAPIClient
 
             txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", documentType.Id, documentType.Name, Environment.NewLine);
         }
+        private void DisplayTasks(IEnumerable<Task> tasks)
+        {
+            txtResult.Clear();
+            if (tasks == null)
+                return;
+
+            foreach (var t in tasks)
+            {
+                txtResult.Text += String.Format("Id: {0}, Description: {1}{2}", t.Id, t.Description, Environment.NewLine);
+            }
+        }
+        private void DisplayTask(Task task)
+        {
+            txtResult.Clear();
+            txtResult.Text += String.Format("Id: {0}, Description: {1}{2}", task.Id, task.Description, Environment.NewLine);
+        }
 
         private void DisplayStopwatchTime(Stopwatch stopwatch)
         {
@@ -251,7 +278,7 @@ namespace WebAPIClient
 
         private void btnUploadDocument_Click(object sender, EventArgs e)
         {
-            var dlgUploadDocument = new frmUploadDocument().ShowDialog();
+            new frmUploadDocument().ShowDialog();
         }
     }
 }
