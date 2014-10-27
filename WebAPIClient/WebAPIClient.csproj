@@ -57,6 +57,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTask.Designer.cs">
+      <DependentUpon>frmAddTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUploadDocument.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddTask.resx">
+      <DependentUpon>frmAddTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUploadDocument.resx">
       <DependentUpon>frmUploadDocument.cs</DependentUpon>

@@ -61,6 +61,7 @@
             this.btnGetTask = new System.Windows.Forms.Button();
             this.btnGetTasks = new System.Windows.Forms.Button();
             this.txtTaskId = new System.Windows.Forms.TextBox();
+            this.btnAddTask = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -396,12 +397,13 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnAddTask);
             this.groupBox5.Controls.Add(this.txtTaskId);
             this.groupBox5.Controls.Add(this.btnGetTask);
             this.groupBox5.Controls.Add(this.btnGetTasks);
             this.groupBox5.Location = new System.Drawing.Point(653, 38);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(200, 139);
+            this.groupBox5.Size = new System.Drawing.Size(235, 139);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tasks";
@@ -412,7 +414,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetTask.Location = new System.Drawing.Point(6, 46);
             this.btnGetTask.Name = "btnGetTask";
-            this.btnGetTask.Size = new System.Drawing.Size(124, 23);
+            this.btnGetTask.Size = new System.Drawing.Size(159, 23);
             this.btnGetTask.TabIndex = 16;
             this.btnGetTask.Text = "Get Task";
             this.btnGetTask.UseVisualStyleBackColor = true;
@@ -424,7 +426,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetTasks.Location = new System.Drawing.Point(6, 17);
             this.btnGetTasks.Name = "btnGetTasks";
-            this.btnGetTasks.Size = new System.Drawing.Size(188, 23);
+            this.btnGetTasks.Size = new System.Drawing.Size(159, 23);
             this.btnGetTasks.TabIndex = 15;
             this.btnGetTasks.Text = "Get Tasks";
             this.btnGetTasks.UseVisualStyleBackColor = true;
@@ -432,10 +434,21 @@
             // 
             // txtTaskId
             // 
-            this.txtTaskId.Location = new System.Drawing.Point(136, 49);
+            this.txtTaskId.Location = new System.Drawing.Point(171, 46);
             this.txtTaskId.Name = "txtTaskId";
             this.txtTaskId.Size = new System.Drawing.Size(58, 20);
             this.txtTaskId.TabIndex = 15;
+            // 
+            // btnAddTask
+            // 
+            this.btnAddTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddTask.Location = new System.Drawing.Point(6, 75);
+            this.btnAddTask.Name = "btnAddTask";
+            this.btnAddTask.Size = new System.Drawing.Size(159, 23);
+            this.btnAddTask.TabIndex = 15;
+            this.btnAddTask.Text = "Add Task";
+            this.btnAddTask.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -504,6 +517,7 @@
         private System.Windows.Forms.TextBox txtTaskId;
         private System.Windows.Forms.Button btnGetTask;
         private System.Windows.Forms.Button btnGetTasks;
+        private System.Windows.Forms.Button btnAddTask;
     }
 }
 
