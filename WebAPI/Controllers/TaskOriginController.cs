@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DataAccess;
 using ObjectLibrary;
 using WebAPI;
@@ -14,7 +15,7 @@ namespace WebApi.Controllers
         public IEnumerable<TaskOrigin> Get()
         {
             var taskOrigins = Repository.Get<TaskOrigin>();
-            return taskOrigins;
+            return taskOrigins.Where(x=>x.Active);
         }
     }
 }

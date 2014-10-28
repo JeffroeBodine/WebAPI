@@ -55,17 +55,7 @@ namespace WebAPIClient
             cboStatus.DisplayMember = "Name";
             cboStatus.ValueMember = "Id";
 
-            var origins = new List<Origin>
-            {
-                new Origin() {Id = 1, Name = "Fax"},
-                new Origin() {Id = 2, Name = "Capture Scan"},
-                new Origin() {Id = 3, Name = "Phone Call"},
-                new Origin() {Id = 3, Name = "Email"},
-                new Origin() {Id = 3, Name = "Mail"},
-                new Origin() {Id = 3, Name = "Inactive"},
-                new Origin() {Id = 3, Name = "Walk In Request"}
-            };
-            cboOrigin.DataSource = origins;
+            cboOrigin.DataSource = _sdk.GetTaskOrigins(); ;
             cboOrigin.DisplayMember = "Name";
             cboOrigin.ValueMember = "Id";
         }
@@ -77,12 +67,6 @@ namespace WebAPIClient
         }
 
         private struct Status
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
-
-        private struct Origin
         {
             public int Id { get; set; }
             public string Name { get; set; }

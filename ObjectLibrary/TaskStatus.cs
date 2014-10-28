@@ -1,12 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace ObjectLibrary
+﻿namespace ObjectLibrary
 {
-    public enum TaskStatus
+    public class TaskStatus :BaseObject
     {
-        Assigned = 1,
-        [Description("In Progress")]
-        InProgress = 2,
-        Complete = 3
+      
     }
 }
