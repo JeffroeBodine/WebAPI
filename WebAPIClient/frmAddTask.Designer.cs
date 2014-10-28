@@ -64,7 +64,6 @@
             this.cboTaskType.Name = "cboTaskType";
             this.cboTaskType.Size = new System.Drawing.Size(148, 21);
             this.cboTaskType.TabIndex = 14;
-            this.cboTaskType.SelectedIndexChanged += new System.EventHandler(this.cboTaskType_SelectedIndexChanged);
             // 
             // label1
             // 

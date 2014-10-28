@@ -108,7 +108,10 @@ namespace WebApi
             return MakeRestCall<IEnumerable<TaskType>>("TaskType");
         }
 
-
+        public IEnumerable<TaskOrigin> GetTaskOrigins()
+        {
+            return MakeRestCall<IEnumerable<TaskOrigin>>("TaskOrigin");
+        }
 
         private T MakeRestCall<T>(string methodName)
         {
