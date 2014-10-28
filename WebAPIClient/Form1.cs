@@ -15,12 +15,12 @@ namespace WebAPIClient
             get { return txtBaseURL.Text; }
         }
 
-        private SDK SDK { get; set; }
+        private SDK Sdk { get; set; }
 
         public Form1()
         {
             InitializeComponent();
-            SDK = new SDK(BaseUrl);
+            Sdk = new SDK(BaseUrl);
 
             //SendImageSet();
         }
@@ -34,7 +34,7 @@ namespace WebAPIClient
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var documentTypes = SDK.GetDocumentTypes();
+            var documentTypes = Sdk.GetDocumentTypes();
             stopwatch.Stop();
 
             DisplayStopwatchTime(stopwatch);
@@ -42,57 +42,57 @@ namespace WebAPIClient
         }
         private void btnDocumentType_Click(object sender, EventArgs e)
         {
-            DisplayDocumentType(SDK.GetDocumentType(txtDocumentTypeId.Text));
+            DisplayDocumentType(Sdk.GetDocumentType(txtDocumentTypeId.Text));
         }
 
         private void btnKeywordTypes_Click(object sender, EventArgs e)
         {
-            DisplayKeywordTypes(SDK.GetKeywordTypes());
+            DisplayKeywordTypes(Sdk.GetKeywordTypes());
         }
         private void btnKeywordType_Click(object sender, EventArgs e)
         {
-            DisplayKeywordType(SDK.GetKeywordType(txtKeywordTypeId.Text));
+            DisplayKeywordType(Sdk.GetKeywordType(txtKeywordTypeId.Text));
         }
 
         private void btnGetCase_Click(object sender, EventArgs e)
         {
-            DisplayCase(SDK.GetCase(txtCaseId.Text));
+            DisplayCase(Sdk.GetCase(txtCaseId.Text));
         }
         private void btnGetClients_Click(object sender, EventArgs e)
         {
-            DisplayClients(SDK.GetClients(txtCaseId.Text));
+            DisplayClients(Sdk.GetClients(txtCaseId.Text));
         }
 
         private void btnProgramTypes_Click(object sender, EventArgs e)
         {
-            DisplayProgramTypes(SDK.GetProgramTypes());
+            DisplayProgramTypes(Sdk.GetProgramTypes());
         }
 
         private void btnGetProgramType_Click(object sender, EventArgs e)
         {
-            DisplayProgramType(SDK.GetProgramType(txtCaseId.Text));
+            DisplayProgramType(Sdk.GetProgramType(txtCaseId.Text));
         }
 
         private void btnClient_Click(object sender, EventArgs e)
         {
-            DisplayClient(SDK.GetClient(txtClientId.Text));
+            DisplayClient(Sdk.GetClient(txtClientId.Text));
         }
         private void btnGetAddresses_Click(object sender, EventArgs e)
         {
-            DisplayAddresses(SDK.GetAddresses(txtClientId.Text));
+            DisplayAddresses(Sdk.GetAddresses(txtClientId.Text));
         }
 
         private void btnGetDocuments_Click(object sender, EventArgs e)
         {
-            DisplayDocuments(SDK.GetDocuments(txtClientId.Text));
+            DisplayDocuments(Sdk.GetDocuments(txtClientId.Text));
         }
         private void btnGetDocumentMetaData_Click(object sender, EventArgs e)
         {
-            DisplayDocumentMetaData(SDK.GetDocumentMetaData(txtDocumentId.Text));
+            DisplayDocumentMetaData(Sdk.GetDocumentMetaData(txtDocumentId.Text));
         }
         private void btnGetKeywords_Click(object sender, EventArgs e)
         {
-            DisplayKeywords(SDK.GetKeywords(txtDocumentId.Text));
+            DisplayKeywords(Sdk.GetKeywords(txtDocumentId.Text));
         }
         private void btnGetFile_Click(object sender, EventArgs e)
         {
@@ -108,7 +108,7 @@ namespace WebAPIClient
             {
                 using (var fs = new FileStream(dlg.FileName, FileMode.Create, FileAccess.Write))
                 {
-                    using (var ms = SDK.GetFile(txtDocumentId.Text))
+                    using (var ms = Sdk.GetFile(txtDocumentId.Text))
                     {
                         ms.CopyTo(fs);
                     }
@@ -119,15 +119,21 @@ namespace WebAPIClient
 
         private void btnGetTasks_Click(object sender, EventArgs e)
         {
-            var tasks = SDK.GetTasks();
+            var tasks = Sdk.GetTasks();
             DisplayTasks(tasks);
         }
         private void btnGetTask_Click(object sender, EventArgs e)
         {
-            var task = SDK.GetTask(txtTaskId.Text);
+            var task = Sdk.GetTask(txtTaskId.Text);
             DisplayTask(task);
         }
 
+        private void btnAddTask_Click(object sender, EventArgs e)
+        {
+            var frmAddTask = new frmAddTask(Sdk);
+            frmAddTask.ShowDialog();
+
+        }
         private void DisplayKeywords(IEnumerable<Keyword> keywords)
         {
             txtResult.Clear();
@@ -280,5 +286,6 @@ namespace WebAPIClient
         {
             new frmUploadDocument().ShowDialog();
         }
+
     }
 }

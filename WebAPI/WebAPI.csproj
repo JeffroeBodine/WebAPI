@@ -141,6 +141,7 @@
     <Compile Include="Controllers\KeywordController.cs" />
     <Compile Include="Controllers\KeywordTypeController.cs" />
     <Compile Include="Controllers\ProgramTypeController.cs" />
+    <Compile Include="Controllers\TaskTypeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">

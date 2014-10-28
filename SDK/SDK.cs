@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using ObjectLibrary;
 
 namespace WebApi
@@ -59,7 +56,6 @@ namespace WebApi
         {
             return MakeRestCall<IEnumerable<ProgramType>>("ProgramType");
         }
-
         public ProgramType GetProgramType(string id)
         {
             return MakeRestCall<ProgramType>(String.Format("ProgramType/{0}", id));
@@ -69,17 +65,14 @@ namespace WebApi
         {
             return MakeRestCall<IEnumerable<Document>>(String.Format("Client/{0}/Document", clientId));
         }
-
         public DocumentMetaData GetDocumentMetaData(string documentId)
         {
             return MakeRestCall<DocumentMetaData>(String.Format("Document/{0}/MetaData", documentId));
         }
-
         public IEnumerable<Keyword> GetKeywords(string documentId)
         {
             return MakeRestCall<IEnumerable<Keyword>>(String.Format("Document/{0}/Keyword", documentId));
         }
-
         public Stream GetFile(string documentId)
         {
             var methodName = String.Format("Document/{0}/File", documentId);
@@ -101,15 +94,21 @@ namespace WebApi
             return ms;
         }
 
-        public IEnumerable<ObjectLibrary.Task> GetTasks()
+        public IEnumerable<Task> GetTasks()
         {
-            return MakeRestCall<IEnumerable<ObjectLibrary.Task>>("Task");
+            return MakeRestCall<IEnumerable<Task>>("Task");
+        }
+        public Task GetTask(string id)
+        {
+            return MakeRestCall<Task>(String.Format("Task/{0}", id));
         }
 
-        public ObjectLibrary.Task GetTask(string id)
+        public IEnumerable<TaskType> GetTaskTypes()
         {
-            return MakeRestCall<ObjectLibrary.Task>(String.Format("Task/{0}", id));
+            return MakeRestCall<IEnumerable<TaskType>>("TaskType");
         }
+
+
 
         private T MakeRestCall<T>(string methodName)
         {

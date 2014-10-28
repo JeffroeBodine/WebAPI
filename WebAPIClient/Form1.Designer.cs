@@ -58,10 +58,10 @@
             this.txtDocumentId = new System.Windows.Forms.TextBox();
             this.btnGetDocumentMetaData = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnAddTask = new System.Windows.Forms.Button();
+            this.txtTaskId = new System.Windows.Forms.TextBox();
             this.btnGetTask = new System.Windows.Forms.Button();
             this.btnGetTasks = new System.Windows.Forms.Button();
-            this.txtTaskId = new System.Windows.Forms.TextBox();
-            this.btnAddTask = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -408,6 +408,25 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tasks";
             // 
+            // btnAddTask
+            // 
+            this.btnAddTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddTask.Location = new System.Drawing.Point(6, 75);
+            this.btnAddTask.Name = "btnAddTask";
+            this.btnAddTask.Size = new System.Drawing.Size(159, 23);
+            this.btnAddTask.TabIndex = 15;
+            this.btnAddTask.Text = "Add Task";
+            this.btnAddTask.UseVisualStyleBackColor = true;
+            this.btnAddTask.Click += new System.EventHandler(this.btnAddTask_Click);
+            // 
+            // txtTaskId
+            // 
+            this.txtTaskId.Location = new System.Drawing.Point(171, 46);
+            this.txtTaskId.Name = "txtTaskId";
+            this.txtTaskId.Size = new System.Drawing.Size(58, 20);
+            this.txtTaskId.TabIndex = 15;
+            // 
             // btnGetTask
             // 
             this.btnGetTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -431,24 +450,6 @@
             this.btnGetTasks.Text = "Get Tasks";
             this.btnGetTasks.UseVisualStyleBackColor = true;
             this.btnGetTasks.Click += new System.EventHandler(this.btnGetTasks_Click);
-            // 
-            // txtTaskId
-            // 
-            this.txtTaskId.Location = new System.Drawing.Point(171, 46);
-            this.txtTaskId.Name = "txtTaskId";
-            this.txtTaskId.Size = new System.Drawing.Size(58, 20);
-            this.txtTaskId.TabIndex = 15;
-            // 
-            // btnAddTask
-            // 
-            this.btnAddTask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddTask.Location = new System.Drawing.Point(6, 75);
-            this.btnAddTask.Name = "btnAddTask";
-            this.btnAddTask.Size = new System.Drawing.Size(159, 23);
-            this.btnAddTask.TabIndex = 15;
-            this.btnAddTask.Text = "Add Task";
-            this.btnAddTask.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
