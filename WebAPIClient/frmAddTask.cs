@@ -45,12 +45,7 @@ namespace WebAPIClient
             cboPriority.DisplayMember = "Name";
             cboPriority.ValueMember = "Id";
 
-            var statuses = new List<Status>
-            {
-                new Status() {Id = 1, Name = "Assigned"},
-                new Status() {Id = 2, Name = "In Progress"},
-                new Status() {Id = 3, Name = "Complete"}
-            };
+            var statuses = _sdk.GetTaskStatuses();
             cboStatus.DataSource = statuses;
             cboStatus.DisplayMember = "Name";
             cboStatus.ValueMember = "Id";
@@ -66,10 +61,10 @@ namespace WebAPIClient
             public string Name { get; set; }
         }
 
-        private struct Status
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
+        //private struct Status
+        //{
+        //    public int Id { get; set; }
+        //    public string Name { get; set; }
+        //}
     }
 }
