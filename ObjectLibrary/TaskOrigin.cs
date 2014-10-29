@@ -4,7 +4,7 @@ namespace ObjectLibrary
 {
     public class TaskOrigin:BaseObject
     {
-        [DataMember]
+       [DataMember]
        public virtual bool Active { get; set; }
     }
 }

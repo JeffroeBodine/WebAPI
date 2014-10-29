@@ -22,16 +22,34 @@ namespace WebApi.Controllers
 
         public Task Get(string id)
         {
-            var task =Repository.Get<Task>(long.Parse(id));
+            var task = Repository.Get<Task>(long.Parse(id));
             return task;
         }
 
+        //public IHttpActionResult Add([FromBody] DateTime date)
+        //{
+        //    if (date != DateTime.MinValue)
+        //    {
+        //        var uri = new Uri(Request.RequestUri, date.ToShortDateString());
+        //        return Created(uri, date);
+        //    }
+        //    else
+        //    {
+        //        return InternalServerError();
+        //    }
+        //}
+
+
         public IHttpActionResult Add([FromBody] Task task)
         {
-            var id = Repository.Add(task);
+            if (task != null)
+            {
+                var id = Repository.Add(task);
 
-            var uri = new Uri(Request.RequestUri, id);
-            return Created(uri, id);
+                var uri = new Uri(Request.RequestUri, id);
+                return Created(uri, id);
+            }
+            return InternalServerError();
         }
 
 

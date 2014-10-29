@@ -53,8 +53,11 @@ namespace WebAPI
 
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.UseDataContractJsonSerializer = true;
-            json.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-            json.SerializerSettings.Converters.Add(new StringEnumConverter());
+           json.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+           json.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
+           json.SerializerSettings.Converters.Add(new StringEnumConverter());
+
+            GlobalConfiguration.Configuration.Formatters[0] = json;
         }
     }
 }

@@ -12,12 +12,12 @@ namespace DataAccess
             Map(x => x.Description).Column("Description");
             Map(x => x.Note).Column("Note");
             Map(x => x.DueDate).Column("DueDate");
-            Map(x => x.StartDate).Column("StartDate");
-            Map(x => x.EndDate).Column("CompleteDate");
-            Map(x => x.GroupTask).Column("GroupTask");
+            //Map(x => x.StartDate).Column("StartDate");
+            //Map(x => x.EndDate).Column("CompleteDate");
+            //Map(x => x.GroupTask).Column("GroupTask");
 
             
-            References(x => x.TaskType, "fkRefTaskType").Not.LazyLoad();
+           // References(x => x.TaskType, "fkRefTaskType").Not.LazyLoad();
 
         }
     }

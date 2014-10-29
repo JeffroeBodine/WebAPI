@@ -41,8 +41,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpCompleteDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -158,20 +158,20 @@
             this.txtNote.Size = new System.Drawing.Size(404, 84);
             this.txtNote.TabIndex = 24;
             // 
-            // dateTimePicker2
+            // dtpDueDate
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(116, 182);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(181, 20);
-            this.dateTimePicker2.TabIndex = 27;
+            this.dtpDueDate.Location = new System.Drawing.Point(116, 182);
+            this.dtpDueDate.Name = "dtpDueDate";
+            this.dtpDueDate.Size = new System.Drawing.Size(181, 20);
+            this.dtpDueDate.TabIndex = 27;
             // 
-            // dateTimePicker3
+            // dtpCompleteDate
             // 
-            this.dateTimePicker3.Enabled = false;
-            this.dateTimePicker3.Location = new System.Drawing.Point(116, 208);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(181, 20);
-            this.dateTimePicker3.TabIndex = 28;
+            this.dtpCompleteDate.Enabled = false;
+            this.dtpCompleteDate.Location = new System.Drawing.Point(116, 208);
+            this.dtpCompleteDate.Name = "dtpCompleteDate";
+            this.dtpCompleteDate.Size = new System.Drawing.Size(181, 20);
+            this.dtpCompleteDate.TabIndex = 28;
             // 
             // label8
             // 
@@ -199,8 +199,8 @@
             this.ClientSize = new System.Drawing.Size(527, 272);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.dateTimePicker3);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dtpCompleteDate);
+            this.Controls.Add(this.dtpDueDate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.label5);
@@ -237,8 +237,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNote;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dtpDueDate;
+        private System.Windows.Forms.DateTimePicker dtpCompleteDate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
     }

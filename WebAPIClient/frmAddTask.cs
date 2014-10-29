@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using ObjectLibrary;
 using WebApi;
 
 namespace WebAPIClient
@@ -25,7 +27,18 @@ namespace WebAPIClient
 
         private void btnAddTask_Click(object sender, System.EventArgs e)
         {
+            var task = new Task();
+            task.Description = txtDescription.Text;
+            task.Note = txtNote.Text;
+            task.DueDate = dtpDueDate.Value;
+            ////task.Origin = (TaskOrigin)cboOrigin.SelectedItem;
+            //task.Priority = (TaskPriority) cboPriority.SelectedValue;
+            //task.Status = (TaskStatus) cboStatus.SelectedItem;
+            //task.TaskType = (TaskType) cboTaskType.SelectedItem;
 
+            _sdk.AddTask(task);
+
+            int i = 0;
         }
 
         private void LoadRefData()
@@ -53,6 +66,8 @@ namespace WebAPIClient
             cboOrigin.DataSource = _sdk.GetTaskOrigins(); ;
             cboOrigin.DisplayMember = "Name";
             cboOrigin.ValueMember = "Id";
+
+            dtpDueDate.Value = DateTime.Today.AddDays(7);
         }
 
         private struct Priority
@@ -60,11 +75,5 @@ namespace WebAPIClient
             public int Id { get; set; }
             public string Name { get; set; }
         }
-
-        //private struct Status
-        //{
-        //    public int Id { get; set; }
-        //    public string Name { get; set; }
-        //}
     }
 }

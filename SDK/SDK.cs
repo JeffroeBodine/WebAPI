@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Security.Policy;
+using Newtonsoft.Json.Converters;
 using ObjectLibrary;
 
 namespace WebApi
@@ -78,7 +82,7 @@ namespace WebApi
             var methodName = String.Format("Document/{0}/File", documentId);
             var ms = new MemoryStream();
 
-            using (var client = new HttpClient() {BaseAddress = new Uri(BaseUrl)})
+            using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
             {
                 var responseMessage = client.GetAsync(methodName).Result;
 
@@ -117,6 +121,43 @@ namespace WebApi
         {
             return MakeRestCall<IEnumerable<TaskOrigin>>("TaskOrigin");
         }
+
+        public void AddTask(Task task)
+        {
+            try
+            {
+                using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
+                {
+
+                    var formatter = new JsonMediaTypeFormatter();
+                    formatter.UseDataContractJsonSerializer = true;
+                    //formatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+                    formatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
+                    //formatter.SerializerSettings.Converters.Add(new StringEnumConverter());
+
+                    //var responseMessage = client.PostAsync("task", DateTime.Now, formatter).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+                    var responseMessage = client.PostAsync("task", task, formatter).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+                    var result = responseMessage.Result;
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    Console.WriteLine(resultContent);
+                }
+
+                //using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
+                //{
+
+                //    var responseMessage = client.PostAsJsonAsync("task", task).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+                //    var result = responseMessage.Result;
+                //    var resultContent = result.Content.ReadAsStringAsync().Result;
+                //    Console.WriteLine(resultContent);
+                //}
+            }
+            catch (Exception ex)
+            {
+                int i = 0;
+                //throw;
+            }
+        }
+
 
         private T MakeRestCall<T>(string methodName)
         {
