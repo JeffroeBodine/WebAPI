@@ -129,35 +129,22 @@ namespace WebApi
                 using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
                 {
 
-                    var formatter = new JsonMediaTypeFormatter();
-                    formatter.UseDataContractJsonSerializer = true;
-                    //formatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+                    //Stupid ass formatter required for the god damn datetime formatting
+                    var formatter = new JsonMediaTypeFormatter {UseDataContractJsonSerializer = true};
                     formatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
-                    //formatter.SerializerSettings.Converters.Add(new StringEnumConverter());
-
-                    //var responseMessage = client.PostAsync("task", DateTime.Now, formatter).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+            
                     var responseMessage = client.PostAsync("task", task, formatter).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
                     var result = responseMessage.Result;
                     var resultContent = result.Content.ReadAsStringAsync().Result;
                     Console.WriteLine(resultContent);
                 }
-
-                //using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
-                //{
-
-                //    var responseMessage = client.PostAsJsonAsync("task", task).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
-                //    var result = responseMessage.Result;
-                //    var resultContent = result.Content.ReadAsStringAsync().Result;
-                //    Console.WriteLine(resultContent);
-                //}
-            }
+}
             catch (Exception ex)
             {
                 int i = 0;
                 //throw;
             }
         }
-
 
         private T MakeRestCall<T>(string methodName)
         {

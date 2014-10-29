@@ -26,20 +26,6 @@ namespace WebApi.Controllers
             return task;
         }
 
-        //public IHttpActionResult Add([FromBody] DateTime date)
-        //{
-        //    if (date != DateTime.MinValue)
-        //    {
-        //        var uri = new Uri(Request.RequestUri, date.ToShortDateString());
-        //        return Created(uri, date);
-        //    }
-        //    else
-        //    {
-        //        return InternalServerError();
-        //    }
-        //}
-
-
         public IHttpActionResult Add([FromBody] Task task)
         {
             if (task != null)
