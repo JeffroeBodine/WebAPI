@@ -27,7 +27,7 @@ namespace DataAccess
 
         public virtual T Get<T>(long id)
         {
-            var ret =Session.Get<T>(id);
+            var ret = Session.Get<T>(id);
             return ret;
         }
 
@@ -75,7 +75,7 @@ namespace DataAccess
 
         public virtual void InsertJoinClientCase(decimal caseId, decimal clientId)
         {
-            var sql = String.Format("insert into CPJoinClientClientCase (fkCPClientCase, fkCPClient) values ({0}, {1}); ",caseId, clientId);
+            var sql = String.Format("insert into CPJoinClientClientCase (fkCPClientCase, fkCPClient) values ({0}, {1}); ", caseId, clientId);
             sql += "select SCOPE_IDENTITY()";
             var query = Session.CreateSQLQuery(sql);
 

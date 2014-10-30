@@ -15,10 +15,11 @@ namespace DataAccess
             Map(x => x.StartDate).Column("StartDate");
             Map(x => x.EndDate).Column("CompleteDate");
             Map(x => x.GroupTask).Column("GroupTask");
+            Map(x => x.Priority).CustomType<int>();
 
-            
-           // References(x => x.TaskType, "fkRefTaskType").Not.LazyLoad();
-
+            References(x => x.Type, "fkRefTaskType").Not.LazyLoad();
+            References(x => x.Status, "fkRefTaskStatus").Not.LazyLoad();
+            References(x => x.Origin, "fkRefTaskOrigin").Not.LazyLoad().NotFound.Ignore();
         }
     }
 }

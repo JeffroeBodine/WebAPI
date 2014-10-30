@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -47,6 +48,17 @@ namespace ObjectLibrary
         public static IEnumerable<T> OrEmptyIfNull<T>(this IEnumerable<T> source)
         {
             return source ?? Enumerable.Empty<T>();
+        }
+
+        public static Task FixDates(this Task t)
+        {
+            var sqlMinDate = SqlDateTime.MinValue.Value;
+
+            t.DueDate = (t.DueDate < sqlMinDate) ? sqlMinDate : t.DueDate;
+            t.EndDate = (t.EndDate < sqlMinDate) ? sqlMinDate : t.EndDate;
+            t.StartDate = (t.StartDate < sqlMinDate) ? sqlMinDate : t.StartDate;
+
+            return t;
         }
     }
 }

@@ -4,13 +4,14 @@ using System.Web.Http;
 using DataAccess;
 using ObjectLibrary;
 using WebAPI;
+
 namespace WebApi.Controllers
 {
     public class TaskController : ControllerBase
     {
         public TaskController()
         {
-            Repository = new RepositoryBase();
+            Repository = new TaskRepository();
         }
 
         public IEnumerable<Task> Get()
@@ -28,16 +29,13 @@ namespace WebApi.Controllers
 
         public IHttpActionResult Add([FromBody] Task task)
         {
-            if (task != null)
-            {
-                var id = Repository.Add(task);
+            if (task == null) 
+                return InternalServerError();
 
-                var uri = new Uri(Request.RequestUri, id);
-                return Created(uri, id);
-            }
-            return InternalServerError();
+            var id = Repository.Add(task);
+
+            var uri = new Uri(Request.RequestUri, id);
+            return Created(uri, id);
         }
-
-
     }
 }

@@ -31,10 +31,11 @@ namespace WebAPIClient
             task.Description = txtDescription.Text;
             task.Note = txtNote.Text;
             task.DueDate = dtpDueDate.Value;
-            ////task.Origin = (TaskOrigin)cboOrigin.SelectedItem;
-            //task.Priority = (TaskPriority) cboPriority.SelectedValue;
-            //task.Status = (TaskStatus) cboStatus.SelectedItem;
-            //task.TaskType = (TaskType) cboTaskType.SelectedItem;
+           
+            task.Origin = (TaskOrigin)cboOrigin.SelectedItem;
+            task.Priority = (TaskPriority) cboPriority.SelectedValue;
+            task.Status = (TaskStatus) cboStatus.SelectedItem;
+            task.Type = (TaskType) cboTaskType.SelectedItem;
 
             _sdk.AddTask(task);
 
