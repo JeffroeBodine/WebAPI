@@ -10,7 +10,7 @@ namespace WebApi.Controllers
     {
         public TaskController()
         {
-            Repository = new ClientRepository();
+            Repository = new RepositoryBase();
         }
 
         public IEnumerable<Task> Get()
