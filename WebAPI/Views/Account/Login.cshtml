@@ -1,0 +1,48 @@
+﻿@model WebAPI.Models.LoginViewModel
+
+@using System.Web.UI.WebControls
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<section id="loginForm">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Use a local account to log in.</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="container">
+            <div class="row">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Email) })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <br />
+            <div class="row">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Password) })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="submit" value="Log in" class="btn btn-default" />
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <p>@Html.ActionLink("Register", "Register") if you don't have a local account.</p>
+            </div>
+        </div>
+    }
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

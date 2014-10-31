@@ -5,7 +5,7 @@ using DataAccess;
 using ObjectLibrary;
 using WebAPI;
 
-namespace WebApi.Controllers
+namespace WebAPI.Controllers
 {
     public class TaskController : ControllerBase
     {

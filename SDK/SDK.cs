@@ -6,7 +6,7 @@ using System.Net.Http.Formatting;
 using Newtonsoft.Json.Converters;
 using ObjectLibrary;
 
-namespace WebApi
+namespace WebAPI
 {
     public class SDK
     {
