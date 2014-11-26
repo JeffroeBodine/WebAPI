@@ -160,6 +160,7 @@
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CaseController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ConnectTypeController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentMetaDataController.cs" />
     <Compile Include="Controllers\DocumentTypeController.cs" />

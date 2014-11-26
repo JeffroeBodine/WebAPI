@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressMap.cs" />
+    <Compile Include="ConnectTypeMap.cs" />
     <Compile Include="CaseMap.cs" />
     <Compile Include="ClientMap.cs" />
     <Compile Include="TaskRepository.cs" />
