@@ -133,4 +133,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="9f906cd3-0d8f-447e-ba22-023d6a9d7b78" ChangeDateTime="12/31/2014 16:22:31">
+    <Property Name="ElementName" Value="[dbo].[User_Audit].[AuditApp]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User_Audit]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AuditApplication" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6a319981-7ae9-4bfe-9501-73059b76a52d" ChangeDateTime="12/31/2014 16:23:35">
+    <Property Name="ElementName" Value="[dbo].[User].[Audit]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AuditUser" />
+  </Operation>
 </Operations>

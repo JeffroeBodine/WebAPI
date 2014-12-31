@@ -8,9 +8,9 @@
     [EMail] VARCHAR(100) NOT NULL, 
     [FirstName] VARCHAR(50) NOT NULL, 
     [LastName] VARCHAR(50) NOT NULL, 
+	[AuditAction] CHAR(1) NOT NULL, 
     [AuditUser] VARCHAR(50) NOT NULL DEFAULT suser_sname(), 
     [AuditDate] DATETIME2 NOT NULL DEFAULT getdate(), 
-    [AuditAction] CHAR(1) NOT NULL, 
-    [AuditApp] VARCHAR(128) NOT NULL DEFAULT rtrim(isnull(app_name(),''))
+    [AuditApplication] VARCHAR(50) NOT NULL DEFAULT rtrim(isnull(app_name(),''))
     
 )

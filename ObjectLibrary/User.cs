@@ -3,7 +3,7 @@
 namespace ObjectLibrary
 {
     [DataContract]
-    public class User : BaseObject
+    public class User : AuditableBaseObject<User>
     {
         [DataMember(Order = 100)]
         public virtual string UserName { get; set; }

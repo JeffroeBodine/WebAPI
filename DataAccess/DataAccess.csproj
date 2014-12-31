@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressMap.cs" />
-    <Compile Include="AuditInterceptor.cs" />
     <Compile Include="ConnectTypeMap.cs" />
     <Compile Include="CaseMap.cs" />
     <Compile Include="ClientMap.cs" />

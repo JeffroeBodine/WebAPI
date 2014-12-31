@@ -14,10 +14,6 @@ namespace DataAccess
               .Database(MsSqlConfiguration.MsSql2012.ConnectionString(LocalConnectionString))
                 //.Database(MsSqlConfiguration.MsSql2012.ConnectionString(ConnectionString))
               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CaseMap>())
-              .ExposeConfiguration(c => c.SetInterceptor(new AuditInterceptor()))
-              .ExposeConfiguration(x => x.EventListeners.PreInsertEventListeners = new IPreInsertEventListener[] { new AuditInterceptor(), })
-              .ExposeConfiguration(x => x.EventListeners.PreUpdateEventListeners = new IPreUpdateEventListener[] { new AuditInterceptor(), })
-              .ExposeConfiguration(x => x.EventListeners.PreDeleteEventListeners = new IPreDeleteEventListener[] { new AuditInterceptor(), })
               .BuildSessionFactory();
         }
 

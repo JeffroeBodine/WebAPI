@@ -23,19 +23,21 @@ namespace WebAPI.Controllers
 
         public User Get(string id)
         {
-            string clientAddress = HttpContext.Current.Request.UserHostAddress;
-            string clientAgent = HttpContext.Current.Request.UserAgent;
-            string clientUrl = HttpContext.Current.Request.Url.OriginalString;
-
             var user = Repository.Get<User>(long.Parse(id));
             return user;
         }
 
         public IHttpActionResult Add([FromBody] User user)
         {
-         
             if (user == null)
                 return InternalServerError();
+
+            var userHostName = HttpContext.Current.Request.UserHostName;
+            var userHostAddress = HttpContext.Current.Request.UserHostAddress;
+            var userAgent = HttpContext.Current.Request.UserAgent;
+
+            user.AuditApplication = userAgent;
+            user.AuditUser = userHostName;
 
             var id = Repository.Add(user);
 

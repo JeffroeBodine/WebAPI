@@ -1,9 +1,8 @@
-﻿using FluentNHibernate.Mapping;
-using ObjectLibrary;
+﻿using ObjectLibrary;
 
 namespace DataAccess
 {
-    public class UserMap : ClassMap<User>
+    public class UserMap : AuditableEntityMap<User>
     {
         public UserMap()
         {
