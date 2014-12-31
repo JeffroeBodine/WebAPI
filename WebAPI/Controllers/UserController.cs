@@ -32,12 +32,7 @@ namespace WebAPI.Controllers
             if (user == null)
                 return InternalServerError();
 
-            var userHostName = HttpContext.Current.Request.UserHostName;
-            var userHostAddress = HttpContext.Current.Request.UserHostAddress;
-            var userAgent = HttpContext.Current.Request.UserAgent;
-
-            user.AuditApplication = userAgent;
-            user.AuditUser = userHostName;
+            AddAuditInformation(user);
 
             var id = Repository.Add(user);
 

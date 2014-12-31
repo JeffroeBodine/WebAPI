@@ -1,5 +1,7 @@
-﻿using System.Web.Http;
+﻿using System.Web;
+using System.Web.Http;
 using DataAccess;
+using ObjectLibrary;
 
 namespace WebAPI
 {
@@ -7,21 +9,36 @@ namespace WebAPI
     {
         public RepositoryBase Repository;
 
-         public ControllerBase()
+        public ControllerBase()
         {
             Repository = new RepositoryBase();
         }
 
-         public ControllerBase(RepositoryBase repository)
-         {
-             Repository = repository;
-         }
+        public ControllerBase(RepositoryBase repository)
+        {
+            Repository = repository;
+        }
 
-         protected override void Dispose(bool disposing)
-         {
-             base.Dispose(disposing);
-             if (Repository != null)
-                 Repository.Dispose();
-         }
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (Repository != null)
+                Repository.Dispose();
+        }
+
+        protected void AddAuditInformation<T>(T obj)
+        {
+            var auditableBaseObject = obj as AuditableBaseObject<T>;
+
+            if (auditableBaseObject != null)
+            {
+                var userHostName = HttpContext.Current.Request.UserHostName;
+                var userHostAddress = HttpContext.Current.Request.UserHostAddress;
+                var userAgent = HttpContext.Current.Request.UserAgent;
+
+                auditableBaseObject.AuditApplication = userAgent;
+                auditableBaseObject.AuditUser = userHostName;
+            }
+        }
     }
 }

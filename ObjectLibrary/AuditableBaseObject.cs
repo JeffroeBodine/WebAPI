@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace ObjectLibrary
 {
@@ -11,7 +10,7 @@ namespace ObjectLibrary
         [DataMember]
         public virtual string AuditApplication { get; set; }
        
-        protected AuditableBaseObject()
+        public AuditableBaseObject()
         {
         }
         public AuditableBaseObject(long id)
