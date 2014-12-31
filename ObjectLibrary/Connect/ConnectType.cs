@@ -5,6 +5,8 @@ namespace ObjectLibrary.Connect
     public class ConnectType : BaseObject
     {
         [DataMember]
+        public virtual string Name { get; set; }
+        [DataMember]
         public virtual bool Enabled { get; set; }
         [DataMember]
         public virtual int Interval { get; set; }

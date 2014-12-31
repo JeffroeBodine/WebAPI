@@ -9,7 +9,7 @@ namespace DataAccess
         {
             Table("RefTaskType");
             Id(x => x.Id).Column("pkRefTaskType");
-            Map(x => x.Name).Column("Description");
+            Map(x => x.Description).Column("Description");
 
             Map(x => x.DefaultDueMinutes).Column("DefaultDueMinutes");
             Map(x => x.DefaultGroupTask).Column("DefaultGroupTask");

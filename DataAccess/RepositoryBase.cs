@@ -138,7 +138,7 @@ namespace DataAccess
                     //Eat this exception because of stupid triggers
                     CommitTransaction();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     RollbackTransaction();
                 }

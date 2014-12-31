@@ -2,9 +2,11 @@
 
 namespace ObjectLibrary
 {
-    public class TaskOrigin:BaseObject
+    public class TaskOrigin : BaseObject
     {
-       [DataMember]
-       public virtual bool Active { get; set; }
+        [DataMember]
+        public virtual string TaskOriginName { get; set; }
+        [DataMember]
+        public virtual bool Active { get; set; }
     }
 }

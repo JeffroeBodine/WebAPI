@@ -3,24 +3,28 @@
 namespace ObjectLibrary
 {
     [DataContract]
-    public sealed class User : BaseObject
+    public class User : BaseObject
     {
         [DataMember(Order = 100)]
-        public string Password { get; set; }
-        public string Salt { get; set; }
+        public virtual string UserName { get; set; }
+        [DataMember(Order = 101)]
+        public virtual string Password { get; set; }
         [DataMember(Order = 102)]
-        public string EMail { get; set; }
+        public virtual string Salt { get; set; }
         [DataMember(Order = 103)]
-        public string FirstName { get; set; }
+        public virtual string EMail { get; set; }
         [DataMember(Order = 104)]
-        public string LastName { get; set; }
+        public virtual string FirstName { get; set; }
+        [DataMember(Order = 105)]
+        public virtual string LastName { get; set; }
       
         public User()
         {
         }
 
-        public User(long id, string name, string password, string eMail, string firstName, string lastName): base(id, name)
+        public User(long id, string userName, string password, string eMail, string firstName, string lastName): base(id)
         {
+            UserName = userName;
             Password = password;
             EMail = eMail;
             FirstName = firstName;
@@ -31,19 +35,5 @@ namespace ObjectLibrary
         {
             Salt = salt;
         }
-
-        //public class UserMap : ClassMap<User>
-        //{
-        //    public UserMap()
-        //    {
-        //        Id(x => x.Id).Column("Id").GeneratedBy.Identity();
-        //        Map(x => x.Name);
-        //        Map(x => x.Password);
-        //        Map(x => x.Salt);
-        //        Map(x => x.EMail);
-        //        Map(x => x.FirstName);
-        //        Map(x => x.LastName);           
-        //    }
-        //}
     }
 }

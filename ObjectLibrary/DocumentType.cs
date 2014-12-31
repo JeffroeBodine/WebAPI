@@ -9,9 +9,12 @@ namespace ObjectLibrary
     }
 
     [DataContract]
-    public sealed class DocumentType : BaseObject
+    public class DocumentType : BaseObject
     {
-        [DataMember(Order = 10)]
+
+        [DataMember(Order = 100)]
+        public virtual string Name { get; set; }
+        [DataMember(Order = 101)]
         public DocumentTypeList DocumentTypeList { get; set; }
 
         public DocumentType()
@@ -19,13 +22,15 @@ namespace ObjectLibrary
             DocumentTypeList = new DocumentTypeList();
         }
 
-        public DocumentType(long id, string name) : base(id, name)
+        public DocumentType(long id, string name) : base(id)
         {
+            Name = name;
             DocumentTypeList = new DocumentTypeList();
         }
 
-        public DocumentType(long id, string name, DocumentTypeList documentTypeList) : base(id, name)
+        public DocumentType(long id, string name, DocumentTypeList documentTypeList) : base(id)
         {
+            Name = name;
             DocumentTypeList = documentTypeList;
         }
     }

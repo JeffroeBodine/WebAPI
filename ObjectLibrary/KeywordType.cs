@@ -12,8 +12,11 @@ namespace ObjectLibrary
     }
 
     [DataContract]
-    public sealed class KeywordType : BaseObject
+    public class KeywordType : BaseObject
     {
+        [DataMember(Order = 100)]
+        public virtual string Name { get; set; }
+
         [DataMember(Order = 100)]
         public string DataTypeString {
             get { return DataType.ToString(); }

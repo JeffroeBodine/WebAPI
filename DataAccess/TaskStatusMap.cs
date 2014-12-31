@@ -9,7 +9,7 @@ namespace DataAccess
         {
             Table("refTaskStatus");
             Id(x => x.Id).Column("pkRefTaskStatus");
-            Map(x => x.Name).Column("Description");
+            Map(x => x.Description).Column("Description");
         }
     }
 }

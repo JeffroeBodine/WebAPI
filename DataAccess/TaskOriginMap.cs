@@ -9,7 +9,7 @@ namespace DataAccess
         {
             Table("refTaskOrigin");
             Id(x => x.Id).Column("pkRefTaskOrigin");
-            Map(x => x.Name).Column("TaskOriginName");
+            Map(x => x.TaskOriginName).Column("TaskOriginName");
             Map(x => x.Active).Column("Active");
         }
     }

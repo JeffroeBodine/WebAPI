@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="AuditableBaseObject.cs" />
     <Compile Include="BaseObject.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Client.cs" />
@@ -54,6 +55,8 @@
     <Compile Include="Collections\SearchCriteria.cs" />
     <Compile Include="Connect\ConnectType.cs" />
     <Compile Include="Connect\SyncProviderType.cs" />
+    <Compile Include="IAuditableBaseObject.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

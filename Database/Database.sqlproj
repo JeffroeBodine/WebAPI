@@ -64,9 +64,11 @@
   <ItemGroup>
     <None Include="Database.publish.xml" />
     <None Include="Database_1.publish.xml" />
+    <None Include="webAPI.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="User.sql" />
     <Build Include="Session.sql" />
+    <Build Include="User_Audit.sql" />
   </ItemGroup>
 </Project>

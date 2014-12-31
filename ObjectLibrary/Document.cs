@@ -4,21 +4,25 @@ using System.Runtime.Serialization;
 namespace ObjectLibrary
 {
     [DataContract]
-    public sealed class Document : BaseObject
+    public class Document : BaseObject
     {
+
         [DataMember(Order = 100)]
-        public DateTime CreateDate { get; set; }
+        public virtual string Name { get; set; }
 
         [DataMember(Order = 101)]
-        public DateTime LUPDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         [DataMember(Order = 102)]
-        public string Author { get; set; }
+        public DateTime LUPDate { get; set; }
 
         [DataMember(Order = 103)]
-        public long DocumentTypeID { get; set; }
+        public string Author { get; set; }
 
         [DataMember(Order = 104)]
+        public long DocumentTypeID { get; set; }
+
+        [DataMember(Order = 105)]
         public DocumentMetaData MetaData { get; set; }
 
         public Document()
@@ -26,8 +30,9 @@ namespace ObjectLibrary
         }
 
         public Document(long id, string name, DateTime createDate, DateTime lupDate, string author, long documentTypeID)
-            : base(id, name)
+            : base(id)
         {
+            Name = name;
             CreateDate = createDate;
             LUPDate = lupDate;
             Author = author;

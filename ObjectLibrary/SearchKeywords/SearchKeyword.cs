@@ -1,7 +1,11 @@
-﻿namespace ObjectLibrary.SearchKeywords
+﻿using Faker;
+
+namespace ObjectLibrary.SearchKeywords
 {
     public class SearchKeyword : BaseObject
     {
+        public virtual string Name { get; set; }
+
         public SearchKeyword()
         { }
 

@@ -14,7 +14,7 @@ namespace ObjectLibrary
         {
         }
 
-        public Session(long id, string name, long fkUser, DateTime createDate) : base(id, name)
+        public Session(long id, long fkUser, DateTime createDate) : base(id)
         {
             FkUser = fkUser;
             CreateDate = createDate;

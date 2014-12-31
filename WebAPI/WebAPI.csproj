@@ -173,6 +173,7 @@
     <Compile Include="Controllers\TaskOriginController.cs" />
     <Compile Include="Controllers\TaskTypeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -6,6 +6,8 @@ namespace ObjectLibrary
     public class TaskType : BaseObject
     {
         [DataMember]
+        public virtual string Description { get; set; }
+        [DataMember]
         public virtual int DefaultDueMinutes { get; set; }
         [DataMember]
         public virtual bool DefaultGroupTask { get; set; }

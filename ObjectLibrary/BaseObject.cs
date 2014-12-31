@@ -3,21 +3,18 @@
 namespace ObjectLibrary
 {
     [DataContract]
-    public class BaseObject
+    public abstract class BaseObject
     {
         [DataMember]
         public virtual long Id { get; set; }
-        [DataMember]
-        public virtual string Name { get; set; }
 
-        public BaseObject()
+        protected BaseObject()
         { 
         }
 
-        public BaseObject(long id, string name)
+        protected BaseObject(long id)
         {
             Id = id;
-            Name = name;
         }
     }
 }
