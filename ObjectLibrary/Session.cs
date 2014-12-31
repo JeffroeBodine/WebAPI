@@ -27,7 +27,7 @@ namespace ObjectLibrary
         //        Id(x => x.Id).Column("Id").GeneratedBy.Identity();
         //        Map(x => x.Name);
         //        Map(x => x.FkUser);
-        //        Map(x => x.CreateDate);
+        //        Map(x => x.AuditDate);
         //    }
         //}
     }
