@@ -49,15 +49,16 @@ namespace DataAccess
             return obj;
         }
 
-        public virtual T Delete<T>(T obj)
+        public virtual void Delete<T>(T obj)
         {
             //BeginTransaction();
-            var existingObject = Session.Query<T>().FirstOrDefault(x => x.Equals(obj));
 
-            if (existingObject != null)
-                Session.Delete(existingObject);
+            //var existingObject = Session.Query<T>().FirstOrDefault(x => x.Equals(obj));
 
-            return obj;
+            //if (existingObject != null)
+                Session.Delete(obj);
+
+            //return obj;
         }
 
         public virtual List<T> Get<T>(string customSQL)
