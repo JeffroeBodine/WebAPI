@@ -62,12 +62,18 @@
             this.txtTaskId = new System.Windows.Forms.TextBox();
             this.btnGetTask = new System.Windows.Forms.Button();
             this.btnGetTasks = new System.Windows.Forms.Button();
+            this.gbUsers = new System.Windows.Forms.GroupBox();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.txtUserId = new System.Windows.Forms.TextBox();
+            this.btnGetUser = new System.Windows.Forms.Button();
+            this.btnGetUsers = new System.Windows.Forms.Button();
             this.gbImaging.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.gbUsers.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbImaging
@@ -451,11 +457,68 @@
             this.btnGetTasks.UseVisualStyleBackColor = true;
             this.btnGetTasks.Click += new System.EventHandler(this.btnGetTasks_Click);
             // 
+            // gbUsers
+            // 
+            this.gbUsers.Controls.Add(this.btnAddUser);
+            this.gbUsers.Controls.Add(this.txtUserId);
+            this.gbUsers.Controls.Add(this.btnGetUser);
+            this.gbUsers.Controls.Add(this.btnGetUsers);
+            this.gbUsers.Location = new System.Drawing.Point(212, 213);
+            this.gbUsers.Name = "gbUsers";
+            this.gbUsers.Size = new System.Drawing.Size(235, 112);
+            this.gbUsers.TabIndex = 17;
+            this.gbUsers.TabStop = false;
+            this.gbUsers.Text = "Users";
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddUser.Location = new System.Drawing.Point(6, 75);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(159, 23);
+            this.btnAddUser.TabIndex = 15;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
+            // txtUserId
+            // 
+            this.txtUserId.Location = new System.Drawing.Point(171, 46);
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Size = new System.Drawing.Size(58, 20);
+            this.txtUserId.TabIndex = 15;
+            // 
+            // btnGetUser
+            // 
+            this.btnGetUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetUser.Location = new System.Drawing.Point(6, 46);
+            this.btnGetUser.Name = "btnGetUser";
+            this.btnGetUser.Size = new System.Drawing.Size(159, 23);
+            this.btnGetUser.TabIndex = 16;
+            this.btnGetUser.Text = "Get User";
+            this.btnGetUser.UseVisualStyleBackColor = true;
+            this.btnGetUser.Click += new System.EventHandler(this.btnGetUser_Click);
+            // 
+            // btnGetUsers
+            // 
+            this.btnGetUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetUsers.Location = new System.Drawing.Point(6, 17);
+            this.btnGetUsers.Name = "btnGetUsers";
+            this.btnGetUsers.Size = new System.Drawing.Size(159, 23);
+            this.btnGetUsers.TabIndex = 15;
+            this.btnGetUsers.Text = "Get Users";
+            this.btnGetUsers.UseVisualStyleBackColor = true;
+            this.btnGetUsers.Click += new System.EventHandler(this.btnGetUsers_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 730);
+            this.Controls.Add(this.gbUsers);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -478,6 +541,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.gbUsers.ResumeLayout(false);
+            this.gbUsers.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,6 +584,11 @@
         private System.Windows.Forms.Button btnGetTask;
         private System.Windows.Forms.Button btnGetTasks;
         private System.Windows.Forms.Button btnAddTask;
+        private System.Windows.Forms.GroupBox gbUsers;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.TextBox txtUserId;
+        private System.Windows.Forms.Button btnGetUser;
+        private System.Windows.Forms.Button btnGetUsers;
     }
 }
 

@@ -127,13 +127,46 @@ namespace WebAPIClient
             var task = Sdk.GetTask(txtTaskId.Text);
             DisplayTask(task);
         }
-
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             var frmAddTask = new frmAddTask(Sdk);
-            frmAddTask.ShowDialog();
 
+            string taskId = string.Empty;
+            if (frmAddTask.ShowDialog() == DialogResult.OK)
+            {
+                taskId = frmAddTask.TaskId;
+                frmAddTask.Close();
+            }
+
+            var task = Sdk.GetTask(taskId);
+            DisplayTask(task);
         }
+
+        private void btnGetUsers_Click(object sender, EventArgs e)
+        {
+            var users = Sdk.GetUsers();
+            DisplayUsers(users);
+        }
+        private void btnGetUser_Click(object sender, EventArgs e)
+        {
+            var user = Sdk.GetUser(txtUserId.Text);
+            DisplayUser(user);
+        }
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            var frmAddUser = new frmAddUser(Sdk);
+            var userId = string.Empty;
+
+            if (frmAddUser.ShowDialog() == DialogResult.OK)
+            {
+                userId = frmAddUser.UserId;
+                frmAddUser.Close();
+            }
+
+            var user = Sdk.GetUser(userId);
+            DisplayUser(user);
+        }
+
         private void DisplayKeywords(IEnumerable<Keyword> keywords)
         {
             txtResult.Clear();
@@ -265,6 +298,23 @@ namespace WebAPIClient
             txtResult.Text += String.Format("Id: {0}, Description: {1}{2}", task.Id, task.Description, Environment.NewLine);
         }
 
+        private void DisplayUsers(IEnumerable<User> users)
+        {
+            txtResult.Clear();
+            if (users == null)
+                return;
+
+            foreach (var u in users)
+            {
+                txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", u.Id, u.FirstName + " " + u.LastName, Environment.NewLine);
+            }
+        }
+        private void DisplayUser(User user)
+        {
+            txtResult.Clear();
+            txtResult.Text += String.Format("Id: {0}, Name: {1}{2}", user.Id, user.FirstName + " " + user.LastName, Environment.NewLine);
+        }
+
         private void DisplayStopwatchTime(Stopwatch stopwatch)
         {
             txtResult.Clear();
@@ -286,6 +336,8 @@ namespace WebAPIClient
         {
             new frmUploadDocument().ShowDialog();
         }
+
+
 
     }
 }

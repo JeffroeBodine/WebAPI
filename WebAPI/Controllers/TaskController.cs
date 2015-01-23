@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using DataAccess;
 using ObjectLibrary;
@@ -32,10 +34,11 @@ namespace WebAPI.Controllers
             if (task == null) 
                 return InternalServerError();
 
-            var id = Repository.Add(task);
-
-            var uri = new Uri(Request.RequestUri, id);
+            var id = Decimal.Parse(Repository.Add(task));
+           
+            var uri = new Uri(Request.RequestUri, id.ToString());
             return Created(uri, id);
+
         }
     }
 }

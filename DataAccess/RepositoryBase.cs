@@ -20,9 +20,15 @@ namespace DataAccess
             Transaction = Session.BeginTransaction();
         }
 
-        public RepositoryBase(ISession session)
+        //public RepositoryBase(ISession session)
+        //{
+        //    Session = session;
+        //}
+
+        public RepositoryBase(string connectionString)
         {
-            Session = session;
+            Session = SessionFactoryManager.CreateSessionFactory(connectionString).OpenSession();
+            Transaction = Session.BeginTransaction();
         }
 
         public virtual T Get<T>(long id)

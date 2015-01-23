@@ -40,5 +40,9 @@ namespace WebAPI
                 auditableBaseObject.AuditUser = userHostName;
             }
         }
+
+        public static string LocalConnectionString =
+            @"Data Source=.;Initial Catalog=webAPI;Persist Security Info=False;User ID=sa;Password=northwoods";
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
+using System.Reflection;
 using System.Web.Http;
 using DataAccess;
 using ObjectLibrary;
@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
     {
         public UserController()
         {
-            Repository = new RepositoryBase();
+            Repository = new RepositoryBase(LocalConnectionString);
         }
 
         public IEnumerable<User> Get()
@@ -34,9 +34,12 @@ namespace WebAPI.Controllers
 
             AddAuditInformation(user);
 
-            var id = Repository.Add(user);
+            user.Salt = Encryption.Salt(128);
+            user.UserName = user.EMail;
 
-            var uri = new Uri(Request.RequestUri, id);
+            var id = decimal.Parse(Repository.Add(user));
+
+            var uri = new Uri(Request.RequestUri, id.ToString());
             return Created(uri, id);
         }
 

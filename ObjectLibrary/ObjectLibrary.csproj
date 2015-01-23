@@ -72,7 +72,6 @@
     <Compile Include="ProgramType.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="DocumentType.cs" />
-    <Compile Include="Encryption.cs" />
     <Compile Include="SearchKeywords\CreateDateTimeRangeSearchKeyword.cs" />
     <Compile Include="SearchKeywords\DateTimeRangeSearchKeyword.cs" />
     <Compile Include="Document.cs" />

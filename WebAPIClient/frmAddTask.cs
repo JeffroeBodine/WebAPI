@@ -9,6 +9,7 @@ namespace WebAPIClient
     public partial class frmAddTask : Form
     {
         private readonly SDK _sdk;
+        public string TaskId { get; private set; }
 
         public frmAddTask(SDK sdk)
         {
@@ -27,19 +28,20 @@ namespace WebAPIClient
 
         private void btnAddTask_Click(object sender, System.EventArgs e)
         {
-            var task = new Task();
-            task.Description = txtDescription.Text;
-            task.Note = txtNote.Text;
-            task.DueDate = dtpDueDate.Value;
-           
-            task.Origin = (TaskOrigin)cboOrigin.SelectedItem;
-            task.Priority = (TaskPriority) cboPriority.SelectedValue;
-            task.Status = (TaskStatus) cboStatus.SelectedItem;
-            task.Type = (TaskType) cboTaskType.SelectedItem;
+            var task = new Task
+            {
+                Description = txtDescription.Text,
+                Note = txtNote.Text,
+                DueDate = dtpDueDate.Value,
+                Origin = (TaskOrigin) cboOrigin.SelectedItem,
+                Priority = (TaskPriority) cboPriority.SelectedValue,
+                Status = (TaskStatus) cboStatus.SelectedItem,
+                Type = (TaskType) cboTaskType.SelectedItem
+            };
 
-            _sdk.AddTask(task);
+            TaskId =_sdk.AddTask(task);
 
-            int i = 0;
+            DialogResult = DialogResult.OK;
         }
 
         private void LoadRefData()

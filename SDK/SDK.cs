@@ -105,6 +105,40 @@ namespace WebAPI
             return MakeRestCall<Task>(String.Format("Task/{0}", id));
         }
 
+        public IEnumerable<User> GetUsers()
+        {
+            return MakeRestCall<IEnumerable<User>>("User");
+        }
+        public User GetUser(string id)
+        {
+            return MakeRestCall<User>(String.Format("User/{0}", id));
+        }
+        public string AddUser(User user)
+        {
+            try
+            {
+                using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
+                {
+
+                    //Stupid ass formatter required for the god damn datetime formatting
+                    var formatter = new JsonMediaTypeFormatter { UseDataContractJsonSerializer = true };
+                    formatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
+
+                    var responseMessage = client.PostAsync("user", user, formatter).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+                    var result = responseMessage.Result;
+                    var resultContent = result.Content.ReadAsStringAsync().Result;
+                    Console.WriteLine(resultContent);
+                    return resultContent;
+                }
+            }
+            catch (Exception ex)
+            {
+                int i = 0;
+                throw;
+            }
+        }
+
+
         public IEnumerable<TaskType> GetTaskTypes()
         {
             return MakeRestCall<IEnumerable<TaskType>>("TaskType");
@@ -120,27 +154,30 @@ namespace WebAPI
             return MakeRestCall<IEnumerable<TaskOrigin>>("TaskOrigin");
         }
 
-        public void AddTask(Task task)
+        public string AddTask(Task task)
         {
+            decimal taskId = -1;
+
             try
             {
-                using (var client = new HttpClient() { BaseAddress = new Uri(BaseUrl) })
+                using (var client = new HttpClient { BaseAddress = new Uri(BaseUrl) })
                 {
 
                     //Stupid ass formatter required for the god damn datetime formatting
                     var formatter = new JsonMediaTypeFormatter {UseDataContractJsonSerializer = true};
                     formatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
             
-                    var responseMessage = client.PostAsync("task", task, formatter).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+                    var responseMessage = client.PostAsync("task", task, formatter).ContinueWith(postTask => postTask.Result.EnsureSuccessStatusCode());
                     var result = responseMessage.Result;
                     var resultContent = result.Content.ReadAsStringAsync().Result;
                     Console.WriteLine(resultContent);
+                    return resultContent;
                 }
 }
             catch (Exception ex)
             {
                 int i = 0;
-                //throw;
+                throw;
             }
         }
 
